@@ -20,7 +20,7 @@ class Player: SKSpriteNode, GameSprite {
     
     
     
-    var initialSize: CGSize = CGSize(width: 100, height: 100)
+    var initialSize: CGSize = CGSize(width: 200, height: 150)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
     
@@ -48,7 +48,7 @@ class Player: SKSpriteNode, GameSprite {
     
     func update() {
             
-        self.position.x += 4
+        self.position.x += 6
        // if jump {
 //            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 700.0))
 //            let delay = SKAction.wait(forDuration: 0.2)
@@ -63,7 +63,8 @@ class Player: SKSpriteNode, GameSprite {
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 240.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 800.0))
+        textureJumping()
     }
     
     func createAnimation() {
@@ -72,13 +73,24 @@ class Player: SKSpriteNode, GameSprite {
         let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
         rotateDownAction.timingMode = .easeIn
         
-        let catFrames: [SKTexture] = [textureAtlas.textureNamed("1"),
-                                      textureAtlas.textureNamed("2"),
-                                      textureAtlas.textureNamed("3")]
+        let catFrames: [SKTexture] = [textureAtlas.textureNamed("Spacecat1"),
+                                      textureAtlas.textureNamed("Spacecat2"),
+                                      textureAtlas.textureNamed("Spacecat3")]
         
-        let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.3)
+        let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
         catAnimation = SKAction.group([SKAction.repeatForever(catAction), rotateUpAction])
         
+    }
+    
+    func textureJumping() {
+        let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)
+        rotateUpAction.timingMode = .easeOut
+        let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
+        rotateDownAction.timingMode = .easeIn
+        
+        let frame: [SKTexture] = [textureAtlas.textureNamed("Spacecat2")]
+        let actionFrame = SKAction.animate(with: frame, timePerFrame: 1.35)
+        self.run(actionFrame)
     }
     
     

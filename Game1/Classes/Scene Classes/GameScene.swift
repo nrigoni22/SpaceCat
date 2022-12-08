@@ -64,8 +64,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "Sprite", zPosition: -5, movementMultiplier: 0.1)
-//        background[1].spawn(parentNode: self, imageName: "Sprite", zPosition: -10, movementMultiplier: 0.5)
+        background[0].spawn(parentNode: self, imageName: "backgroundSpace", zPosition: -3, movementMultiplier: 0.1)
+        background[1].spawn(parentNode: self, imageName: "schifo", zPosition: -2, movementMultiplier: 0.5)
 //        background[2].spawn(parentNode: self, imageName: "Sprite", zPosition: -15, movementMultiplier: 0.2)
         
         ground.position = CGPoint(x: -self.size.width * 2, y: 100)
@@ -77,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.zPosition = 3
         self.addChild(player)
         
-        // self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
         //spawnEnemies()
         
         scoreCounter = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
@@ -125,6 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     func spawnEnemies() {
         
         let enemy = Enemy()//.copy() as! SKSpriteNode
@@ -138,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        var cameraYPos = screenCenterY
+        let cameraYPos = screenCenterY
         cam.yScale = 1
         cam.xScale = 1
         
