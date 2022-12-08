@@ -182,6 +182,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func setHighscore(_ highscore: Int) {
+        UserDefaults.standard.set(highscore, forKey: "Highscore")
+    }
+    
+    func getHighscore(_ highscore: Int) -> Int {
+        UserDefaults.standard.integer(forKey: "Highscore")
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody = SKPhysicsBody()
         var secondBody = SKPhysicsBody()
