@@ -84,7 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.incrementScore()
         })
         
-        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
+        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
             self.spawnEnemies()
         })
     }
@@ -129,11 +129,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnEnemies() {
         
         let enemy = Enemy()//.copy() as! SKSpriteNode
+        let enemy2 = Enemy2()
         
         enemy.position = CGPoint(x: player.position.x + 1500, y: 120) //self.frame.width + 450
+        enemy2.position = CGPoint(x: player.position.x + 1000, y: 250)
         
         self.addChild(enemy)
-        
+        self.addChild(enemy2)
     }
     
     
@@ -183,11 +185,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func saveLastFive(score: Int) {
+        let index: Int = UserDefaults.standard.integer(forKey: "Index")
+        if index < 5 {
+            UserDefaults.standard.set(score, forKey: "Score\(index)")
+        } else {
+            UserDefaults.standard.set(score, forKey: "Score\(0)")
+        }
+        let newIndex = index + 1
+        UserDefaults.standard.set(newIndex, forKey: "Index")
+    }
+    
     func setHighscore(_ highscore: Int) {
         UserDefaults.standard.set(highscore, forKey: "Highscore")
     }
     
-    func getHighscore(_ highscore: Int) -> Int {
+    func getHighscore() -> Int {
         UserDefaults.standard.integer(forKey: "Highscore")
     }
     
@@ -208,10 +221,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             canJump = true
         }
         
-        if firstBody.node?.name == "Player" && secondBody.node?.name == "Enemy" {
+        if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
+            saveLastFive(score: score)
+            
+            if getHighscore() < score {
+                setHighscore(score)
+            }
             
             secondBody.node?.removeFromParent()
+            
+            let launchScene = LaunchScene(fileNamed: "LaunchScene")
+            launchScene!.scaleMode = .aspectFill
+            self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
         }
     }
     

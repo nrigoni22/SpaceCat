@@ -12,8 +12,8 @@ import SpriteKit
 struct ColliderType {
     static let player: UInt32 = 1
     static let ground: UInt32 = 2
-    static let enemy: UInt32 = 3
-    static let powerUp: UInt32 = 4
+    static let enemy: UInt32 = 4
+    static let powerUp: UInt32 = 8
 }
 
 class Player: SKSpriteNode, GameSprite {

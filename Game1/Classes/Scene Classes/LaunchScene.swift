@@ -13,6 +13,11 @@ class LaunchScene: SKScene {
     var scoreBtn = SKSpriteNode()
     var titleLabel = SKLabelNode()
     
+    var scoreTitleLabel = SKLabelNode()
+    var highscoreLabel = SKLabelNode()
+    var otherScoreLabel: [SKLabelNode] = []
+    var backBtn = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         inizialize()
     }
@@ -34,7 +39,19 @@ class LaunchScene: SKScene {
             }
             
             if nodes(at: location).first == scoreBtn {
+                scoreView()
+            }
+            
+            if nodes(at: location).first == backBtn {
+                backBtn.removeFromParent()
+                scoreTitleLabel.removeFromParent()
+                highscoreLabel.removeFromParent()
                 
+                
+                self.addChild(playBtn)
+                self.addChild(scoreBtn)
+                self.addChild(titleLabel)
+                inizialize()
             }
         }
     }
@@ -67,4 +84,37 @@ class LaunchScene: SKScene {
         titleLabel.run(SKAction.repeatForever(sequence))
     }
     
+    func scoreView() {
+        playBtn.removeFromParent()
+        scoreBtn.removeFromParent()
+        titleLabel.removeFromParent()
+        
+        scoreTitleLabel = SKLabelNode(text: "Score Title Here")
+        scoreTitleLabel.zPosition = 10
+        scoreTitleLabel.fontSize = 80
+        scoreTitleLabel.position = CGPoint(x: 0, y: 180);
+        self.addChild(scoreTitleLabel)
+        
+        backBtn = SKSpriteNode(imageNamed: "Quit")
+        backBtn.name = "Quit"
+        backBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        backBtn.position = CGPoint(x: -500, y: -180)
+        backBtn.zPosition = 10
+        backBtn.setScale(0.5)
+        self.addChild(backBtn)
+        
+        highscoreLabel = SKLabelNode(text: "Higherscore:    \(UserDefaults.standard.integer(forKey: "Highscore"))")
+        highscoreLabel.zPosition = 10
+        highscoreLabel.fontSize = 50
+        highscoreLabel.position = CGPoint(x: -200, y: 80);
+        self.addChild(highscoreLabel)
+        
+        for index in 0..<5 {
+            otherScoreLabel[index] = SKLabelNode(text: "Match \(index + 1):    \(UserDefaults.standard.integer(forKey: "Score\(index)"))")
+            otherScoreLabel[index].zPosition = 10
+            otherScoreLabel[index].fontSize = 50
+            otherScoreLabel[index].position = CGPoint(x: -250, y: 20 - (60 * index));
+            self.addChild(otherScoreLabel[index]/*.copy() as! SKLabelNode*/)
+        }
+    }
 }

@@ -21,6 +21,7 @@
 		40222408294138950004776B /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222407294138950004776B /* Background.swift */; };
 		4022240D29421B8C0004776B /* LaunchScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4022240C29421B8C0004776B /* LaunchScene.sks */; };
 		4022240F29421C170004776B /* LaunchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022240E29421C170004776B /* LaunchScene.swift */; };
+		402224112943EB630004776B /* Enemy2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402224102943EB630004776B /* Enemy2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		40222407294138950004776B /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		4022240C29421B8C0004776B /* LaunchScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LaunchScene.sks; sourceTree = "<group>"; };
 		4022240E29421C170004776B /* LaunchScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScene.swift; sourceTree = "<group>"; };
+		402224102943EB630004776B /* Enemy2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				4022240529412EB10004776B /* Ground.swift */,
 				4022240329411F3C0004776B /* Player.swift */,
 				402223FF294119850004776B /* Enemy.swift */,
+				402224102943EB630004776B /* Enemy2.swift */,
 				40222407294138950004776B /* Background.swift */,
 			);
 			path = Classes;
@@ -193,6 +196,7 @@
 				402223F1294115B30004776B /* GameViewController.swift in Sources */,
 				4022240F29421C170004776B /* LaunchScene.swift in Sources */,
 				4022240229411C930004776B /* GameSprite.swift in Sources */,
+				402224112943EB630004776B /* Enemy2.swift in Sources */,
 				4022240429411F3C0004776B /* Player.swift in Sources */,
 				402223E9294115B30004776B /* AppDelegate.swift in Sources */,
 			);
