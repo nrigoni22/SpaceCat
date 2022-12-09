@@ -20,7 +20,7 @@ class Player: SKSpriteNode, GameSprite {
     
     
     
-    var initialSize: CGSize = CGSize(width: 200, height: 150)
+    var initialSize: CGSize = CGSize(width: 190, height: 140)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
     
@@ -42,6 +42,7 @@ class Player: SKSpriteNode, GameSprite {
         self.physicsBody?.categoryBitMask = ColliderType.player
         self.physicsBody?.collisionBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp
         self.physicsBody?.contactTestBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp
+        self.physicsBody?.restitution = 0.0
         
         self.run(catAnimation)
     }
@@ -63,7 +64,7 @@ class Player: SKSpriteNode, GameSprite {
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 800.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 700.0))
         textureJumping()
     }
     
@@ -89,8 +90,14 @@ class Player: SKSpriteNode, GameSprite {
         rotateDownAction.timingMode = .easeIn
         
         let frame: [SKTexture] = [textureAtlas.textureNamed("Spacecat2")]
-        let actionFrame = SKAction.animate(with: frame, timePerFrame: 1.35)
-        self.run(actionFrame)
+        let actionFrame = SKAction.animate(with: frame, timePerFrame: 0.9)
+        let frame2: [SKTexture] = [textureAtlas.textureNamed("Spacecat4")]
+        let actionFrame2 = SKAction.animate(with: frame2, timePerFrame: 0.5)
+        //let frame3: [SKTexture] = [textureAtlas.textureNamed("Spacecat7")]
+        //let actionFrame3 = SKAction.animate(with: frame3, timePerFrame: 0.25)
+        let sequence = SKAction.sequence([actionFrame, actionFrame2])
+        self.run(sequence)
+        
     }
     
     

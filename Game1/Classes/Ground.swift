@@ -66,6 +66,7 @@ class Ground: SKSpriteNode, GameSprite {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.ground
+        self.physicsBody?.restitution = 0.0
         
         
         // Save the width of one-third of the children nodes
