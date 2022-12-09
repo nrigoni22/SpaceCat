@@ -66,8 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         background[0].spawn(parentNode: self, imageName: "backgroundSpace", zPosition: -3, movementMultiplier: 0.1)
         background[1].spawn(parentNode: self, imageName: "schifo", zPosition: -2, movementMultiplier: 0.5)
-//        background[2].spawn(parentNode: self, imageName: "Sprite", zPosition: -15, movementMultiplier: 0.2)
-        
+//      background[2].spawn(parentNode: self, imageName: "Sprite", zPosition: -15, movementMultiplier: 0.2)
+
         ground.position = CGPoint(x: -self.size.width * 2, y: 100)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
         ground.createChildren()
