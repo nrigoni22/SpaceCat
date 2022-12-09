@@ -36,7 +36,7 @@ class Player: SKSpriteNode, GameSprite {
         self.name = "Player"
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)  //(texture: bodyTexture, size: self.size)
         self.physicsBody?.linearDamping = 0.9
-        //self.physicsBody?.mass = 10
+        self.physicsBody?.mass = 10
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = ColliderType.player
@@ -64,7 +64,7 @@ class Player: SKSpriteNode, GameSprite {
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 700.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6400.0))
         textureJumping()
     }
     
