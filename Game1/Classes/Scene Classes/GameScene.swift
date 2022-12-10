@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var startPowerUpDistance: Int = 0
     
-   //let hud = HUD()
+    //let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -78,9 +78,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -3, movementMultiplier: 0.1)
-       //background[1].spawn(parentNode: self, imageName: "mont1", zPosition: -2, movementMultiplier: 0.5)
-        background[2].spawn(parentNode: self, imageName: "mont.scure", zPosition: -1, movementMultiplier: 0.2)
-
+        background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
+        background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
+        
         ground.position = CGPoint(x: -self.size.width * 2, y: 100)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
         ground.createChildren()
@@ -97,9 +97,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.incrementScore()
         })
         
-//        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
-//            self.spawnEnemies()
-//        })
+        //        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
+        //            self.spawnEnemies()
+        //        })
         
         encounterManager.addEncountersToScene(gameScene: self)
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
@@ -117,17 +117,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if player.isFlying {
                 isTouched = true
                 //player.flyAction()
+                player.startFlying()
             }
             
         default:
             break
         }
+        
     }
     
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isTouched = false
+        player.stopFlying()
     }
     
     func spawnEnemies() {
@@ -175,10 +178,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if score - startPowerUpDistance < 10 {
                 print("FLYING")
                 player.flyAction()
+                player.animationFly()
+                
             } else {
                 print("END FLYING")
                 player.isFlying = false
                 isTouched = false
+                //player.stopFlying()
+                player.createAnimation()
+                player.removeAction(forKey: "catFlyAnimation")
+                player.size = CGSize(width: 190, height: 140)
             }
             
         }
@@ -192,7 +201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch gameStatus {
         case .ongoing:
-            //print("rimettere update")
             player.update()
         default:
             break
@@ -201,13 +209,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func removeHeart(lifeRemaining: Int) {
         
         let fadeAction = SKAction.fadeAlpha(to: 0.2, duration: 0.3)
+        if lifeRemaining < 3 {
+            heartNode[lifeRemaining].run(fadeAction)
+        }
         
-//        var posIndex = lifeRemaining
-//        if lifeRemaining != 0 {
-//            posIndex = lifeRemaining //+ 1
-//        }
-        
-        heartNode[lifeRemaining].run(fadeAction)
     }
     
     func addHeart(life: Int) {
@@ -234,21 +239,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(self.heartNode[index])
         }
     }
-//    func setHeart(newHealth: Int) {
-//        let fadeAction = SKAction.fadeAlpha(to: 0.2,
-//                                            duration: 0.3)
-//        // Loop through each heart and update its status:
-//        for index in 0 ..< heartNode.count {
-//            if index < newHealth {
-//                // This heart should be full red:
-//                heartNode[index].alpha = 1
-//            }
-//            else {
-//                // This heart should be faded:
-//                heartNode[index].run(fadeAction)
-//            }
-//        }
-//    }
     
     func incrementScore() {
         score += 1
@@ -306,18 +296,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if player.health == 0 {
                 print("back home")
-                 saveLastFive(score: score)
-                 
-                 if getHighscore() < score {
-                     setHighscore(score)
-                 }
-                 player.isFlying = false
-                 secondBody.node?.removeFromParent()
-                 
-                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
-                 launchScene!.scaleMode = .aspectFill
-                 self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
-             }
+                saveLastFive(score: score)
+                
+                if getHighscore() < score {
+                    setHighscore(score)
+                }
+                player.isFlying = false
+                secondBody.node?.removeFromParent()
+                
+                let launchScene = LaunchScene(fileNamed: "LaunchScene")
+                launchScene!.scaleMode = .aspectFill
+                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+            }
         }
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Heart" {
             print("contact between player and heart")

@@ -59,7 +59,7 @@ class LaunchScene: SKScene {
     }
     
     func creatBG() {
-        let bg = SKSpriteNode(imageNamed: "backgroundSpace")
+        let bg = SKSpriteNode(imageNamed: "sfondo")
         bg.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         bg.position = CGPoint(x: 0, y: 0)
         bg.zPosition = 0

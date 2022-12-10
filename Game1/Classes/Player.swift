@@ -23,6 +23,9 @@ class Player: SKSpriteNode, GameSprite {
     var initialSize: CGSize = CGSize(width: 190, height: 140)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
+    var catFlyAnimation: SKAction = SKAction()
+    var soarAnimation: SKAction = SKAction()
+    
     
     var isDead: Bool = false
     var jump: Bool = false
@@ -71,7 +74,9 @@ class Player: SKSpriteNode, GameSprite {
     }
     
     func flyAction() {
-        //if isFlying {
+        print("IN FLY ACTION")
+        self.run(catFlyAnimation, withKey: "catFlyAnimation")
+        
             var forceToApply = maxFlappingForce
             
             // Apply less force if Pierre is above position 600
@@ -136,7 +141,41 @@ class Player: SKSpriteNode, GameSprite {
             ])
         
         }
+    func animationFly() {
+        self.size = CGSize(width: 140, height: 180)
+        let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)
+        rotateUpAction.timingMode = .easeOut
+        let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
+        rotateDownAction.timingMode = .easeIn
+        let catFrames: [SKTexture] = [textureAtlas.textureNamed("PlayerFly"),
+                                      textureAtlas.textureNamed("PlayerFly2"),
+                                      textureAtlas.textureNamed("PlayerFly3")]
         
+        let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
+        catFlyAnimation = SKAction.repeatForever(catAction)
+        
+        let soarFrames:[SKTexture] =
+            [textureAtlas.textureNamed("PlayerFly4")]
+        let soarAction = SKAction.animate(with: soarFrames,
+                                          timePerFrame: 1)
+        // Group the soaring animation with the rotation down:
+        soarAnimation = SKAction.group([
+            SKAction.repeatForever(soarAction),
+            rotateDownAction
+            ])
+    }
+    
+    func startFlying() {
+        
+        self.removeAction(forKey: "soarAnimation")
+        self.run(catFlyAnimation, withKey: "upAnimation")
+    }
+    
+    func stopFlying() {
+        
+        self.removeAction(forKey: "upAnimation")
+        self.run(soarAnimation, withKey: "soarAnimation")
+    }
     
     func textureJumping() {
         let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)

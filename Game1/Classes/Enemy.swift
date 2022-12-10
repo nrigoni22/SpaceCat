@@ -2,7 +2,7 @@
 //  Enemy.swift
 //  Game1
 //
-//  Created by Nicola Rigoni on 07/12/22.
+//  Created by Marta Michelle Caliendo on 07/12/22.
 //
 
 import SpriteKit
