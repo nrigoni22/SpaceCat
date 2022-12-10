@@ -19,7 +19,7 @@ class Ground: SKSpriteNode, GameSprite {
 
     func createChildren() {
         self.anchorPoint = CGPoint(x: 0, y: 1)
-        let texture = textureAtlas.textureNamed("ground")
+        let texture = textureAtlas.textureNamed("terreno")
         
         var tileCount:CGFloat = 0
  

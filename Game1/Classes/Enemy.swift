@@ -21,7 +21,7 @@ class Enemy: SKSpriteNode, GameSprite {
         self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.isDynamic = false
+        self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = ColliderType.enemy
         
         self.run(flyAnimation)

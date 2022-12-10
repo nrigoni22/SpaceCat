@@ -2,7 +2,7 @@
 //  Player.swift
 //  Game1
 //
-//  Created by Nicola Rigoni on 07/12/22.
+//  Created by Marta Michelle Caliendo on 07/12/22.
 //
 
 
@@ -14,21 +14,26 @@ struct ColliderType {
     static let ground: UInt32 = 2
     static let enemy: UInt32 = 4
     static let powerUp: UInt32 = 8
+    static let damageCat: UInt32 = 16
 }
 
 class Player: SKSpriteNode, GameSprite {
-    
-    
     
     var initialSize: CGSize = CGSize(width: 190, height: 140)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
     
-    
+    var isDead: Bool = false
     var jump: Bool = false
     let maxHeight:CGFloat = 1000
     var isFlying: Bool = false
     let maxFlappingForce:CGFloat = 137000
+    
+    var health: Int = 3
+    var invulnerable = false
+    var damage = false
+    var damageAnimation = SKAction()
+    //var dieAnimation = SKAction()
     
     init() {
         
@@ -37,7 +42,8 @@ class Player: SKSpriteNode, GameSprite {
         
     
         self.name = "Player"
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)  //(texture: bodyTexture, size: self.size)
+        let bodyTexture = textureAtlas.textureNamed("Catspace4")
+        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)  //(texture: bodyTexture, size: self.size)
         self.physicsBody?.linearDamping = 0.9
         self.physicsBody?.mass = 10
         self.physicsBody?.affectedByGravity = true
@@ -51,11 +57,9 @@ class Player: SKSpriteNode, GameSprite {
     }
     
     func update() {
-        self.position.x += 6
-        
-//        if isFlying {
-//            flyAction()
-//        }
+        if !isDead {
+            self.position.x += 6
+        }
         
     }
     
@@ -102,7 +106,33 @@ class Player: SKSpriteNode, GameSprite {
         let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
         catAnimation = SKAction.group([SKAction.repeatForever(catAction), rotateUpAction])
         
-    }
+        let damageStart = SKAction.run {
+            self.physicsBody?.categoryBitMask = ColliderType.damageCat
+        }
+        
+        let slowFade = SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.3, duration: 0.35),
+            SKAction.fadeAlpha(to: 0.7, duration: 0.35)
+        ])
+        let lastFade = SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.3, duration: 0.2),
+            SKAction.fadeAlpha(to: 0.7, duration: 0.2)])
+        let fadeOutAndIn = SKAction.sequence([
+            SKAction.repeat(slowFade, count: 2),
+            SKAction.repeat(lastFade, count: 5),
+            SKAction.fadeAlpha(to: 1, duration: 0.15)
+        ])
+        let damageEnd = SKAction.run {
+            self.physicsBody?.categoryBitMask = ColliderType.player
+            self.damage = false }
+        
+            self.damageAnimation = SKAction.sequence([
+                damageStart,
+                fadeOutAndIn,
+                damageEnd
+            ])
+        }
+        
     
     func textureJumping() {
         let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)
@@ -119,6 +149,28 @@ class Player: SKSpriteNode, GameSprite {
         let sequence = SKAction.sequence([actionFrame, actionFrame2])
         self.run(sequence)
         
+    }
+    
+    func die() {
+        self.alpha = 1
+        self.removeAllActions()
+        //self.run(self.dieAnimation)
+        self.jump = false
+        self.isFlying = false
+        self.isDead = true
+    }
+    
+    func takeDamage() {
+        if invulnerable { return }
+        
+        health -= 1
+        if health == 0 {
+            die()
+        } else {
+            self.run(damageAnimation)
+            print("Run damange animation")
+            //self.run(self.damageAnimation))
+        }
     }
     
     

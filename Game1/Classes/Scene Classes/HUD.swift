@@ -9,7 +9,7 @@ import SpriteKit
 
 class HUD: SKNode {
     var textureAtlas = SKTextureAtlas(named:"HUD")
-    var coinAtlas = SKTextureAtlas(named: "Environment")
+    //var coinAtlas = SKTextureAtlas(named: "Environment")
     var heartNodes:[SKSpriteNode] = []
     
     func createHearts(screenSize: CGSize) {

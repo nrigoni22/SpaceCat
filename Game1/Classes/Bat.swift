@@ -21,7 +21,7 @@ class Bat: SKSpriteNode, GameSprite {
         self.name = "Enemy2"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (self.size.width / 2) - 10) //(rectangleOf: self.size)
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.isDynamic = false
+        self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = ColliderType.enemy
         
         self.run(flyAnimation)

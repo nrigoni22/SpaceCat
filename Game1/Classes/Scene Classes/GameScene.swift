@@ -22,7 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var background: [Background] = []
     
-    var canJump = false
+    //var canJump = false
     
     var screenCenterY = CGFloat()
     
@@ -37,11 +37,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let initialPlayerPosition = CGPoint(x: 500, y: 400)
     var playerProgress = CGFloat()
     
-    var lifeEnded = false
+    var heartNode: [SKSpriteNode] = []
     
     var nextEncounterSpawnPosition = CGFloat(150)
     
-   let hud = HUD()
+   //let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -63,22 +63,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func inizialize() {
         physicsWorld.contactDelegate = self
         getLabel()
-        
+        getHeart()
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
         self.camera = cam
         
-        //hud.createHearts(screenSize: self.size)
-       // self.camera!.addChild(hud)
+        
         
         for _ in 0..<3 {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "backgroundSpace", zPosition: -3, movementMultiplier: 0.1)
-        background[1].spawn(parentNode: self, imageName: "schifo", zPosition: -2, movementMultiplier: 0.5)
-//      background[2].spawn(parentNode: self, imageName: "Sprite", zPosition: -15, movementMultiplier: 0.2)
+        background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -3, movementMultiplier: 0.1)
+        background[1].spawn(parentNode: self, imageName: "mont1", zPosition: -2, movementMultiplier: 0.5)
+        background[2].spawn(parentNode: self, imageName: "mont2", zPosition: -1, movementMultiplier: 0.2)
 
         ground.position = CGPoint(x: -self.size.width * 2, y: 100)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
@@ -104,33 +103,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
     }
     
-    //    override func didSimulatePhysics() {
-    //       var cameraYPos = screenCenterY
-    //        cam.yScale = 1
-    //        cam.xScale = 1
-    //
-    ////        if player.position.y > screenCenterY {
-    ////            cameraYPos = player.position.y
-    ////            //let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight)
-    ////        }
-    //
-    //        self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
-    //        playerProgress = player.position.x + 500 - initialPlayerPosition.x
-    //
-    //        ground.checkForReposition(playerProgress: playerProgress)
-    //
-    //        for bg in self.background {
-    //            bg.updatePosition(playerProgress: playerProgress)
-    //        }
-    //    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch gameStatus {
         case .ready:
             gameStatus = .ongoing
         case .ongoing:
-            if canJump && !player.isFlying {
-                canJump = false
+            if player.jump && !player.isFlying {
+                player.jump = false
                 player.jumpAction()
                 print("jump")
             } else if player.isFlying {
@@ -164,7 +143,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if player.position.y > screenCenterY {
             cameraYPos = player.position.y
-            //let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight)
         }
         
         self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
@@ -177,6 +155,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         scoreLabel.position.x = player.position.x
+        
+        for index in 0..<3 {
+            //print("heart pos: \(heart.position.x)")
+            heartNode[index].position.x = player.position.x + (heartNode[index].size.width + CGFloat(55 * index) - 100)
+            heartNode[index].position.y = scoreLabel.position.y - 50
+            
+        }
         
         // Check to see if we should set a new encounter:
         if player.position.x > nextEncounterSpawnPosition {
@@ -200,6 +185,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "0M"
         scoreLabel.fontSize = 80
         scoreLabel.zPosition = 10
+    }
+    
+    func getHeart() {
+        for index in 0..<3 {
+            let heartNode = SKSpriteNode(imageNamed: "heart-full")
+            heartNode.position = CGPoint(x: 500 + (Int(heartNode.size.width) + 30 * index), y: 300)
+            heartNode.zPosition = 10
+            heartNode.alpha = 1
+            self.heartNode.append(heartNode)
+            self.addChild(self.heartNode[index])
+        }
+    }
+    func setHeart(newHealth: Int) {
+        let fadeAction = SKAction.fadeAlpha(to: 0.2,
+                                            duration: 0.3)
+        // Loop through each heart and update its status:
+        for index in 0 ..< heartNode.count {
+            if index < newHealth {
+                // This heart should be full red:
+                heartNode[index].alpha = 1
+            }
+            else {
+                // This heart should be faded:
+                heartNode[index].run(fadeAction)
+            }
+        }
     }
     
     func incrementScore() {
@@ -244,27 +255,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Ground" {
             print("Contact with ground and player")
-            canJump = true
+            player.jump = true
         }
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
-            if lifeEnded {
-                saveLastFive(score: score)
+            
+            if player.health != 0 {
+                print("take damage")
+                player.takeDamage()
                 
-                if getHighscore() < score {
-                    setHighscore(score)
-                }
                 
-                secondBody.node?.removeFromParent()
-                
-                let launchScene = LaunchScene(fileNamed: "LaunchScene")
-                launchScene!.scaleMode = .aspectFill
-                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
-            } else {
-                secondBody.node?.removeFromParent()
-                player.isFlying = true
             }
+            if player.health == 0 {
+                print("back home")
+                 saveLastFive(score: score)
+                 
+                 if getHighscore() < score {
+                     setHighscore(score)
+                 }
+                 player.isFlying = false
+                 secondBody.node?.removeFromParent()
+                 
+                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
+                 launchScene!.scaleMode = .aspectFill
+                 self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+             }
+             //else  {
+                //secondBody.node?.removeFromParent()
+                player.isFlying = true
+           // }
             
             
            
