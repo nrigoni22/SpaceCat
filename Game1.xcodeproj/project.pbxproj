@@ -24,6 +24,8 @@
 		40222408294138950004776B /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222407294138950004776B /* Background.swift */; };
 		4022240D29421B8C0004776B /* LaunchScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4022240C29421B8C0004776B /* LaunchScene.sks */; };
 		4022240F29421C170004776B /* LaunchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022240E29421C170004776B /* LaunchScene.swift */; };
+		40222413294481480004776B /* EncounterA.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222412294481480004776B /* EncounterA.sks */; };
+		40222415294481ED0004776B /* EnconunterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222414294481ED0004776B /* EnconunterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		40222407294138950004776B /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		4022240C29421B8C0004776B /* LaunchScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LaunchScene.sks; sourceTree = "<group>"; };
 		4022240E29421C170004776B /* LaunchScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScene.swift; sourceTree = "<group>"; };
+		40222412294481480004776B /* EncounterA.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterA.sks; sourceTree = "<group>"; };
+		40222414294481ED0004776B /* EnconunterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnconunterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 				402223FF294119850004776B /* Enemy.swift */,
 				40222407294138950004776B /* Background.swift */,
 				24CF40A729440138003D9E23 /* Bat.swift */,
+				40222414294481ED0004776B /* EnconunterManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			children = (
 				402223EA294115B30004776B /* GameScene.sks */,
 				4022240C29421B8C0004776B /* LaunchScene.sks */,
+				40222412294481480004776B /* EncounterA.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -183,6 +189,7 @@
 				402223F4294115B30004776B /* Main.storyboard in Resources */,
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
+				40222413294481480004776B /* EncounterA.sks in Resources */,
 				402223F6294115B40004776B /* Assets.xcassets in Resources */,
 				402223F9294115B40004776B /* LaunchScreen.storyboard in Resources */,
 			);
@@ -198,6 +205,7 @@
 				40222400294119850004776B /* Enemy.swift in Sources */,
 				402223EF294115B30004776B /* GameScene.swift in Sources */,
 				4022240629412EB10004776B /* Ground.swift in Sources */,
+				40222415294481ED0004776B /* EnconunterManager.swift in Sources */,
 				40222408294138950004776B /* Background.swift in Sources */,
 				402223F1294115B30004776B /* GameViewController.swift in Sources */,
 				24CF40A829440138003D9E23 /* Bat.swift in Sources */,

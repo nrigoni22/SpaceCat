@@ -46,7 +46,9 @@ class LaunchScene: SKScene {
                 backBtn.removeFromParent()
                 scoreTitleLabel.removeFromParent()
                 highscoreLabel.removeFromParent()
-                
+                for label in otherScoreLabel {
+                    label.removeFromParent()
+                }
                 
                 self.addChild(playBtn)
                 self.addChild(scoreBtn)
@@ -110,10 +112,11 @@ class LaunchScene: SKScene {
         self.addChild(highscoreLabel)
         
         for index in 0..<5 {
-            otherScoreLabel[index] = SKLabelNode(text: "Match \(index + 1):    \(UserDefaults.standard.integer(forKey: "Score\(index)"))")
-            otherScoreLabel[index].zPosition = 10
-            otherScoreLabel[index].fontSize = 50
-            otherScoreLabel[index].position = CGPoint(x: -250, y: 20 - (60 * index));
+            let scoreLabel = SKLabelNode(text: "Match \(index + 1):    \(UserDefaults.standard.integer(forKey: "Score\(index)"))")
+            scoreLabel.zPosition = 10
+            scoreLabel.fontSize = 50
+            scoreLabel.position = CGPoint(x: -250, y: 20 - (60 * index));
+            otherScoreLabel.append(scoreLabel)
             self.addChild(otherScoreLabel[index]/*.copy() as! SKLabelNode*/)
         }
     }

@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let player = Player()
     let ground = Ground()
     let enemy = Enemy()
+    let encounterManager = EncounterManager()
     
     var background: [Background] = []
     
@@ -91,9 +92,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.incrementScore()
         })
         
-        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
-            self.spawnEnemies()
-        })
+//        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
+//            self.spawnEnemies()
+//        })
+        
+        encounterManager.addEncountersToScene(gameScene: self)
+        encounterManager.encounters[0].position =
+                           CGPoint(x: 400, y: 330)
     }
     
     //    override func didSimulatePhysics() {
