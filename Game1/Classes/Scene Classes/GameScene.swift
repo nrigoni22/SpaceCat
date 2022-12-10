@@ -37,6 +37,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let initialPlayerPosition = CGPoint(x: 500, y: 400)
     var playerProgress = CGFloat()
     
+    var lifeEnded = false
+    
+    var nextEncounterSpawnPosition = CGFloat(150)
+    
    let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
@@ -97,8 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        })
         
         encounterManager.addEncountersToScene(gameScene: self)
-        encounterManager.encounters[0].position =
-                           CGPoint(x: 400, y: 330)
+        encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
     }
     
     //    override func didSimulatePhysics() {
@@ -126,10 +129,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .ready:
             gameStatus = .ongoing
         case .ongoing:
-            if canJump {
+            if canJump && !player.isFlying {
                 canJump = false
                 player.jumpAction()
                 print("jump")
+            } else if player.isFlying {
+                player.flyAction()
             }
             
         default:
@@ -153,14 +158,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        let cameraYPos = screenCenterY
+        var cameraYPos = screenCenterY
         cam.yScale = 1
         cam.xScale = 1
         
-        //        if player.position.y > screenCenterY {
-        //            cameraYPos = player.position.y
-        //            //let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight)
-        //        }
+        if player.position.y > screenCenterY {
+            cameraYPos = player.position.y
+            //let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight)
+        }
         
         self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
         playerProgress = player.position.x + 500 - initialPlayerPosition.x
@@ -172,6 +177,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         scoreLabel.position.x = player.position.x
+        
+        // Check to see if we should set a new encounter:
+        if player.position.x > nextEncounterSpawnPosition {
+            encounterManager.placeNextEncounter(
+                currentXPos: nextEncounterSpawnPosition)
+            nextEncounterSpawnPosition += 1200
+        }
         
         switch gameStatus {
         case .ongoing:
@@ -228,6 +240,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
+        print("Contact body: \(secondBody.node?.name)")
+        
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Ground" {
             print("Contact with ground and player")
             canJump = true
@@ -235,17 +249,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
-            saveLastFive(score: score)
-            
-            if getHighscore() < score {
-                setHighscore(score)
+            if lifeEnded {
+                saveLastFive(score: score)
+                
+                if getHighscore() < score {
+                    setHighscore(score)
+                }
+                
+                secondBody.node?.removeFromParent()
+                
+                let launchScene = LaunchScene(fileNamed: "LaunchScene")
+                launchScene!.scaleMode = .aspectFill
+                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+            } else {
+                secondBody.node?.removeFromParent()
+                player.isFlying = true
             }
             
-            secondBody.node?.removeFromParent()
             
-            let launchScene = LaunchScene(fileNamed: "LaunchScene")
-            launchScene!.scaleMode = .aspectFill
-            self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+           
         }
     }
     

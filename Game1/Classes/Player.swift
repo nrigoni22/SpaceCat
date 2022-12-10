@@ -26,6 +26,9 @@ class Player: SKSpriteNode, GameSprite {
     
     
     var jump: Bool = false
+    let maxHeight:CGFloat = 1000
+    var isFlying: Bool = false
+    let maxFlappingForce:CGFloat = 137000
     
     init() {
         
@@ -49,12 +52,41 @@ class Player: SKSpriteNode, GameSprite {
     
     func update() {
         self.position.x += 6
+        
+//        if isFlying {
+//            flyAction()
+//        }
+        
     }
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6400.0))
         textureJumping()
+    }
+    
+    func flyAction() {
+        //if isFlying {
+            var forceToApply = maxFlappingForce
+            
+            // Apply less force if Pierre is above position 600
+            if position.y > 600 {
+                // The higher Pierre goes, the more force we
+                // remove. These next three lines determine the
+                // force to subtract:
+                let percentageOfMaxHeight = position.y / maxHeight
+                let flappingForceSubtraction =
+                    percentageOfMaxHeight * maxFlappingForce
+                forceToApply -= flappingForceSubtraction
+            }
+            // Apply the final force:
+            self.physicsBody?.applyForce(CGVector(dx: 0, dy:
+                forceToApply))
+        //}
+        
+        if self.physicsBody!.velocity.dy > 300 {
+            self.physicsBody!.velocity.dy = 300
+        }
     }
     
     func createAnimation() {
