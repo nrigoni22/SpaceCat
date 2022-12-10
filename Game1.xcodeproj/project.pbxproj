@@ -28,6 +28,8 @@
 		40222419294498910004776B /* EncounterB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222416294498910004776B /* EncounterB.sks */; };
 		4022241A294498910004776B /* EncounterA.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222417294498910004776B /* EncounterA.sks */; };
 		4022241B294498910004776B /* EncounterC.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222418294498910004776B /* EncounterC.sks */; };
+		4022241D294509630004776B /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241C294509630004776B /* PowerUp.swift */; };
+		4022241F29450A8C0004776B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241E29450A8C0004776B /* Heart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		40222416294498910004776B /* EncounterB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterB.sks; sourceTree = "<group>"; };
 		40222417294498910004776B /* EncounterA.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterA.sks; sourceTree = "<group>"; };
 		40222418294498910004776B /* EncounterC.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterC.sks; sourceTree = "<group>"; };
+		4022241C294509630004776B /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
+		4022241E29450A8C0004776B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 				40222407294138950004776B /* Background.swift */,
 				24CF40A729440138003D9E23 /* Bat.swift */,
 				40222414294481ED0004776B /* EnconunterManager.swift */,
+				4022241C294509630004776B /* PowerUp.swift */,
+				4022241E29450A8C0004776B /* Heart.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -218,9 +224,11 @@
 				402223F1294115B30004776B /* GameViewController.swift in Sources */,
 				24CF40A829440138003D9E23 /* Bat.swift in Sources */,
 				4022240F29421C170004776B /* LaunchScene.swift in Sources */,
+				4022241D294509630004776B /* PowerUp.swift in Sources */,
 				4022240229411C930004776B /* GameSprite.swift in Sources */,
 				24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */,
 				24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */,
+				4022241F29450A8C0004776B /* Heart.swift in Sources */,
 				4022240429411F3C0004776B /* Player.swift in Sources */,
 				402223E9294115B30004776B /* AppDelegate.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ struct ColliderType {
     static let enemy: UInt32 = 4
     static let powerUp: UInt32 = 8
     static let damageCat: UInt32 = 16
+    static let lifeUp: UInt32 = 3
 }
 
 class Player: SKSpriteNode, GameSprite {
@@ -25,7 +26,7 @@ class Player: SKSpriteNode, GameSprite {
     
     var isDead: Bool = false
     var jump: Bool = false
-    let maxHeight:CGFloat = 1000
+    let maxHeight:CGFloat = 800
     var isFlying: Bool = false
     let maxFlappingForce:CGFloat = 137000
     
@@ -124,13 +125,16 @@ class Player: SKSpriteNode, GameSprite {
         ])
         let damageEnd = SKAction.run {
             self.physicsBody?.categoryBitMask = ColliderType.player
-            self.damage = false }
+            self.damage = false
+            self.invulnerable = false
+        }
         
             self.damageAnimation = SKAction.sequence([
                 damageStart,
                 fadeOutAndIn,
                 damageEnd
             ])
+        
         }
         
     
@@ -162,7 +166,7 @@ class Player: SKSpriteNode, GameSprite {
     
     func takeDamage() {
         if invulnerable { return }
-        
+        invulnerable = true
         health -= 1
         if health == 0 {
             die()
@@ -170,6 +174,12 @@ class Player: SKSpriteNode, GameSprite {
             self.run(damageAnimation)
             print("Run damange animation")
             //self.run(self.damageAnimation))
+        }
+    }
+    
+    func addLife() {
+        if health < 3 {
+            health += 1
         }
     }
     
