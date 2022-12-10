@@ -32,7 +32,7 @@ class Player: SKSpriteNode, GameSprite {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         
-        //let bodyTexture = textureAtlas.textureNamed("2")
+    
         self.name = "Player"
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)  //(texture: bodyTexture, size: self.size)
         self.physicsBody?.linearDamping = 0.9
@@ -48,18 +48,7 @@ class Player: SKSpriteNode, GameSprite {
     }
     
     func update() {
-            
         self.position.x += 6
-       // if jump {
-//            self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 700.0))
-//            let delay = SKAction.wait(forDuration: 0.2)
-//            self.run(delay) {
-//                self.jump = false
-//            }
-            
-            //jumpAction()
-       // }
-            
     }
     
     func jumpAction() {
@@ -102,12 +91,7 @@ class Player: SKSpriteNode, GameSprite {
     
     
     func onTap() {
-//        let up = SKAction.moveBy(x: 0.0, y: frame.size.height, duration: 0.8)
-//        self.physicsBody?.affectedByGravity = false
-//        self.run(up) {
-//            self.physicsBody?.affectedByGravity = true
-//        }
-        //self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 200.0))
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

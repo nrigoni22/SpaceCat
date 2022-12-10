@@ -1,14 +1,14 @@
 //
-//  Enemy2.swift
+//  Bat.swift
 //  Game1
 //
-//  Created by Nicola Rigoni on 09/12/22.
+//  Created by Marta Michelle Caliendo on 10/12/22.
 //
 
 import SpriteKit
 
-class Enemy2: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 28, height: 24)
+class Bat: SKSpriteNode, GameSprite {
+    var initialSize = CGSize(width: 44, height: 24)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var flyAnimation = SKAction()
     

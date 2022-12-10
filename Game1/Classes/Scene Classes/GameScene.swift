@@ -4,13 +4,15 @@
 //
 //  Created by Nicola Rigoni on 07/12/22.
 //
+// Buongiorno Nicola, ho fatto un po' di casino, non odiarmi ❤️
+// (E vedi che crasha ancora sullo score. Comunque io non c'entro non l'ho toccato uu)
+// Love you
 
 import SpriteKit
 
 enum GameStatus {
     case ready, pause, finisched, ongoing
 }
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Player()
@@ -33,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let initialPlayerPosition = CGPoint(x: 500, y: 400)
     var playerProgress = CGFloat()
+    
+   let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -59,6 +63,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
         self.camera = cam
+        
+        //hud.createHearts(screenSize: self.size)
+       // self.camera!.addChild(hud)
         
         for _ in 0..<3 {
             background.append(Background())
@@ -129,13 +136,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnEnemies() {
         
         let enemy = Enemy()//.copy() as! SKSpriteNode
-        let enemy2 = Enemy2()
+        let bat = Bat()
         
         enemy.position = CGPoint(x: player.position.x + 1500, y: 120) //self.frame.width + 450
-        enemy2.position = CGPoint(x: player.position.x + 1000, y: 250)
+        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
         
         self.addChild(enemy)
-        self.addChild(enemy2)
+        self.addChild(bat)
     }
     
     
