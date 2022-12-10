@@ -21,7 +21,7 @@ class EncounterManager {
     
     init() {
         // Loop through each encounter scene:
-        [ 104 ]
+        
         
         for encounterFileName in encounterNames {
             // Create a new node for the encounter:
