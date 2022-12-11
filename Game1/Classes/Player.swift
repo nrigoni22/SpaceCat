@@ -166,7 +166,7 @@ class Player: SKSpriteNode, GameSprite {
         // Group the soaring animation with the rotation down:
         soarAnimation = SKAction.group([
             SKAction.repeatForever(soarAction),
-            rotateDownAction
+            rotateUpAction
         ])
         
     }
