@@ -20,7 +20,8 @@ class PlatformType: SKSpriteNode, GameSprite {
         self.zPosition = 4
         self.setScale(1.5)
         self.name = "PlatformType"
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        let bodyTexture = textureAtlas.textureNamed("pezzo1")
+        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.ground
