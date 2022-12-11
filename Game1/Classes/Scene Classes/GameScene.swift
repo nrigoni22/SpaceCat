@@ -48,6 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var startPowerUpDistance: Int = 0
     var daCencellare: Int = 0
     var gamePaused: Bool = false
+    var playerDead: Bool = false
     //let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
@@ -117,8 +118,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if nodes(at: location).first == pauseBtn {
                 print("PAUSE")
                 gamePaused = true
+                scoreCounter.invalidate()
                 //scene?.isPaused = true
                 //addPauseView(text: "Title", isEnded: false)
+                
+            } else if nodes(at: location).first!.name == "Quit" {
+                print("Quit")
+                //scene?.isPaused = true
+                //addPauseView(text: "Title", isEnded: false)
+                let launchScene = LaunchScene(fileNamed: "LaunchScene")
+                launchScene!.scaleMode = .aspectFill
+                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+                
+            } else if nodes(at: location).first!.name == "Play" {
+                print("Play")
+                gamePaused = false
+                scene?.isPaused = false
+                self.childNode(withName: "Label")?.removeFromParent()
+                self.childNode(withName: "Play")?.removeFromParent()
+                self.childNode(withName: "Quit")?.removeFromParent()
+                scoreCounter = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
+                    self.incrementScore()
+                })
+                //scene?.isPaused = true
+                //addPauseView(text: "Title", isEnded: false)
+                
+            } else if nodes(at: location).first!.name == "Restart" {
+                print("Restart")
+                gamePaused = false
+                scene?.isPaused = false
+                playerDead = false
+                //addPauseView(text: "Title", isEnded: false)
+                let gameScene = GameScene(fileNamed: "GameScene")
+                gameScene!.scaleMode = .aspectFill
+                self.view?.presentScene(gameScene!, transition: SKTransition.fade(withDuration: 1.5))
                 
             } else {
                 if player.jump && !player.isFlying {
@@ -204,6 +237,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addPauseView(text: "Title", isEnded: false, positionX: player.position.x, positionY: cameraYPos)
         }
         
+        if playerDead {
+            addPauseView(text: "Title", isEnded: true, positionX: player.position.x, positionY: cameraYPos)
+        }
+        
         // Check to see if we should set a new encounter:
         if player.position.x > nextEncounterSpawnPosition {
             encounterManager.placeNextEncounter(
@@ -273,13 +310,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         label.run(SKAction.repeatForever(sequence))
         self.addChild(label)
         
-        let restartBtn = SKSpriteNode(imageNamed: "Restart")
-        restartBtn.name = "Restart"
+        let restartBtn = SKSpriteNode(imageNamed: "Quit")
+        restartBtn.name = "Quit"
         restartBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        restartBtn.position = CGPoint(x: positionX + 50, y: positionY - 200)
+        restartBtn.position = CGPoint(x: positionX + 380, y: positionY - 100)
         restartBtn.zPosition = 10
         //restartBtn.setScale(0.5)
         self.addChild(restartBtn)
+        
+        if isEnded {
+            let quitBtn = SKSpriteNode(imageNamed: "Restart")
+            quitBtn.name = "Restart"
+            quitBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            quitBtn.position = CGPoint(x: restartBtn.position.x + 250, y: positionY - 100)
+            quitBtn.zPosition = 10
+            //restartBtn.setScale(0.5)
+            self.addChild(quitBtn)
+        } else {
+            let playBtn = SKSpriteNode(imageNamed: "Play")
+            playBtn.name = "Play"
+            playBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            playBtn.position = CGPoint(x: restartBtn.position.x + 250, y: positionY - 100)
+            playBtn.zPosition = 10
+            //restartBtn.setScale(0.5)
+            self.addChild(playBtn)
+        }
+        
         
         scene?.isPaused = true
     }
@@ -340,7 +396,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 removeHeart(lifeRemaining: player.health)
             }
             if player.health == 0 {
-                //print("back home")
+                print("back home")
                 saveLastFive(score: score)
                 
                 if getHighscore() < score {
@@ -349,9 +405,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.isFlying = false
                 secondBody.node?.removeFromParent()
                 
-                let launchScene = LaunchScene(fileNamed: "LaunchScene")
-                launchScene!.scaleMode = .aspectFill
-                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
+                playerDead = true
+//                let launchScene = LaunchScene(fileNamed: "LaunchScene")
+//                launchScene!.scaleMode = .aspectFill
+//                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
             }
         }
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Heart" {
