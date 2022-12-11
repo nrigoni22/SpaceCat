@@ -12,6 +12,7 @@
 		24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40AB29440B1E003D9E23 /* HUD.swift */; };
 		24F07C682945FCAE002C4EF1 /* EnemyMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */; };
 		24F07C6A2945FFB9002C4EF1 /* PlatformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C692945FFB9002C4EF1 /* PlatformType.swift */; };
+		24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24F07C6B2946484F002C4EF1 /* EncounterD.sks */; };
 		402223E9294115B30004776B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223E8294115B30004776B /* AppDelegate.swift */; };
 		402223EB294115B30004776B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 402223EA294115B30004776B /* GameScene.sks */; };
 		402223EF294115B30004776B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223EE294115B30004776B /* GameScene.swift */; };
@@ -40,6 +41,7 @@
 		24CF40AB29440B1E003D9E23 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyMonster.swift; sourceTree = "<group>"; };
 		24F07C692945FFB9002C4EF1 /* PlatformType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformType.swift; sourceTree = "<group>"; };
+		24F07C6B2946484F002C4EF1 /* EncounterD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterD.sks; sourceTree = "<group>"; };
 		402223E5294115B30004776B /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402223E8294115B30004776B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		402223EA294115B30004776B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				402223EA294115B30004776B /* GameScene.sks */,
 				4022240C29421B8C0004776B /* LaunchScene.sks */,
 				40222417294498910004776B /* EncounterA.sks */,
+				24F07C6B2946484F002C4EF1 /* EncounterD.sks */,
 				40222416294498910004776B /* EncounterB.sks */,
 				40222418294498910004776B /* EncounterC.sks */,
 			);
@@ -207,6 +210,7 @@
 				402223F4294115B30004776B /* Main.storyboard in Resources */,
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
 				40222419294498910004776B /* EncounterB.sks in Resources */,
+				24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */,
 				4022241B294498910004776B /* EncounterC.sks in Resources */,
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
 				4022241A294498910004776B /* EncounterA.sks in Resources */,

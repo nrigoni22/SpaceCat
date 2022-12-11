@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "realterrenot.png",
+      "filename" : "heart.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "realterrenot 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "realterrenot 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

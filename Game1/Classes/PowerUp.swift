@@ -8,7 +8,7 @@
 import SpriteKit
 
 class PowerUp: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 28, height: 24)
+    var initialSize: CGSize = CGSize(width: 60, height: 70)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var animation = SKAction()
     
@@ -29,8 +29,8 @@ class PowerUp: SKSpriteNode, GameSprite {
     
     func createAnimation() {
         let enemiesFrames: [SKTexture] = [
-            textureAtlas.textureNamed("star"),
-            textureAtlas.textureNamed("star")
+            textureAtlas.textureNamed("jetpackframe1"),
+            textureAtlas.textureNamed("jetpackframe2")
         ]
         
         let action = SKAction.animate(with: enemiesFrames, timePerFrame: 0.14)

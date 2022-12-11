@@ -19,7 +19,7 @@ class Enemy: SKSpriteNode, GameSprite {
         self.zPosition = 3
         self.setScale(1.5)
         self.name = "Enemy"
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = ColliderType.enemy

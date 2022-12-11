@@ -23,7 +23,7 @@ class Ground: SKSpriteNode, GameSprite {
         
         var tileCount:CGFloat = 0
  
-        let tileSize = CGSize(width: 35, height: 300)
+        let tileSize = CGSize(width: 1180, height: 50)
         
         while tileCount * tileSize.width < self.size.width {
             let tileNode = SKSpriteNode(texture: texture)

@@ -11,7 +11,8 @@ class EncounterManager {
     let encounterNames:[String] = [
         "EncounterA",
         "EncounterB",
-        "EncounterC"
+        "EncounterC",
+        "EncounterD"
     ]
     // Each encounter is an SKNode, store an array:
     var encounters: [SKNode] = []
@@ -55,7 +56,9 @@ class EncounterManager {
         let encounterCount = UInt32(encounters.count)
         // The game requires at least 3 encounters to function
         // so exit this function if there are less than 3
-        if encounterCount < 3 { return }
+        if encounterCount < 1 { return }
+        
+        print("aaaaaaaa")
         // We need to pick an encounter that is not
         // currently displayed on the screen.
         var nextEncounterIndex: Int?
@@ -65,8 +68,7 @@ class EncounterManager {
         // Pick until we get a new encounter
         while trulyNew == false || trulyNew == nil {
             // Pick a random encounter to set next:
-            nextEncounterIndex =
-            Int(arc4random_uniform(encounterCount))
+            nextEncounterIndex = Int(arc4random_uniform(encounterCount))
             // First, assert that this is a new encounter:
             trulyNew = true
             // Test if it is instead the current encounter:
@@ -132,7 +134,8 @@ class EncounterManager {
     // the GameScene to append all of the encounter nodes to the
     // world node from our GameScene:
     func addEncountersToScene(gameScene:SKNode) {
-        var encounterPosY = 1000
+    var encounterPosY = 1000
+        
         for encounterNode in encounters {
             // Spawn the encounters behind the action, with
             // increasing height so they do not collide:

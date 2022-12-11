@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
         background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
         
-        ground.position = CGPoint(x: -self.size.width * 2, y: 100)
+        ground.position = CGPoint(x: -self.size.width * 2, y: 105)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
         ground.createChildren()
         self.addChild(ground)
@@ -96,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.zPosition = 3
         self.addChild(player)
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5.8)
         //spawnEnemies()
         
         scoreCounter = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
@@ -211,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for index in 0..<3 {
             //print("heart pos: \(heart.position.x)")
             
-            heartNode[index].position.x = player.position.x + (heartNode[index].size.width + CGFloat(55 * index) - 100)
+            heartNode[index].position.x = player.position.x + (heartNode[index].size.width + CGFloat(50 * index) - 100)
             heartNode[index].position.y = scoreLabel.position.y - 50
             
         }
@@ -293,10 +293,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func getHeart() {
         for index in 0..<3 {
-            let heartNode = SKSpriteNode(imageNamed: "heart-full")
+            let heartNode = SKSpriteNode(imageNamed: "heart")
             heartNode.position = CGPoint(x: 500 + (Int(heartNode.size.width) + 30 * index), y: 300)
             heartNode.zPosition = 10
             heartNode.alpha = 1
+            heartNode.size = CGSize(width: 40, height: 30)
             self.heartNode.append(heartNode)
             self.addChild(self.heartNode[index])
         }

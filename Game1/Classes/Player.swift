@@ -20,7 +20,7 @@ struct ColliderType {
 
 class Player: SKSpriteNode, GameSprite {
     
-    var initialSize: CGSize = CGSize(width: 190, height: 140)
+    var initialSize: CGSize = CGSize(width: 150, height: 100)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
     var catFlyAnimation: SKAction = SKAction()
@@ -70,7 +70,7 @@ class Player: SKSpriteNode, GameSprite {
     func catRunAnimation() {
         removeAction(forKey: "catFlyAnimation")
         self.run(catAnimation, withKey: "catAnimation")
-        self.size = CGSize(width: 190, height: 140)
+        self.size = CGSize(width: 150, height: 100)
     }
     
     func jumpAction() {
@@ -83,7 +83,7 @@ class Player: SKSpriteNode, GameSprite {
         print("IN FLY ACTION")
         removeAction(forKey: "catAnimation")
         self.run(catFlyAnimation, withKey: "catFlyAnimation")
-        self.size = CGSize(width: 140, height: 180)
+        self.size = CGSize(width: 98, height: 150)
         var forceToApply = maxFlappingForce
         
         // Apply less force if Pierre is above position 600

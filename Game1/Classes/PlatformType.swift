@@ -17,8 +17,9 @@ class PlatformType: SKSpriteNode, GameSprite {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.zPosition = 4
+        self.zPosition = 3
         self.setScale(1.5)
+        self.zPosition = 3
         self.name = "PlatformType"
         let bodyTexture = textureAtlas.textureNamed("pezzo1")
         self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: CGSize(width: self.size.width - 20, height: self.size.height - 40))

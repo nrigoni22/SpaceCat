@@ -29,8 +29,8 @@ class Heart: SKSpriteNode, GameSprite {
     
     func createAnimation() {
         let enemiesFrames: [SKTexture] = [
-            textureAtlas.textureNamed("heart-full"),
-            textureAtlas.textureNamed("heart-full")
+            textureAtlas.textureNamed("heart"),
+            textureAtlas.textureNamed("heart")
         ]
         
         let action = SKAction.animate(with: enemiesFrames, timePerFrame: 0.14)
