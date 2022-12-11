@@ -37,6 +37,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreLabel = SKLabelNode()
     var pauseBtn = SKSpriteNode()
+    var tree = SKSpriteNode()
+    var tree2 = SKSpriteNode()
+    var tree3 = SKSpriteNode()
+    
+    var tree4 = SKSpriteNode()
+    var tree5 = SKSpriteNode()
     
     let initialPlayerPosition = CGPoint(x: 500, y: 400)
     var playerProgress = CGFloat()
@@ -73,18 +79,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func inizialize() {
-        self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue:
-            0.95, alpha: 1.0)
-        
-        let enemiesFrames: [SKTexture] = [
-                textureAtlas.textureNamed("bat"),
-                textureAtlas.textureNamed("bat-fly")
-            ]
         
         physicsWorld.contactDelegate = self
         getLabel()
         getButtons()
         getHeart()
+        getTree()
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
@@ -98,7 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -4, movementMultiplier: 0.1)
         background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
         background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
-       // background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
+        //background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
         //background[0].spawn(parentNode: self, imageName: "t", zPosition: -3, movementMultiplier: 0.1)
         
         background2.append(BackgroundY())
@@ -120,9 +120,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.incrementScore()
         })
         
-        //        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { _ in
-        //            self.spawnEnemies()
-        //        })
+        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+            //self.spawnEnemies()
+            self.getTree()
+        })
         
         encounterManager.addEncountersToScene(gameScene: self)
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
@@ -310,6 +311,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pauseBtn = self.childNode(withName: "Pause") as! SKSpriteNode
         pauseBtn.position.y = 550
         pauseBtn.zPosition = 10
+    }
+    
+    func getTree() {
+        tree = self.childNode(withName: "Tree") as! SKSpriteNode
+        tree.position.y = 200
+        tree.position.x = player.position.x + 1500
+        tree.zPosition = 0
+        tree4 = self.childNode(withName: "Tree4") as! SKSpriteNode
+        tree4.position.y = 180
+        tree4.position.x = player.position.x + 1750
+        tree4.zPosition = 0
+        tree5 = self.childNode(withName: "Tree5") as! SKSpriteNode
+        tree5.position.y = 240
+        tree5.position.x = player.position.x + 2900
+        tree5.zPosition = 0
+        
+        tree2 = self.childNode(withName: "Tree2") as! SKSpriteNode
+        tree2.position.y = 240
+        tree2.position.x = player.position.x + 2000
+        tree2.zPosition = 0
+        tree3 = self.childNode(withName: "Tree3") as! SKSpriteNode
+        tree3.position.y = 180
+        tree3.position.x = player.position.x + 2500
+        tree3.zPosition = 0
     }
     
     func getHeart() {

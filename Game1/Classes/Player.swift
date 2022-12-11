@@ -65,25 +65,25 @@ class Player: SKSpriteNode, GameSprite {
             
             if distance >= 50 {
                 self.position.x += 9
-                print("1")
+                //print("1")
             }
             if distance > 100 {
                 self.position.x += 13
-                print("2")
+               // print("2")
             }
             if distance > 150 {
                 self.position.x += 17
-                print("3")
+                //print("3")
             }
             
             if distance > 200 {
                 self.position.x += 20
-                print("4")
+                //print("4")
             }
             
             if distance < 50 {
                 self.position.x += 6
-                print("5")
+                //print("5")
             }
             
         }
