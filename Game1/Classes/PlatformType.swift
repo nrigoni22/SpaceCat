@@ -9,7 +9,7 @@ import SpriteKit
 
 
 class PlatformType: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 500, height: 200)
+    var initialSize: CGSize = CGSize(width: 500, height: 150)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var notAnimation = SKAction()
     
@@ -21,7 +21,7 @@ class PlatformType: SKSpriteNode, GameSprite {
         self.setScale(1.5)
         self.name = "PlatformType"
         let bodyTexture = textureAtlas.textureNamed("pezzo1")
-        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)
+        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: CGSize(width: self.size.width - 20, height: self.size.height - 40))
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.ground
