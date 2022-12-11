@@ -210,6 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for index in 0..<3 {
             //print("heart pos: \(heart.position.x)")
+            
             heartNode[index].position.x = player.position.x + (heartNode[index].size.width + CGFloat(55 * index) - 100)
             heartNode[index].position.y = scoreLabel.position.y - 50
             
@@ -238,7 +239,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if playerDead {
-            addPauseView(text: "Title", isEnded: true, positionX: player.position.x, positionY: cameraYPos)
+            let fadeAction = SKAction.fadeAlpha(to: 0.2, duration: 0.3)
+            heartNode[0].run(fadeAction) {
+                self.run(SKAction.wait(forDuration: 0.5)) {
+                    self.addPauseView(text: "Title", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
+                }
+                
+            }
         }
         
         // Check to see if we should set a new encounter:
@@ -296,6 +303,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addPauseView(text: String, isEnded: Bool, positionX: CGFloat, positionY: CGFloat) {
+        
+        scoreCounter.invalidate()
         
         let label = SKLabelNode(text: text)
         label.fontSize = 120
