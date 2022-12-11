@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
-            print("game Status: \(gameStatus)")
+           // print("game Status: \(gameStatus)")
             switch gameStatus {
             case .ongoing:
                 print("ongoing")
@@ -113,11 +113,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.jump && !player.isFlying {
                 player.jump = false
                 player.jumpAction()
-                print("jump")
+                print("PLAYER TOUCH JUMP")
             } else if player.isFlying {
+                print("PLAYER TOUCH FLY")
                 isTouched = true
-                //player.flyAction()
-                player.startFlying()
             }
             
         default:
@@ -130,7 +129,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    //
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isTouched = false
-        player.stopFlying()
+        if player.isFlying {
+            player.stopFlying()
+        }
     }
     
     func spawnEnemies() {
@@ -178,16 +179,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if score - startPowerUpDistance < 10 {
                 print("FLYING")
                 player.flyAction()
-                player.animationFly()
                 
             } else {
                 print("END FLYING")
                 player.isFlying = false
                 isTouched = false
-                //player.stopFlying()
-                player.createAnimation()
-                player.removeAction(forKey: "catFlyAnimation")
-                player.size = CGSize(width: 190, height: 140)
+                player.removeAllActions()
+                player.catRunAnimation()
             }
             
         }
@@ -216,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addHeart(life: Int) {
-        print("life index add: \(life)")
+        //print("life index add: \(life)")
         let fadeAction = SKAction.fadeAlpha(to: 1, duration: 0.3)
         
         heartNode[life - 1].run(fadeAction)
@@ -278,7 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        print("Contact body: \(secondBody.node?.name)")
+        //print("Contact body: \(secondBody.node?.name)")
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Ground" {
             print("Contact with ground and player")
@@ -295,7 +293,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 removeHeart(lifeRemaining: player.health)
             }
             if player.health == 0 {
-                print("back home")
+                //print("back home")
                 saveLastFive(score: score)
                 
                 if getHighscore() < score {

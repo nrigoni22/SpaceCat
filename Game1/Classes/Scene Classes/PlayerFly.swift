@@ -24,11 +24,11 @@ class PlayerFly: SKSpriteNode, GameSprite {
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
-    
-        self.run(soarAnimation, withKey: "soarAnimation")
-        let bodyTexture = textureAtlas.textureNamed("Spacecat4")
         
-    
+        // self.run(soarAnimation, withKey: "soarAnimation")
+        //    let bodyTexture = textureAtlas.textureNamed("Spacecat4")
+        
+        
         self.name = "Player"
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.linearDamping = 0.9
@@ -42,7 +42,7 @@ class PlayerFly: SKSpriteNode, GameSprite {
         
         self.run(catFlyAnimation)
         
-
+        
     }
     
     func createAnimation() {
@@ -63,15 +63,15 @@ class PlayerFly: SKSpriteNode, GameSprite {
         let soarAction = SKAction.animate(with:
                                             soarFrames,
                                           timePerFrame: 1)
-
+        
         soarAnimation = SKAction.group([SKAction.repeatForever(soarAction),
                                         rotateDownAction
                                        ]) }
- 
+    
     func onTap() { }
-
+    
     func update() {
-
+        
         if self.flapping {
             var forceToApply = maxFlappingForce
             if position.y > 600 {
@@ -80,33 +80,32 @@ class PlayerFly: SKSpriteNode, GameSprite {
                 percentageOfMaxHeight * maxFlappingForce
                 forceToApply -= flappingForceSubtraction
             }
-  
-            self.physicsBody?.applyForce(CGVector(dx: 0, dy:
-                                                    forceToApply))
-            }
-
+            
+            self.physicsBody?.applyForce(CGVector(dx: 0, dy: forceToApply))
+        }
+        
         if self.physicsBody!.velocity.dy > 300 {
             self.physicsBody!.velocity.dy = 300
         }
         
         self.physicsBody?.velocity.dx = 200
     }
-
-    func startFlapping() {
-    self.removeAction(forKey: "soarAnimation")
-    self.run(flyAnimation, withKey: "flapAnimation")
-    self.flapping = true
-}
     
-    func stopFlapping() {
-    self.removeAction(forKey: "flapAnimation")
-    self.run(soarAnimation, withKey: "soarAnimation")
-    self.flapping = false
-}
+//    func startFlapping() {
+//        self.removeAction(forKey: "soarAnimation")
+//        self.run(flyAnimation, withKey: "flapAnimation")
+//        self.flapping = true
+//    }
     
-  
+//    func stopFlapping() {
+//        self.removeAction(forKey: "flapAnimation")
+//        self.run(soarAnimation, withKey: "soarAnimation")
+//        self.flapping = false
+//    }
+    
+    
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder) 
+        super.init(coder: aDecoder)
     }
     
 }

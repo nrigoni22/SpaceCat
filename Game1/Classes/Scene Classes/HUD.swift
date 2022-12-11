@@ -13,7 +13,7 @@ class HUD: SKNode {
     var heartNodes:[SKSpriteNode] = []
     
     func createHearts(screenSize: CGSize) {
-        for index in 0 ..< 3 {
+        for _ in 0 ..< 3 {
             let newHeartNode = SKSpriteNode(texture:
                                                 textureAtlas.textureNamed("heart-full"))
             newHeartNode.size = CGSize (width: 46,
