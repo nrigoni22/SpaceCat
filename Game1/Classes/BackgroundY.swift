@@ -1,5 +1,5 @@
 //
-//  Background.swift
+//  BackgroundY.swift
 //  Game1
 //
 //  Created by Nicola Rigoni on 07/12/22.
@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Background: SKSpriteNode {
+class BackgroundY: SKSpriteNode {
         var movementMultiplier = CGFloat(0)
         var jumpAdjustment = CGFloat(0)
         let backgroundSize = CGSize(width: 1334, height: 750)
@@ -15,7 +15,7 @@ class Background: SKSpriteNode {
     
         func spawn(parentNode:SKNode, imageName:String, zPosition:CGFloat, movementMultiplier:CGFloat) {
             self.anchorPoint = CGPoint.zero
-            self.position = CGPoint(x: 0, y: 30)
+            self.position = CGPoint(x: 0, y: 780)
             self.zPosition = zPosition
             self.movementMultiplier = movementMultiplier
             parentNode.addChild(self)

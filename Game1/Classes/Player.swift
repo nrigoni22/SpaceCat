@@ -29,7 +29,7 @@ class Player: SKSpriteNode, GameSprite {
     
     var isDead: Bool = false
     var jump: Bool = false
-    let maxHeight:CGFloat = 800
+    let maxHeight:CGFloat = 1200
     var isFlying: Bool = false
     let maxFlappingForce:CGFloat = 137000
     

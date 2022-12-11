@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var background: [Background] = []
     
+    var background2: [BackgroundY] = []
+    
     //var canJump = false
     
     var screenCenterY = CGFloat()
@@ -50,6 +52,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gamePaused: Bool = false
     var playerDead: Bool = false
     //let hud = HUD()
+    let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
+    
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -69,6 +73,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func inizialize() {
+        self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue:
+            0.95, alpha: 1.0)
+        
+        let enemiesFrames: [SKTexture] = [
+                textureAtlas.textureNamed("bat"),
+                textureAtlas.textureNamed("bat-fly")
+            ]
+        
         physicsWorld.contactDelegate = self
         getLabel()
         getButtons()
@@ -83,9 +95,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -3, movementMultiplier: 0.1)
+        background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -4, movementMultiplier: 0.1)
         background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
         background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
+       // background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
+        //background[0].spawn(parentNode: self, imageName: "t", zPosition: -3, movementMultiplier: 0.1)
+        
+        background2.append(BackgroundY())
+        background2[0].spawn(parentNode: self, imageName: "sfondo2", zPosition: -5, movementMultiplier: 0.1)
         
         ground.position = CGPoint(x: -self.size.width * 2, y: 105)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
@@ -202,6 +219,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground.checkForReposition(playerProgress: playerProgress)
         
         for bg in self.background {
+            bg.updatePosition(playerProgress: playerProgress)
+        }
+        
+        for bg in self.background2 {
             bg.updatePosition(playerProgress: playerProgress)
         }
         

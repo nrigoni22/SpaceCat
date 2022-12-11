@@ -13,6 +13,8 @@
 		24F07C682945FCAE002C4EF1 /* EnemyMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */; };
 		24F07C6A2945FFB9002C4EF1 /* PlatformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C692945FFB9002C4EF1 /* PlatformType.swift */; };
 		24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24F07C6B2946484F002C4EF1 /* EncounterD.sks */; };
+		24F07C6E29466638002C4EF1 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6D29466638002C4EF1 /* Tree.swift */; };
+		24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6F29466E20002C4EF1 /* BackgroundY.swift */; };
 		402223E9294115B30004776B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223E8294115B30004776B /* AppDelegate.swift */; };
 		402223EB294115B30004776B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 402223EA294115B30004776B /* GameScene.sks */; };
 		402223EF294115B30004776B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223EE294115B30004776B /* GameScene.swift */; };
@@ -42,6 +44,8 @@
 		24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyMonster.swift; sourceTree = "<group>"; };
 		24F07C692945FFB9002C4EF1 /* PlatformType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformType.swift; sourceTree = "<group>"; };
 		24F07C6B2946484F002C4EF1 /* EncounterD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterD.sks; sourceTree = "<group>"; };
+		24F07C6D29466638002C4EF1 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		24F07C6F29466E20002C4EF1 /* BackgroundY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundY.swift; sourceTree = "<group>"; };
 		402223E5294115B30004776B /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402223E8294115B30004776B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		402223EA294115B30004776B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 				24F07C692945FFB9002C4EF1 /* PlatformType.swift */,
 				24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */,
 				40222407294138950004776B /* Background.swift */,
+				24F07C6F29466E20002C4EF1 /* BackgroundY.swift */,
+				24F07C6D29466638002C4EF1 /* Tree.swift */,
 				24CF40A729440138003D9E23 /* Bat.swift */,
 				40222414294481ED0004776B /* EnconunterManager.swift */,
 				4022241C294509630004776B /* PowerUp.swift */,
@@ -229,6 +235,7 @@
 				40222400294119850004776B /* Enemy.swift in Sources */,
 				402223EF294115B30004776B /* GameScene.swift in Sources */,
 				4022240629412EB10004776B /* Ground.swift in Sources */,
+				24F07C6E29466638002C4EF1 /* Tree.swift in Sources */,
 				24F07C6A2945FFB9002C4EF1 /* PlatformType.swift in Sources */,
 				24F07C682945FCAE002C4EF1 /* EnemyMonster.swift in Sources */,
 				40222415294481ED0004776B /* EnconunterManager.swift in Sources */,
@@ -236,6 +243,7 @@
 				402223F1294115B30004776B /* GameViewController.swift in Sources */,
 				24CF40A829440138003D9E23 /* Bat.swift in Sources */,
 				4022240F29421C170004776B /* LaunchScene.swift in Sources */,
+				24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */,
 				4022241D294509630004776B /* PowerUp.swift in Sources */,
 				4022240229411C930004776B /* GameSprite.swift in Sources */,
 				24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */,
