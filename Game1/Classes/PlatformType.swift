@@ -8,8 +8,8 @@
 import SpriteKit
 
 
-class PlatformTye: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 75, height: 35)
+class PlatformType: SKSpriteNode, GameSprite {
+    var initialSize: CGSize = CGSize(width: 500, height: 200)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var notAnimation = SKAction()
     
@@ -33,7 +33,7 @@ class PlatformTye: SKSpriteNode, GameSprite {
             textureAtlas.textureNamed("pezzo1")
         ]
         
-        let notAction = SKAction.animate(with: platFrames, timePerFrame: 0.10)
+        let notAction = SKAction.animate(with: platFrames, timePerFrame: 1)
         
         notAnimation = SKAction.repeatForever(notAction)
         
