@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //var canJump = false
     
     var screenCenterY = CGFloat()
+    var screenCenterX = CGFloat()
     
     var scoreCounter = Timer()
     
@@ -33,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score: Int = -1
     
     var scoreLabel = SKLabelNode()
+    var pauseBtn = SKSpriteNode()
     
     let initialPlayerPosition = CGPoint(x: 500, y: 400)
     var playerProgress = CGFloat()
@@ -44,7 +46,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isTouched: Bool = false
     
     var startPowerUpDistance: Int = 0
-    
+    var daCencellare: Int = 0
+    var isPaused: Bool = false
     //let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
@@ -67,10 +70,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func inizialize() {
         physicsWorld.contactDelegate = self
         getLabel()
+        getButtons()
         getHeart()
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
+        screenCenterX = self.size.height / 2
         self.camera = cam
         
         for _ in 0..<3 {
@@ -106,27 +111,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch gameStatus {
-        case .ready:
-            gameStatus = .ongoing
-        case .ongoing:
-            if player.jump && !player.isFlying {
-                player.jump = false
-                player.jumpAction()
-                print("PLAYER TOUCH JUMP")
-            } else if player.isFlying {
-                print("PLAYER TOUCH FLY")
-                isTouched = true
-            }
+        for touch in touches {
+            let location = touch.location(in: self)
             
-        default:
-            break
+            if nodes(at: location).first == pauseBtn {
+                print("PAUSE")
+                scene?.isPaused = true
+                addPauseView(text: "Title", isEnded: false)
+                
+            } else {
+                if player.jump && !player.isFlying {
+                    player.jump = false
+                    player.jumpAction()
+                    print("PLAYER TOUCH JUMP")
+                } else if player.isFlying {
+                    print("PLAYER TOUCH FLY")
+                    isTouched = true
+                }
+            }
         }
-        
     }
-    
-    
-   //
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isTouched = false
         if player.isFlying {
@@ -175,6 +180,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             heartNode[index].position.y = scoreLabel.position.y - 50
             
         }
+        
+        pauseBtn.position.x = player.position.x + 1050
+        pauseBtn.position.y = cameraYPos + 200
         
         if player.isFlying && isTouched {
             if score - startPowerUpDistance < 10 {
@@ -228,6 +236,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 10
     }
     
+    func getButtons() {
+        pauseBtn = self.childNode(withName: "Pause") as! SKSpriteNode
+        pauseBtn.position.y = 550
+        pauseBtn.zPosition = 10
+    }
+    
     func getHeart() {
         for index in 0..<3 {
             let heartNode = SKSpriteNode(imageNamed: "heart-full")
@@ -237,6 +251,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.heartNode.append(heartNode)
             self.addChild(self.heartNode[index])
         }
+    }
+    
+    func addPauseView(text: String, isEnded: Bool, positionX: CGFloat, positionY: CGFloat) {
+        let label = SKLabelNode(text: text)
+        label.fontSize = 120
+        label.name = "Label"
+        label.zPosition = 10
+        label.position = CGPoint(x: player.position.x + 450, y: player.position.y + 300)
+        let moveUp = SKAction.moveTo(y: player.position.y + 30 , duration: 2)
+        let moveDown = SKAction.moveTo(y: player.position.y - 30, duration: 2)
+        
+        let sequence = SKAction.sequence([moveUp, moveDown])
+        
+        label.run(SKAction.repeatForever(sequence))
+        self.addChild(label)
+        
+        let restartBtn = SKSpriteNode(imageNamed: "Restart")
+        restartBtn.name = "Restart"
+        restartBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        restartBtn.position = CGPoint(x: player.position.x + 200, y: player.position.y + 80)
+        restartBtn.zPosition = 10
+        //restartBtn.setScale(0.5)
+        self.addChild(restartBtn)
     }
     
     func incrementScore() {
@@ -279,8 +316,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //print("Contact body: \(secondBody.node?.name)")
         
-        if firstBody.node?.name == "Player" && secondBody.node?.name == "Ground" {
-            print("Contact with ground and player")
+        if firstBody.node?.name == "Player" && (secondBody.node?.name == "Ground" || secondBody.node?.name == "PlatformType")  {
+            daCencellare += 1
+            print("Contact with ground and player \(daCencellare)")
             player.jump = true
         }
         
