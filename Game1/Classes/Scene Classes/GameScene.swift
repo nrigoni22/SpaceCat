@@ -99,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5.8)
         //spawnEnemies()
         
-        scoreCounter = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
+        scoreCounter = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
             self.incrementScore()
         })
         
@@ -257,7 +257,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch gameStatus {
         case .ongoing:
-            player.update()
+            player.update(distance: score)
         default:
             break
         }

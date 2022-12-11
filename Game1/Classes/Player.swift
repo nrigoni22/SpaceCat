@@ -60,9 +60,32 @@ class Player: SKSpriteNode, GameSprite {
         catRunAnimation()
     }
     
-    func update() {
+    func update(distance: Int) {
         if !isDead {
-            self.position.x += 6
+            
+            if distance >= 50 {
+                self.position.x += 9
+                print("1")
+            }
+            if distance > 100 {
+                self.position.x += 13
+                print("2")
+            }
+            if distance > 150 {
+                self.position.x += 17
+                print("3")
+            }
+            
+            if distance > 200 {
+                self.position.x += 20
+                print("4")
+            }
+            
+            if distance < 50 {
+                self.position.x += 6
+                print("5")
+            }
+            
         }
         
     }

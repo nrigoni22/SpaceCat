@@ -17,7 +17,7 @@ class EncounterManager {
     // Each encounter is an SKNode, store an array:
     var encounters: [SKNode] = []
     
-    var currentEncounterIndex: Int?
+    var currentEncounterIndex: Int = 0
     var previousEncounterIndex: Int?
     
     init() {
@@ -53,43 +53,52 @@ class EncounterManager {
     
     func placeNextEncounter(currentXPos: CGFloat) {
         // Count the encounters in a random ready type (Uint32):
-        let encounterCount = UInt32(encounters.count)
+        //let encounterCount = UInt32(encounters.count)
         // The game requires at least 3 encounters to function
-        // so exit this function if there are less than 3
-        if encounterCount < 1 { return }
+//        // so exit this function if there are less than 3
+//        if encounterCount < 1 { return }
+//
+//        print("aaaaaaaa")
+//        // We need to pick an encounter that is not
+//        // currently displayed on the screen.
+//        var nextEncounterIndex: Int?
+//        var trulyNew: Bool?
+//        // The current encounter and the directly previous encounter
+//        // can potentially be on the screen at this time.
+//        // Pick until we get a new encounter
+//        while trulyNew == false || trulyNew == nil {
+//            // Pick a random encounter to set next:
+//            nextEncounterIndex = Int(arc4random_uniform(encounterCount))
+//            // First, assert that this is a new encounter:
+//            trulyNew = true
+//            // Test if it is instead the current encounter:
+//            if let currentIndex = currentEncounterIndex {
+//                if (nextEncounterIndex == currentIndex) {
+//                    trulyNew = false
+//                }
+//
+//            }
+//            // Test if it is the directly previous encounter:
+//            if let previousIndex = previousEncounterIndex {
+//                if (nextEncounterIndex == previousIndex) {
+//                    trulyNew = false
+//                }
+//            }
+//        }
+//        // Keep track of the current encounter:
+//        previousEncounterIndex = currentEncounterIndex
+//        currentEncounterIndex = nextEncounterIndex
+//        // Reset the new encounter and position it ahead of the player
         
-        print("aaaaaaaa")
-        // We need to pick an encounter that is not
-        // currently displayed on the screen.
-        var nextEncounterIndex: Int?
-        var trulyNew: Bool?
-        // The current encounter and the directly previous encounter
-        // can potentially be on the screen at this time.
-        // Pick until we get a new encounter
-        while trulyNew == false || trulyNew == nil {
-            // Pick a random encounter to set next:
-            nextEncounterIndex = Int(arc4random_uniform(encounterCount))
-            // First, assert that this is a new encounter:
-            trulyNew = true
-            // Test if it is instead the current encounter:
-            if let currentIndex = currentEncounterIndex {
-                if (nextEncounterIndex == currentIndex) {
-                    trulyNew = false
-                }
-                
-            }
-            // Test if it is the directly previous encounter:
-            if let previousIndex = previousEncounterIndex {
-                if (nextEncounterIndex == previousIndex) {
-                    trulyNew = false
-                } 
-            }
+        if currentEncounterIndex < encounters.count - 1 {
+            currentEncounterIndex += 1
+        } else {
+            currentEncounterIndex = 0
         }
-        // Keep track of the current encounter:
-        previousEncounterIndex = currentEncounterIndex
-        currentEncounterIndex = nextEncounterIndex
-        // Reset the new encounter and position it ahead of the player
-        let encounter = encounters[currentEncounterIndex!]
+        
+        print("index encounter \(currentEncounterIndex)")
+        
+        let encounter = encounters[currentEncounterIndex]
         encounter.position = CGPoint(x: currentXPos + 1000, y: 300)
         resetSpritePositions(node: encounter)
     }
