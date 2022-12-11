@@ -40,6 +40,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var tree = SKSpriteNode()
     var tree2 = SKSpriteNode()
     var tree3 = SKSpriteNode()
+    var planet1 = SKSpriteNode()
+    var planet2 = SKSpriteNode()
     
     var tree4 = SKSpriteNode()
     var tree5 = SKSpriteNode()
@@ -84,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         getLabel()
         getButtons()
         getHeart()
+        getPlanet()
         getTree()
         self.anchorPoint = .zero
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
@@ -95,14 +98,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "sfondo", zPosition: -4, movementMultiplier: 0.1)
+        background[0].spawn(parentNode: self, imageName: "sfondo2bis", zPosition: -4, movementMultiplier: 0.1)
         background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
         background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
         //background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
         //background[0].spawn(parentNode: self, imageName: "t", zPosition: -3, movementMultiplier: 0.1)
         
         background2.append(BackgroundY())
-        background2[0].spawn(parentNode: self, imageName: "sfondo2", zPosition: -5, movementMultiplier: 0.1)
+        background2[0].spawn(parentNode: self, imageName: "planetscreen", zPosition: -5, movementMultiplier: 0.1)
         
         ground.position = CGPoint(x: -self.size.width * 2, y: 105)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
@@ -238,6 +241,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+        planet1.position.x = player.position.x
+        planet2.position.x = player.position.x + 800
+        
         pauseBtn.position.x = player.position.x + 1050
         pauseBtn.position.y = cameraYPos + 200
         
@@ -335,6 +341,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree3.position.y = 180
         tree3.position.x = player.position.x + 2500
         tree3.zPosition = 0
+    }
+    
+   func getPlanet() {
+       planet1 = self.childNode(withName: "Planet1") as! SKSpriteNode
+       planet1.position.y = 1000
+       planet1.zPosition = 0
+       
+       planet2 = self.childNode(withName: "Planet2") as! SKSpriteNode
+       planet2.position.y = 1000
+       planet2.zPosition = 0
     }
     
     func getHeart() {
