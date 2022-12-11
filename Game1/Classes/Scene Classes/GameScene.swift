@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var startPowerUpDistance: Int = 0
     var daCencellare: Int = 0
-    var isPaused: Bool = false
+    var gamePaused: Bool = false
     //let hud = HUD()
     
     var gameStatus: GameStatus = .ongoing {
@@ -116,8 +116,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if nodes(at: location).first == pauseBtn {
                 print("PAUSE")
-                scene?.isPaused = true
-                addPauseView(text: "Title", isEnded: false)
+                gamePaused = true
+                //scene?.isPaused = true
+                //addPauseView(text: "Title", isEnded: false)
                 
             } else {
                 if player.jump && !player.isFlying {
@@ -199,6 +200,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+        if gamePaused {
+            addPauseView(text: "Title", isEnded: false, positionX: player.position.x, positionY: cameraYPos)
+        }
+        
         // Check to see if we should set a new encounter:
         if player.position.x > nextEncounterSpawnPosition {
             encounterManager.placeNextEncounter(
@@ -254,13 +259,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addPauseView(text: String, isEnded: Bool, positionX: CGFloat, positionY: CGFloat) {
+        
         let label = SKLabelNode(text: text)
         label.fontSize = 120
         label.name = "Label"
         label.zPosition = 10
-        label.position = CGPoint(x: player.position.x + 450, y: player.position.y + 300)
-        let moveUp = SKAction.moveTo(y: player.position.y + 30 , duration: 2)
-        let moveDown = SKAction.moveTo(y: player.position.y - 30, duration: 2)
+        label.position = CGPoint(x: positionX + 500, y: positionY + 150)
+        let moveUp = SKAction.moveTo(y: positionY + 30 , duration: 2)
+        let moveDown = SKAction.moveTo(y: positionY - 30, duration: 2)
         
         let sequence = SKAction.sequence([moveUp, moveDown])
         
@@ -270,10 +276,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let restartBtn = SKSpriteNode(imageNamed: "Restart")
         restartBtn.name = "Restart"
         restartBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        restartBtn.position = CGPoint(x: player.position.x + 200, y: player.position.y + 80)
+        restartBtn.position = CGPoint(x: positionX + 50, y: positionY - 200)
         restartBtn.zPosition = 10
         //restartBtn.setScale(0.5)
         self.addChild(restartBtn)
+        
+        scene?.isPaused = true
     }
     
     func incrementScore() {
