@@ -167,6 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         scoreLabel.position.x = player.position.x
+        scoreLabel.position.y = cameraYPos + 200
         
         for index in 0..<3 {
             //print("heart pos: \(heart.position.x)")
