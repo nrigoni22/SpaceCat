@@ -36,7 +36,7 @@ class Player: SKSpriteNode, GameSprite {
     let maxFlappingForce:CGFloat = 137000
     
     var health: Int = 3
-    var invulnerable = true
+    var invulnerable = false
     var damage = false
     var damageAnimation = SKAction()
     //var dieAnimation = SKAction()

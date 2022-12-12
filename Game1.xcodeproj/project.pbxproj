@@ -34,6 +34,9 @@
 		242813832947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */; };
 		242813892947DD6A00A0E22F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242813882947DD6A00A0E22F /* AudioManager.swift */; };
 		2428138B2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */; };
+		2428138D2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */; };
+		2428138F2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */; };
+		242813922947E5A400A0E22F /* 8-bit Arcade In.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */; };
 		24CF40A829440138003D9E23 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A729440138003D9E23 /* Bat.swift */; };
 		24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A92944060A003D9E23 /* PlayerFly.swift */; };
 		24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40AB29440B1E003D9E23 /* HUD.swift */; };
@@ -93,6 +96,10 @@
 		242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
 		242813882947DD6A00A0E22F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-little-cat-attention-meow-86.wav"; sourceTree = "<group>"; };
+		2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-game-flute-bonus-2313.wav"; sourceTree = "<group>"; };
+		2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-casino-bling-achievement-2067.wav"; sourceTree = "<group>"; };
+		242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "8-bit Arcade In.ttf"; sourceTree = "<group>"; };
+		242813912947E41000A0E22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		24CF40A729440138003D9E23 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 		24CF40A92944060A003D9E23 /* PlayerFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFly.swift; sourceTree = "<group>"; };
 		24CF40AB29440B1E003D9E23 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -155,10 +162,14 @@
 		402223E7294115B30004776B /* Game1 */ = {
 			isa = PBXGroup;
 			children = (
+				242813912947E41000A0E22F /* Info.plist */,
 				402223E8294115B30004776B /* AppDelegate.swift */,
 				4022240129411C930004776B /* GameSprite.swift */,
 				242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */,
+				242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */,
 				2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */,
+				2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */,
+				2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */,
 				402223F0294115B30004776B /* GameViewController.swift */,
 				242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */,
 				402223F2294115B30004776B /* Main.storyboard */,
@@ -300,11 +311,13 @@
 				2428138B2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav in Resources */,
 				402223F4294115B30004776B /* Main.storyboard in Resources */,
 				242813752947BA8200A0E22F /* Encounter15.sks in Resources */,
+				2428138D2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav in Resources */,
 				2428136B2947B9B700A0E22F /* Encounter10.sks in Resources */,
 				2428135D29474ED700A0E22F /* Encounter5.sks in Resources */,
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
 				242813632947AD3E00A0E22F /* Encounter7.sks in Resources */,
 				40222419294498910004776B /* Encounter2.sks in Resources */,
+				2428138F2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav in Resources */,
 				242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */,
 				24F07C6C2946484F002C4EF1 /* Encounter4.sks in Resources */,
 				242813712947BA3500A0E22F /* Encounter13.sks in Resources */,
@@ -325,6 +338,7 @@
 				242813792947BAD100A0E22F /* Encounter17.sks in Resources */,
 				402223F6294115B40004776B /* Assets.xcassets in Resources */,
 				402223F9294115B40004776B /* LaunchScreen.storyboard in Resources */,
+				242813922947E5A400A0E22F /* 8-bit Arcade In.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +525,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -543,6 +558,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

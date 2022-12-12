@@ -148,6 +148,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
     }
     
+    
+    
     func startMusic() {
         let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
         let url = URL(filePath: path!)
@@ -162,11 +164,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if nodes(at: location).first == pauseBtn {
                 print("PAUSE")
+                pauseBtn.alpha = 0
                 gamePaused = true
                 scoreCounter.invalidate()
                 
             } else if nodes(at: location).first!.name == "Quit" {
                 print("Quit")
+                backgroundMusic.stop()
                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
                 launchScene!.scaleMode = .aspectFill
                 self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
@@ -174,6 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if nodes(at: location).first!.name == "Play" {
                 print("Play")
                 gamePaused = false
+                pauseBtn.alpha = 1
                 scene?.isPaused = false
                 self.childNode(withName: "Label")?.removeFromParent()
                 self.childNode(withName: "Play")?.removeFromParent()
@@ -184,6 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Restart" {
                 print("Restart")
+                backgroundMusic.stop()
                 gamePaused = false
                 scene?.isPaused = false
                 playerDead = false
@@ -268,14 +274,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if gamePaused {
-            addPauseView(text: "Title", isEnded: false, positionX: player.position.x, positionY: cameraYPos)
+            addPauseView(text: "", isEnded: false, positionX: player.position.x, positionY: cameraYPos)
         }
         
         if playerDead {
             let fadeAction = SKAction.fadeAlpha(to: 0.2, duration: 0.3)
+            pauseBtn.alpha = 0
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
-                    self.addPauseView(text: "Title", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
+                    self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                 }
             }
         }
@@ -405,6 +412,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreCounter.invalidate()
         
         let label = SKLabelNode(text: text)
+        label.fontName = "8-bit Arcade In"
         label.fontSize = 120
         label.name = "Label"
         label.zPosition = 10
@@ -454,12 +462,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func saveLastFive(score: Int) {
         let index: Int = UserDefaults.standard.integer(forKey: "Index")
+        var newIndex: Int = index
         if index < 5 {
+            newIndex = index + 1
             UserDefaults.standard.set(score, forKey: "Score\(index)")
         } else {
+            newIndex = 0
             UserDefaults.standard.set(score, forKey: "Score\(0)")
         }
-        let newIndex = index + 1
+        print("newIndex: \(newIndex)")
+        print("index \(index)")
         UserDefaults.standard.set(newIndex, forKey: "Index")
     }
     
@@ -523,6 +535,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("contact between player and heart")
             player.addLife()
             addHeart(life: player.health)
+            self.run(audioManager.playGetHeartSound())
         }
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "PowerUp" {
@@ -530,6 +543,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startPowerUpDistance = score
             player.isFlying = true
             secondBody.node?.removeFromParent()
+            self.run(audioManager.playPowerUpSound())
         }
         
     }

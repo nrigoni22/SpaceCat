@@ -74,8 +74,9 @@ class LaunchScene: SKScene {
     
     func getTitle() {
         titleLabel = self.childNode(withName: "TitleLabel") as! SKLabelNode
-        titleLabel.fontSize = 120
-        titleLabel.text = "Game Name Here"
+        titleLabel.fontName = "8-bit Arcade In"
+        titleLabel.fontSize = 130
+        titleLabel.text = "Space Cat"
         titleLabel.zPosition = 5
         
         let moveUp = SKAction.moveTo(y: titleLabel.position.y + 30 , duration: 2)
@@ -91,9 +92,10 @@ class LaunchScene: SKScene {
         scoreBtn.removeFromParent()
         titleLabel.removeFromParent()
         
-        scoreTitleLabel = SKLabelNode(text: "Score Title Here")
+        scoreTitleLabel = SKLabelNode(text: "Your Score")
+        scoreTitleLabel.fontName = "8-bit Arcade In"
         scoreTitleLabel.zPosition = 10
-        scoreTitleLabel.fontSize = 80
+        scoreTitleLabel.fontSize = 90
         scoreTitleLabel.position = CGPoint(x: 0, y: 180);
         self.addChild(scoreTitleLabel)
         
@@ -106,16 +108,18 @@ class LaunchScene: SKScene {
         self.addChild(backBtn)
         
         highscoreLabel = SKLabelNode(text: "Higherscore:    \(UserDefaults.standard.integer(forKey: "Highscore"))")
+        highscoreLabel.fontName = "8-bit Arcade In"
         highscoreLabel.zPosition = 10
-        highscoreLabel.fontSize = 50
-        highscoreLabel.position = CGPoint(x: -200, y: 80);
+        highscoreLabel.fontSize = 65
+        highscoreLabel.position = CGPoint(x: 0, y: 80);
         self.addChild(highscoreLabel)
         
         for index in 0..<5 {
             let scoreLabel = SKLabelNode(text: "Match \(index + 1):    \(UserDefaults.standard.integer(forKey: "Score\(index)"))")
+            scoreLabel.fontName = "8-bit Arcade In"
             scoreLabel.zPosition = 10
-            scoreLabel.fontSize = 50
-            scoreLabel.position = CGPoint(x: -250, y: 20 - (60 * index));
+            scoreLabel.fontSize = 55
+            scoreLabel.position = CGPoint(x: 0, y: 20 - (60 * index));
             otherScoreLabel.append(scoreLabel)
             self.addChild(otherScoreLabel[index]/*.copy() as! SKLabelNode*/)
         }
