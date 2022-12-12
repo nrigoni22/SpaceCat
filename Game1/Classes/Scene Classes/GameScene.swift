@@ -31,7 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreCounter = Timer()
     
-    var spawnEnemy = Timer()
+//    var spawnEnemy = Timer()
+    var spawnTree = Timer()
     
     var score: Int = -1
     
@@ -81,14 +82,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func inizialize() {
-        
+        self.anchorPoint = .zero
         physicsWorld.contactDelegate = self
         getLabel()
         getButtons()
         getHeart()
         getPlanet()
         getTree()
-        self.anchorPoint = .zero
+      
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
         screenCenterX = self.size.height / 2
@@ -117,13 +118,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5.8)
-        //spawnEnemies()
+        spawnEnemies()
         
         scoreCounter = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
             self.incrementScore()
         })
         
-        spawnEnemy = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+//       spawnEnemy = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+//           self.spawnEnemy
+//        }
+        spawnTree = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
             //self.spawnEnemies()
             self.getTree()
         })
@@ -198,12 +202,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let enemy = Enemy()//.copy() as! SKSpriteNode
         let bat = Bat()
+        let monster = EnemyMonster()
+        let curly = EnemyCurly()
         
         enemy.position = CGPoint(x: player.position.x + 1500, y: 120) //self.frame.width + 450
         bat.position = CGPoint(x: player.position.x + 1000, y: 250)
+        monster.position = CGPoint(x: 1050, y: 150)
+        curly.position = CGPoint(x: 800, y: 100)
         
         self.addChild(enemy)
         self.addChild(bat)
+        self.addChild(monster)
+        self.addChild(curly)
     }
     
     
@@ -217,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cameraYPos = player.position.y
         }
         
-        self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
+       self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
         playerProgress = player.position.x + 500 - initialPlayerPosition.x
         
         ground.checkForReposition(playerProgress: playerProgress)
@@ -241,8 +251,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        planet1.position.x = player.position.x
-        planet2.position.x = player.position.x + 800
+        planet1.position.x = player.position.x + 800
+        planet2.position.x = player.position.x + 110
         
         pauseBtn.position.x = player.position.x + 1050
         pauseBtn.position.y = cameraYPos + 200
@@ -345,12 +355,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
    func getPlanet() {
        planet1 = self.childNode(withName: "Planet1") as! SKSpriteNode
-       planet1.position.y = 1000
+       planet1.position.y = 950
+       planet1.position.x = player.position.x + 1000
        planet1.zPosition = 0
+     
        
        planet2 = self.childNode(withName: "Planet2") as! SKSpriteNode
        planet2.position.y = 1000
+       planet2.position.x = player.position.x + 2000
        planet2.zPosition = 0
+     
     }
     
     func getHeart() {

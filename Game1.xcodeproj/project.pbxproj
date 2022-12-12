@@ -15,6 +15,7 @@
 		24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24F07C6B2946484F002C4EF1 /* EncounterD.sks */; };
 		24F07C6E29466638002C4EF1 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6D29466638002C4EF1 /* Tree.swift */; };
 		24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6F29466E20002C4EF1 /* BackgroundY.swift */; };
+		24F07C722946A0E4002C4EF1 /* EnemyCurly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */; };
 		402223E9294115B30004776B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223E8294115B30004776B /* AppDelegate.swift */; };
 		402223EB294115B30004776B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 402223EA294115B30004776B /* GameScene.sks */; };
 		402223EF294115B30004776B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402223EE294115B30004776B /* GameScene.swift */; };
@@ -46,6 +47,7 @@
 		24F07C6B2946484F002C4EF1 /* EncounterD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterD.sks; sourceTree = "<group>"; };
 		24F07C6D29466638002C4EF1 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		24F07C6F29466E20002C4EF1 /* BackgroundY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundY.swift; sourceTree = "<group>"; };
+		24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyCurly.swift; sourceTree = "<group>"; };
 		402223E5294115B30004776B /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402223E8294115B30004776B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		402223EA294115B30004776B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				402223EE294115B30004776B /* GameScene.swift */,
+				24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */,
 				24CF40AB29440B1E003D9E23 /* HUD.swift */,
 				24CF40A92944060A003D9E23 /* PlayerFly.swift */,
 				4022240E29421C170004776B /* LaunchScene.swift */,
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24F07C722946A0E4002C4EF1 /* EnemyCurly.swift in Sources */,
 				40222400294119850004776B /* Enemy.swift in Sources */,
 				402223EF294115B30004776B /* GameScene.swift in Sources */,
 				4022240629412EB10004776B /* Ground.swift in Sources */,
