@@ -13,9 +13,11 @@ struct ColliderType {
     static let player: UInt32 = 1
     static let ground: UInt32 = 2
     static let enemy: UInt32 = 4
+    static let damageCat: UInt32 = 5
     static let powerUp: UInt32 = 8
-    static let damageCat: UInt32 = 16
+    static let fake: UInt32 = 16
     static let lifeUp: UInt32 = 3
+    
 }
 
 class Player: SKSpriteNode, GameSprite {
@@ -29,12 +31,12 @@ class Player: SKSpriteNode, GameSprite {
     
     var isDead: Bool = false
     var jump: Bool = false
-    let maxHeight:CGFloat = 1200
+    let maxHeight:CGFloat = 1180
     var isFlying: Bool = false
     let maxFlappingForce:CGFloat = 137000
     
     var health: Int = 3
-    var invulnerable = false
+    var invulnerable = true
     var damage = false
     var damageAnimation = SKAction()
     //var dieAnimation = SKAction()
@@ -55,8 +57,8 @@ class Player: SKSpriteNode, GameSprite {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = ColliderType.player
-        self.physicsBody?.collisionBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp
-        self.physicsBody?.contactTestBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp
+        self.physicsBody?.collisionBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp | ColliderType.fake
+        self.physicsBody?.contactTestBitMask = ColliderType.ground | ColliderType.enemy | ColliderType.powerUp | ColliderType.fake
         self.physicsBody?.restitution = 0.0
         
         catRunAnimation()
@@ -65,24 +67,32 @@ class Player: SKSpriteNode, GameSprite {
     func update(distance: Int) {
         if !isDead {
             
-            if distance >= 50 {
-                self.position.x += 9
+            if distance >= 50 && distance < 100 {
+                self.position.x += 8.5
                 //print("1")
             }
-            if distance > 100 {
-                self.position.x += 11
+            if distance >= 100 && distance < 150 {
+                self.position.x += 9
                // print("2")
             }
-            if distance > 150 {
-                self.position.x += 11
+            if distance >= 150 && distance < 200 {
+                self.position.x += 10
                 //print("3")
             }
             
-            if distance > 200 {
+            if distance >= 200 && distance < 250 {
+                self.position.x += 11
+                //print("4")
+            }
+            if distance >= 250 && distance < 300 {
                 self.position.x += 12
                 //print("4")
             }
-            
+            if distance > 300 {
+                self.position.x += 13
+                //print("4")
+            }
+
             if distance < 50 {
                 self.position.x += 7
                 //print("5")
@@ -100,10 +110,12 @@ class Player: SKSpriteNode, GameSprite {
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6400.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6800.0))
         textureJumping()
         
         if jumpCount < 1 {
+            print("jump count prima")
+            self.jumpTimer.invalidate()
             jumpTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { _ in
                 self.jump = true
 
@@ -112,10 +124,12 @@ class Player: SKSpriteNode, GameSprite {
                 print("jump count \(self.jumpCount)")
                 self.jumpCount += 1
             })
+            print("jump count dopo")
             
         } else {
             self.jump = false
         }
+        print("jump count fine")
     }
     
     func flyAction() {
@@ -123,6 +137,7 @@ class Player: SKSpriteNode, GameSprite {
         removeAction(forKey: "catAnimation")
         self.run(catFlyAnimation, withKey: "catFlyAnimation")
         self.size = CGSize(width: 98, height: 150)
+        print("fly texture")
         var forceToApply = maxFlappingForce
         
         // Apply less force if Pierre is above position 600

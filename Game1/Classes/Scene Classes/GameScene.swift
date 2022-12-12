@@ -9,30 +9,31 @@
 // Love you
 
 import SpriteKit
+import AVFoundation
 
 enum GameStatus {
     case ready, pause, finisched, ongoing
 }
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    let audioManager = AudioManager()
+    
     let cam = SKCameraNode()
     let player = Player()
     let ground = Ground()
-    //let enemy = Enemy()
-    //let razzo = Razzo()
+    let enemyMonster = EnemyMonster()
     let encounterManager = EncounterManager()
     
+    
+    var backgroundMusic: AVAudioPlayer!
+    
     var background: [Background] = []
-    
     var background2: [BackgroundY] = []
-    
-    //var canJump = false
     
     var screenCenterY = CGFloat()
     var screenCenterX = CGFloat()
     
     var scoreCounter = Timer()
     
-//    var spawnEnemy = Timer()
     var spawnTree = Timer()
     
     var score: Int = -1
@@ -47,6 +48,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var tree4 = SKSpriteNode()
     var tree5 = SKSpriteNode()
+    var tree6 = SKSpriteNode()
+    var tree7 = SKSpriteNode()
+    var tree8 = SKSpriteNode()
+    var tree9 = SKSpriteNode()
+    var tree10 = SKSpriteNode()
     
     var initialPlayerPosition = CGPoint(x: 50, y: 400)
     var playerProgress = CGFloat()
@@ -61,19 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var daCencellare: Int = 0
     var gamePaused: Bool = false
     var playerDead: Bool = false
-    //let hud = HUD()
     let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
-    //MARK: ENEMY
-    //let enemy = Enemy()//.copy() as! SKSpriteNode
-//    let bat = Bat()
-//    let monster = EnemyMonster()
-//    let curly = EnemyCurly()
-    
     var sceneIndex: Int = 0
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
-           // print("game Status: \(gameStatus)")
             switch gameStatus {
             case .ongoing:
                 print("ongoing")
@@ -89,6 +87,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func inizialize() {
+//        let music = SKAction.playSoundFileNamed("music_zapsplat_space_trivia",
+//                                    waitForCompletion: false)
+//        self.run(music)
+        startMusic()
         self.anchorPoint = .zero
         physicsWorld.contactDelegate = self
         getLabel()
@@ -96,8 +98,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         getHeart()
         getPlanet()
         getTree()
-        //addEnemiesChild()
-      
+        getTree2()
+        
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
         screenCenterX = self.size.height / 2
@@ -126,43 +128,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(player)
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -6.5)
-        //spawnEnemies()
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
         
         scoreCounter = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
             self.incrementScore()
         })
         
-//       spawnEnemy = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
-//           self.spawnEnemy
-//        }
-//        spawnTree = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-//            switch self.sceneIndex {
-//            case 0:
-//                self.spawnScene1()
-//            case 1:
-//                self.spawnScene2()
-//            case 2:
-//                self.spawnScene3()
-//            case 3:
-//                self.spawnScene4()
-//            default:
-//                self.spawnScene1()
-//            }
-//
-//            if self.sceneIndex < 4 {
-//                self.sceneIndex += 1
-//            } else {
-//                self.sceneIndex = 0
-//            }
-//
-//            //self.getTree()
-//        })
+        spawnTree = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+            print("TIMER1")
+            self.getTree()
+        })
         
-        
+        Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+            self.getTree2()
+            print("TIMER2")
+        })
         
         encounterManager.addEncountersToScene(gameScene: self)
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
+    }
+    
+    func startMusic() {
+        let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
+        let url = URL(filePath: path!)
+        backgroundMusic = try! AVAudioPlayer(contentsOf: url)
+        backgroundMusic.numberOfLoops = -1
+        backgroundMusic.play()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,13 +164,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("PAUSE")
                 gamePaused = true
                 scoreCounter.invalidate()
-                //scene?.isPaused = true
-                //addPauseView(text: "Title", isEnded: false)
                 
             } else if nodes(at: location).first!.name == "Quit" {
                 print("Quit")
-                //scene?.isPaused = true
-                //addPauseView(text: "Title", isEnded: false)
                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
                 launchScene!.scaleMode = .aspectFill
                 self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
@@ -194,15 +181,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreCounter = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
                     self.incrementScore()
                 })
-                //scene?.isPaused = true
-                //addPauseView(text: "Title", isEnded: false)
                 
             } else if nodes(at: location).first!.name == "Restart" {
                 print("Restart")
                 gamePaused = false
                 scene?.isPaused = false
                 playerDead = false
-                //addPauseView(text: "Title", isEnded: false)
                 let gameScene = GameScene(fileNamed: "GameScene")
                 gameScene!.scaleMode = .aspectFill
                 self.view?.presentScene(gameScene!, transition: SKTransition.fade(withDuration: 1.5))
@@ -220,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isTouched = false
         if player.isFlying {
@@ -228,54 +212,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-//    func addEnemiesChild() {
-//        self.addChild(razzo)
-//        self.addChild(bat)
-//        self.addChild(monster)
-//        self.addChild(curly)
-//    }
-//
-//    func spawnScene1() {
-//
-//        razzo.position = CGPoint(x: player.position.x + 1000, y: 230)
-//        //bat.position = CGPoint(x: player.position.x + 1000, y: 250)
-//        //monster.position = CGPoint(x: player.position.x + 1050, y: 150)
-//        //curly.position = CGPoint(x: player.position.x + 800, y: 100)
-//
-//
-//    }
-//
-//    func spawnScene2() {
-//
-////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
-//        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
-////        monster.position = CGPoint(x: player.position.x + 1050, y: 150)
-////        curly.position = CGPoint(x: player.position.x + 800, y: 100)
-//
-//
-//    }
-//
-//    func spawnScene3() {
-//
-////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
-////        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
-//        monster.position = CGPoint(x: player.position.x + 1000, y: 150)
-////        curly.position = CGPoint(x: player.position.x + 800, y: 100)
-//
-//
-//    }
-//
-//    func spawnScene4() {
-//
-////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
-////        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
-////        monster.position = CGPoint(x: player.position.x + 1050, y: 150)
-//        curly.position = CGPoint(x: player.position.x + 1000, y: 200)
-//    }
-    
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        
         var cameraYPos = screenCenterY
         cam.yScale = 1
         cam.xScale = 1
@@ -283,7 +222,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if player.position.y > screenCenterY {
             cameraYPos = player.position.y
         }
-        print("PLAYER3: \(player.position.x)")
         self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
         playerProgress = player.position.x + 500 - initialPlayerPosition.x
         
@@ -302,11 +240,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position.y = cameraYPos + 200
         
         for index in 0..<3 {
-            //print("heart pos: \(heart.position.x)")
             
             heartNode[index].position.x = player.position.x + (heartNode[index].size.width + CGFloat(50 * index) - 100)
             heartNode[index].position.y = scoreLabel.position.y - 50
-            
         }
         
         planet1.position.x = player.position.x + 800
@@ -316,12 +252,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pauseBtn.position.y = cameraYPos + 200
         
         if player.isFlying && isTouched {
-            if score - startPowerUpDistance < 10 {
+            if score - startPowerUpDistance < 20 {
                 print("FLYING")
                 player.flyAction()
-                
+                self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
             } else {
                 print("END FLYING")
+                self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
                 player.isFlying = false
                 isTouched = false
                 player.removeAllActions()
@@ -340,15 +277,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.run(SKAction.wait(forDuration: 0.5)) {
                     self.addPauseView(text: "Title", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                 }
-                
             }
         }
         
-        // Check to see if we should set a new encounter:
         if player.position.x > nextEncounterSpawnPosition {
             encounterManager.placeNextEncounter(
                 currentXPos: nextEncounterSpawnPosition)
-            nextEncounterSpawnPosition += 1200
+            nextEncounterSpawnPosition += 2000
         }
         
         switch gameStatus {
@@ -368,9 +303,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addHeart(life: Int) {
-        //print("life index add: \(life)")
         let fadeAction = SKAction.fadeAlpha(to: 1, duration: 0.3)
-        
         heartNode[life - 1].run(fadeAction)
     }
     func getLabel() {
@@ -392,14 +325,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree.position.y = 200
         tree.position.x = player.position.x + 1500
         tree.zPosition = 0
-        tree4 = self.childNode(withName: "Tree4") as! SKSpriteNode
-        tree4.position.y = 180
-        tree4.position.x = player.position.x + 1750
-        tree4.zPosition = 0
-        tree5 = self.childNode(withName: "Tree5") as! SKSpriteNode
-        tree5.position.y = 240
-        tree5.position.x = player.position.x + 2900
-        tree5.zPosition = 0
         
         tree2 = self.childNode(withName: "Tree2") as! SKSpriteNode
         tree2.position.y = 240
@@ -409,20 +334,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree3.position.y = 180
         tree3.position.x = player.position.x + 2500
         tree3.zPosition = 0
+        
+        
+        tree4 = self.childNode(withName: "Tree4") as! SKSpriteNode
+        tree4.position.y = 180
+        tree4.position.x = player.position.x + 1750
+        tree4.zPosition = 0
+        tree5 = self.childNode(withName: "Tree5") as! SKSpriteNode
+        tree5.position.y = 240
+        tree5.position.x = player.position.x + 2900
+        tree5.zPosition = 0
     }
     
-   func getPlanet() {
-       planet1 = self.childNode(withName: "Planet1") as! SKSpriteNode
-       planet1.position.y = 950
-       planet1.position.x = player.position.x + 1000
-       planet1.zPosition = 0
-     
-       
-       planet2 = self.childNode(withName: "Planet2") as! SKSpriteNode
-       planet2.position.y = 1000
-       planet2.position.x = player.position.x + 2000
-       planet2.zPosition = 0
-     
+    func getTree2() {
+        tree6 = self.childNode(withName: "Tree6") as! SKSpriteNode
+        tree6.position.y = 200
+        tree6.position.x = player.position.x + 3500
+        tree6.zPosition = 0
+        
+        tree7 = self.childNode(withName: "Tree7") as! SKSpriteNode
+        tree7.position.y = 240
+        tree7.position.x = player.position.x + 4000
+        tree7.zPosition = 0
+        
+        tree8 = self.childNode(withName: "Tree8") as! SKSpriteNode
+        tree8.position.y = 180
+        tree8.position.x = player.position.x + 4500
+        tree8.zPosition = 0
+        
+        tree9 = self.childNode(withName: "Tree9") as! SKSpriteNode
+        tree9.position.y = 180
+        tree9.position.x = player.position.x + 5000
+        tree9.zPosition = 0
+        
+        tree10 = self.childNode(withName: "Tree10") as! SKSpriteNode
+        tree10.position.y = 240
+        tree10.position.x = player.position.x + 5500
+        tree10.zPosition = 0
+    }
+    
+    func getPlanet() {
+        planet1 = self.childNode(withName: "Planet1") as! SKSpriteNode
+        planet1.position.y = 950
+        planet1.position.x = player.position.x + 1000
+        planet1.zPosition = 0
+        
+        
+        planet2 = self.childNode(withName: "Planet2") as! SKSpriteNode
+        planet2.position.y = 1000
+        planet2.position.x = player.position.x + 2000
+        planet2.zPosition = 0
+        
     }
     
     
@@ -469,7 +431,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             quitBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             quitBtn.position = CGPoint(x: restartBtn.position.x + 250, y: positionY - 100)
             quitBtn.zPosition = 10
-            //restartBtn.setScale(0.5)
             self.addChild(quitBtn)
         } else {
             let playBtn = SKSpriteNode(imageNamed: "Play")
@@ -477,7 +438,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playBtn.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             playBtn.position = CGPoint(x: restartBtn.position.x + 250, y: positionY - 100)
             playBtn.zPosition = 10
-            //restartBtn.setScale(0.5)
             self.addChild(playBtn)
         }
         
@@ -523,7 +483,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        //print("Contact body: \(secondBody.node?.name)")
+        print("Contact body: \(secondBody.node?.name)")
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Ground" || secondBody.node?.name == "PlatformType")  {
             daCencellare += 1
@@ -531,6 +491,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.jump = true
             player.jumpCount = 0
         }
+        if firstBody.node?.name == "Player" && secondBody.node?.name == "FakeBody" {
+            print("Contact fake body")
+        }
+        
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
@@ -538,6 +502,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.health != 0 {
                 print("take damage")
                 player.takeDamage()
+                self.run(audioManager.playEnemySound())
                 
                 removeHeart(lifeRemaining: player.health)
             }
@@ -552,16 +517,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 secondBody.node?.removeFromParent()
                 
                 playerDead = true
-//                let launchScene = LaunchScene(fileNamed: "LaunchScene")
-//                launchScene!.scaleMode = .aspectFill
-//                self.view?.presentScene(launchScene!, transition: SKTransition.doorway(withDuration: 1.5))
             }
         }
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Heart" {
             print("contact between player and heart")
             player.addLife()
             addHeart(life: player.health)
-            //secondBody.node?.removeFromParent()
         }
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "PowerUp" {

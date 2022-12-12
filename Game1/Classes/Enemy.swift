@@ -12,6 +12,7 @@ class Enemy: SKSpriteNode, GameSprite {
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var flyAnimation = SKAction()
     
+    
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()

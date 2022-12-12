@@ -13,14 +13,33 @@
 		242813572947399F00A0E22F /* Plat4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242813562947399F00A0E22F /* Plat4.swift */; };
 		24281359294739C000A0E22F /* Plat5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24281358294739C000A0E22F /* Plat5.swift */; };
 		2428135B294746F500A0E22F /* Plat6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2428135A294746F500A0E22F /* Plat6.swift */; };
-		2428135D29474ED700A0E22F /* EncounterE.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428135C29474ED700A0E22F /* EncounterE.sks */; };
-		2428135F2947508500A0E22F /* EncounterF.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428135E2947508500A0E22F /* EncounterF.sks */; };
+		2428135D29474ED700A0E22F /* Encounter5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428135C29474ED700A0E22F /* Encounter5.sks */; };
+		2428135F2947508500A0E22F /* Encounter6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428135E2947508500A0E22F /* Encounter6.sks */; };
+		2428136129479B0E00A0E22F /* FakeBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2428136029479B0E00A0E22F /* FakeBody.swift */; };
+		242813632947AD3E00A0E22F /* Encounter7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813622947AD3E00A0E22F /* Encounter7.sks */; };
+		242813652947B4EB00A0E22F /* Encounter8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813642947B4EB00A0E22F /* Encounter8.sks */; };
+		242813692947B96900A0E22F /* Encounter9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813682947B96900A0E22F /* Encounter9.sks */; };
+		2428136B2947B9B700A0E22F /* Encounter10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428136A2947B9B700A0E22F /* Encounter10.sks */; };
+		2428136D2947B9ED00A0E22F /* Encounter11.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428136C2947B9ED00A0E22F /* Encounter11.sks */; };
+		2428136F2947BA1700A0E22F /* Encounter12.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428136E2947BA1700A0E22F /* Encounter12.sks */; };
+		242813712947BA3500A0E22F /* Encounter13.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813702947BA3500A0E22F /* Encounter13.sks */; };
+		242813732947BA6600A0E22F /* Encounter14.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813722947BA6600A0E22F /* Encounter14.sks */; };
+		242813752947BA8200A0E22F /* Encounter15.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813742947BA8200A0E22F /* Encounter15.sks */; };
+		242813772947BAB000A0E22F /* Encounter16.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813762947BAB000A0E22F /* Encounter16.sks */; };
+		242813792947BAD100A0E22F /* Encounter17.sks in Resources */ = {isa = PBXBuildFile; fileRef = 242813782947BAD100A0E22F /* Encounter17.sks */; };
+		2428137B2947BBC100A0E22F /* Encounter18.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428137A2947BBC100A0E22F /* Encounter18.sks */; };
+		2428137D2947BBDF00A0E22F /* Encounter19.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428137C2947BBDF00A0E22F /* Encounter19.sks */; };
+		2428137F2947BBF500A0E22F /* Encounter20.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428137E2947BBF500A0E22F /* Encounter20.sks */; };
+		242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */; };
+		242813832947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */; };
+		242813892947DD6A00A0E22F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242813882947DD6A00A0E22F /* AudioManager.swift */; };
+		2428138B2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */; };
 		24CF40A829440138003D9E23 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A729440138003D9E23 /* Bat.swift */; };
 		24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A92944060A003D9E23 /* PlayerFly.swift */; };
 		24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40AB29440B1E003D9E23 /* HUD.swift */; };
 		24F07C682945FCAE002C4EF1 /* EnemyMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */; };
 		24F07C6A2945FFB9002C4EF1 /* PlatformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C692945FFB9002C4EF1 /* PlatformType.swift */; };
-		24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24F07C6B2946484F002C4EF1 /* EncounterD.sks */; };
+		24F07C6C2946484F002C4EF1 /* Encounter4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24F07C6B2946484F002C4EF1 /* Encounter4.sks */; };
 		24F07C6E29466638002C4EF1 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6D29466638002C4EF1 /* Tree.swift */; };
 		24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C6F29466E20002C4EF1 /* BackgroundY.swift */; };
 		24F07C722946A0E4002C4EF1 /* EnemyCurly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */; };
@@ -39,9 +58,9 @@
 		4022240D29421B8C0004776B /* LaunchScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4022240C29421B8C0004776B /* LaunchScene.sks */; };
 		4022240F29421C170004776B /* LaunchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022240E29421C170004776B /* LaunchScene.swift */; };
 		40222415294481ED0004776B /* EnconunterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222414294481ED0004776B /* EnconunterManager.swift */; };
-		40222419294498910004776B /* EncounterB.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222416294498910004776B /* EncounterB.sks */; };
-		4022241A294498910004776B /* EncounterA.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222417294498910004776B /* EncounterA.sks */; };
-		4022241B294498910004776B /* EncounterC.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222418294498910004776B /* EncounterC.sks */; };
+		40222419294498910004776B /* Encounter2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222416294498910004776B /* Encounter2.sks */; };
+		4022241A294498910004776B /* Encounter1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222417294498910004776B /* Encounter1.sks */; };
+		4022241B294498910004776B /* Encounter3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222418294498910004776B /* Encounter3.sks */; };
 		4022241D294509630004776B /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241C294509630004776B /* PowerUp.swift */; };
 		4022241F29450A8C0004776B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241E29450A8C0004776B /* Heart.swift */; };
 /* End PBXBuildFile section */
@@ -53,14 +72,33 @@
 		242813562947399F00A0E22F /* Plat4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plat4.swift; sourceTree = "<group>"; };
 		24281358294739C000A0E22F /* Plat5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plat5.swift; sourceTree = "<group>"; };
 		2428135A294746F500A0E22F /* Plat6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plat6.swift; sourceTree = "<group>"; };
-		2428135C29474ED700A0E22F /* EncounterE.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterE.sks; sourceTree = "<group>"; };
-		2428135E2947508500A0E22F /* EncounterF.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterF.sks; sourceTree = "<group>"; };
+		2428135C29474ED700A0E22F /* Encounter5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter5.sks; sourceTree = "<group>"; };
+		2428135E2947508500A0E22F /* Encounter6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter6.sks; sourceTree = "<group>"; };
+		2428136029479B0E00A0E22F /* FakeBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeBody.swift; sourceTree = "<group>"; };
+		242813622947AD3E00A0E22F /* Encounter7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter7.sks; sourceTree = "<group>"; };
+		242813642947B4EB00A0E22F /* Encounter8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter8.sks; sourceTree = "<group>"; };
+		242813682947B96900A0E22F /* Encounter9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter9.sks; sourceTree = "<group>"; };
+		2428136A2947B9B700A0E22F /* Encounter10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter10.sks; sourceTree = "<group>"; };
+		2428136C2947B9ED00A0E22F /* Encounter11.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter11.sks; sourceTree = "<group>"; };
+		2428136E2947BA1700A0E22F /* Encounter12.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter12.sks; sourceTree = "<group>"; };
+		242813702947BA3500A0E22F /* Encounter13.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter13.sks; sourceTree = "<group>"; };
+		242813722947BA6600A0E22F /* Encounter14.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter14.sks; sourceTree = "<group>"; };
+		242813742947BA8200A0E22F /* Encounter15.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter15.sks; sourceTree = "<group>"; };
+		242813762947BAB000A0E22F /* Encounter16.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter16.sks; sourceTree = "<group>"; };
+		242813782947BAD100A0E22F /* Encounter17.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter17.sks; sourceTree = "<group>"; };
+		2428137A2947BBC100A0E22F /* Encounter18.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter18.sks; sourceTree = "<group>"; };
+		2428137C2947BBDF00A0E22F /* Encounter19.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter19.sks; sourceTree = "<group>"; };
+		2428137E2947BBF500A0E22F /* Encounter20.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter20.sks; sourceTree = "<group>"; };
+		242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3; sourceTree = "<group>"; };
+		242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
+		242813882947DD6A00A0E22F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-little-cat-attention-meow-86.wav"; sourceTree = "<group>"; };
 		24CF40A729440138003D9E23 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 		24CF40A92944060A003D9E23 /* PlayerFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFly.swift; sourceTree = "<group>"; };
 		24CF40AB29440B1E003D9E23 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyMonster.swift; sourceTree = "<group>"; };
 		24F07C692945FFB9002C4EF1 /* PlatformType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformType.swift; sourceTree = "<group>"; };
-		24F07C6B2946484F002C4EF1 /* EncounterD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterD.sks; sourceTree = "<group>"; };
+		24F07C6B2946484F002C4EF1 /* Encounter4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter4.sks; sourceTree = "<group>"; };
 		24F07C6D29466638002C4EF1 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		24F07C6F29466E20002C4EF1 /* BackgroundY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundY.swift; sourceTree = "<group>"; };
 		24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyCurly.swift; sourceTree = "<group>"; };
@@ -80,9 +118,9 @@
 		4022240C29421B8C0004776B /* LaunchScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LaunchScene.sks; sourceTree = "<group>"; };
 		4022240E29421C170004776B /* LaunchScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScene.swift; sourceTree = "<group>"; };
 		40222414294481ED0004776B /* EnconunterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnconunterManager.swift; sourceTree = "<group>"; };
-		40222416294498910004776B /* EncounterB.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterB.sks; sourceTree = "<group>"; };
-		40222417294498910004776B /* EncounterA.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterA.sks; sourceTree = "<group>"; };
-		40222418294498910004776B /* EncounterC.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EncounterC.sks; sourceTree = "<group>"; };
+		40222416294498910004776B /* Encounter2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter2.sks; sourceTree = "<group>"; };
+		40222417294498910004776B /* Encounter1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter1.sks; sourceTree = "<group>"; };
+		40222418294498910004776B /* Encounter3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter3.sks; sourceTree = "<group>"; };
 		4022241C294509630004776B /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4022241E29450A8C0004776B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +157,10 @@
 			children = (
 				402223E8294115B30004776B /* AppDelegate.swift */,
 				4022240129411C930004776B /* GameSprite.swift */,
+				242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */,
+				2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */,
 				402223F0294115B30004776B /* GameViewController.swift */,
+				242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */,
 				402223F2294115B30004776B /* Main.storyboard */,
 				402223F5294115B40004776B /* Assets.xcassets */,
 				402223F7294115B40004776B /* LaunchScreen.storyboard */,
@@ -136,6 +177,7 @@
 				4022240529412EB10004776B /* Ground.swift */,
 				4022240329411F3C0004776B /* Player.swift */,
 				402223FF294119850004776B /* Enemy.swift */,
+				2428136029479B0E00A0E22F /* FakeBody.swift */,
 				24F07C692945FFB9002C4EF1 /* PlatformType.swift */,
 				242813522947393D00A0E22F /* Plat2.swift */,
 				2428135029472D4200A0E22F /* Razzo.swift */,
@@ -144,6 +186,7 @@
 				2428135A294746F500A0E22F /* Plat6.swift */,
 				242813562947399F00A0E22F /* Plat4.swift */,
 				24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */,
+				242813882947DD6A00A0E22F /* AudioManager.swift */,
 				40222407294138950004776B /* Background.swift */,
 				24F07C6F29466E20002C4EF1 /* BackgroundY.swift */,
 				24F07C6D29466638002C4EF1 /* Tree.swift */,
@@ -172,12 +215,26 @@
 			children = (
 				402223EA294115B30004776B /* GameScene.sks */,
 				4022240C29421B8C0004776B /* LaunchScene.sks */,
-				40222417294498910004776B /* EncounterA.sks */,
-				24F07C6B2946484F002C4EF1 /* EncounterD.sks */,
-				40222416294498910004776B /* EncounterB.sks */,
-				2428135C29474ED700A0E22F /* EncounterE.sks */,
-				2428135E2947508500A0E22F /* EncounterF.sks */,
-				40222418294498910004776B /* EncounterC.sks */,
+				40222417294498910004776B /* Encounter1.sks */,
+				24F07C6B2946484F002C4EF1 /* Encounter4.sks */,
+				40222416294498910004776B /* Encounter2.sks */,
+				2428135C29474ED700A0E22F /* Encounter5.sks */,
+				2428135E2947508500A0E22F /* Encounter6.sks */,
+				242813622947AD3E00A0E22F /* Encounter7.sks */,
+				242813642947B4EB00A0E22F /* Encounter8.sks */,
+				40222418294498910004776B /* Encounter3.sks */,
+				242813682947B96900A0E22F /* Encounter9.sks */,
+				2428136A2947B9B700A0E22F /* Encounter10.sks */,
+				2428136C2947B9ED00A0E22F /* Encounter11.sks */,
+				2428136E2947BA1700A0E22F /* Encounter12.sks */,
+				242813702947BA3500A0E22F /* Encounter13.sks */,
+				242813722947BA6600A0E22F /* Encounter14.sks */,
+				242813742947BA8200A0E22F /* Encounter15.sks */,
+				242813762947BAB000A0E22F /* Encounter16.sks */,
+				242813782947BAD100A0E22F /* Encounter17.sks */,
+				2428137A2947BBC100A0E22F /* Encounter18.sks */,
+				2428137C2947BBDF00A0E22F /* Encounter19.sks */,
+				2428137E2947BBF500A0E22F /* Encounter20.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -240,15 +297,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2428138B2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav in Resources */,
 				402223F4294115B30004776B /* Main.storyboard in Resources */,
-				2428135D29474ED700A0E22F /* EncounterE.sks in Resources */,
+				242813752947BA8200A0E22F /* Encounter15.sks in Resources */,
+				2428136B2947B9B700A0E22F /* Encounter10.sks in Resources */,
+				2428135D29474ED700A0E22F /* Encounter5.sks in Resources */,
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
-				40222419294498910004776B /* EncounterB.sks in Resources */,
-				24F07C6C2946484F002C4EF1 /* EncounterD.sks in Resources */,
-				2428135F2947508500A0E22F /* EncounterF.sks in Resources */,
-				4022241B294498910004776B /* EncounterC.sks in Resources */,
+				242813632947AD3E00A0E22F /* Encounter7.sks in Resources */,
+				40222419294498910004776B /* Encounter2.sks in Resources */,
+				242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */,
+				24F07C6C2946484F002C4EF1 /* Encounter4.sks in Resources */,
+				242813712947BA3500A0E22F /* Encounter13.sks in Resources */,
+				2428137B2947BBC100A0E22F /* Encounter18.sks in Resources */,
+				2428136F2947BA1700A0E22F /* Encounter12.sks in Resources */,
+				2428135F2947508500A0E22F /* Encounter6.sks in Resources */,
+				242813692947B96900A0E22F /* Encounter9.sks in Resources */,
+				4022241B294498910004776B /* Encounter3.sks in Resources */,
+				242813772947BAB000A0E22F /* Encounter16.sks in Resources */,
+				242813652947B4EB00A0E22F /* Encounter8.sks in Resources */,
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
-				4022241A294498910004776B /* EncounterA.sks in Resources */,
+				242813732947BA6600A0E22F /* Encounter14.sks in Resources */,
+				4022241A294498910004776B /* Encounter1.sks in Resources */,
+				242813832947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 in Resources */,
+				2428137D2947BBDF00A0E22F /* Encounter19.sks in Resources */,
+				2428136D2947B9ED00A0E22F /* Encounter11.sks in Resources */,
+				2428137F2947BBF500A0E22F /* Encounter20.sks in Resources */,
+				242813792947BAD100A0E22F /* Encounter17.sks in Resources */,
 				402223F6294115B40004776B /* Assets.xcassets in Resources */,
 				402223F9294115B40004776B /* LaunchScreen.storyboard in Resources */,
 			);
@@ -273,6 +347,7 @@
 				2428135B294746F500A0E22F /* Plat6.swift in Sources */,
 				40222408294138950004776B /* Background.swift in Sources */,
 				402223F1294115B30004776B /* GameViewController.swift in Sources */,
+				2428136129479B0E00A0E22F /* FakeBody.swift in Sources */,
 				24CF40A829440138003D9E23 /* Bat.swift in Sources */,
 				242813572947399F00A0E22F /* Plat4.swift in Sources */,
 				242813532947393D00A0E22F /* Plat2.swift in Sources */,
@@ -282,6 +357,7 @@
 				24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */,
 				4022241D294509630004776B /* PowerUp.swift in Sources */,
 				4022240229411C930004776B /* GameSprite.swift in Sources */,
+				242813892947DD6A00A0E22F /* AudioManager.swift in Sources */,
 				24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */,
 				24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */,
 				4022241F29450A8C0004776B /* Heart.swift in Sources */,

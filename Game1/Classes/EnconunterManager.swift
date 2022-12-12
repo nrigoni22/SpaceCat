@@ -9,12 +9,26 @@ import SpriteKit
 class EncounterManager {
     // Store your encounter file names:
     let encounterNames:[String] = [
-        "EncounterA",
-        "EncounterB",
-        "EncounterC",
-        "EncounterD",
-        "EncounterE",
-        "EncounterF",
+        "Encounter1",
+        "Encounter2",
+        "Encounter3",
+        "Encounter4",
+        "Encounter5",
+        "Encounter6",
+        "Encounter7",
+        "Encounter8",
+        "Encounter9",
+        "Encounter10",
+        "Encounter11",
+        "Encounter12",
+        "Encounter13",
+        "Encounter14",
+        "Encounter15",
+        "Encounter16",
+        "Encounter17",
+        "Encounter18",
+        "Encounter19",
+        "Encounter20",
     ]
     // Each encounter is an SKNode, store an array:
     var encounters: [SKNode] = []

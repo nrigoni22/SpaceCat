@@ -12,6 +12,7 @@ class EnemyMonster: SKSpriteNode, GameSprite {
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var flyAnimation = SKAction()
     
+    
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
@@ -37,6 +38,12 @@ class EnemyMonster: SKSpriteNode, GameSprite {
         
         flyAnimation = SKAction.repeatForever(flyAction)
         
+    }
+    
+    func playSound() {
+        let enemySound = SKAction.playSoundFileNamed("mixkit-creature-cry-of-hurt-2208",
+                                    waitForCompletion: false)
+        self.run(enemySound)
     }
     
     func onTap() { }
