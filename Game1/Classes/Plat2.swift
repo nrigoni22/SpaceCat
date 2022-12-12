@@ -1,14 +1,14 @@
 //
-//  Platform.swift
+//  Plat2.swift
 //  Game1
 //
-//  Created by Marta Michelle Caliendo on 11/12/22.
+//  Created by Marta Michelle Caliendo on 12/12/22.
 //
 
 import SpriteKit
 
 
-class PlatformType: SKSpriteNode, GameSprite {
+class Plat2: SKSpriteNode, GameSprite {
     var initialSize: CGSize = CGSize(width: 500, height: 150)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var notAnimation = SKAction()
@@ -21,7 +21,7 @@ class PlatformType: SKSpriteNode, GameSprite {
         self.setScale(1.5)
         self.zPosition = 3
         self.name = "PlatformType"
-        let bodyTexture = textureAtlas.textureNamed("pezzo1")
+        let bodyTexture = textureAtlas.textureNamed("pezzo2")
         self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: CGSize(width: self.size.width - 20, height: self.size.height - 40))
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
@@ -32,7 +32,7 @@ class PlatformType: SKSpriteNode, GameSprite {
     
     func createAnimation() {
         let platFrames: [SKTexture] = [
-            textureAtlas.textureNamed("pezzo1")
+            textureAtlas.textureNamed("pezzo2")
         ]
         
         let notAction = SKAction.animate(with: platFrames, timePerFrame: 1)

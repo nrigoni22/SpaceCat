@@ -18,8 +18,8 @@ class EnemyCurly: SKSpriteNode, GameSprite {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = 3
         self.setScale(1.5)
-        self.name = "EnemyCurly"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.name = "Enemy"
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2 - 25)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = ColliderType.enemy

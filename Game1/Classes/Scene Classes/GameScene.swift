@@ -17,7 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let cam = SKCameraNode()
     let player = Player()
     let ground = Ground()
-    let enemy = Enemy()
+    //let enemy = Enemy()
+    //let razzo = Razzo()
     let encounterManager = EncounterManager()
     
     var background: [Background] = []
@@ -47,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var tree4 = SKSpriteNode()
     var tree5 = SKSpriteNode()
     
-    let initialPlayerPosition = CGPoint(x: 500, y: 400)
+    var initialPlayerPosition = CGPoint(x: 50, y: 400)
     var playerProgress = CGFloat()
     
     var heartNode: [SKSpriteNode] = []
@@ -62,7 +63,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerDead: Bool = false
     //let hud = HUD()
     let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
+    //MARK: ENEMY
+    //let enemy = Enemy()//.copy() as! SKSpriteNode
+//    let bat = Bat()
+//    let monster = EnemyMonster()
+//    let curly = EnemyCurly()
     
+    var sceneIndex: Int = 0
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -89,6 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         getHeart()
         getPlanet()
         getTree()
+        //addEnemiesChild()
       
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
@@ -115,10 +123,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.position = initialPlayerPosition
         player.zPosition = 3
+        
         self.addChild(player)
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5.8)
-        spawnEnemies()
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -6.5)
+        //spawnEnemies()
         
         scoreCounter = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
             self.incrementScore()
@@ -127,10 +136,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //       spawnEnemy = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
 //           self.spawnEnemy
 //        }
-        spawnTree = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
-            //self.spawnEnemies()
-            self.getTree()
-        })
+//        spawnTree = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+//            switch self.sceneIndex {
+//            case 0:
+//                self.spawnScene1()
+//            case 1:
+//                self.spawnScene2()
+//            case 2:
+//                self.spawnScene3()
+//            case 3:
+//                self.spawnScene4()
+//            default:
+//                self.spawnScene1()
+//            }
+//
+//            if self.sceneIndex < 4 {
+//                self.sceneIndex += 1
+//            } else {
+//                self.sceneIndex = 0
+//            }
+//
+//            //self.getTree()
+//        })
+        
+        
         
         encounterManager.addEncountersToScene(gameScene: self)
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
@@ -181,6 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 if player.jump && !player.isFlying {
                     player.jump = false
+                    
                     player.jumpAction()
                     print("PLAYER TOUCH JUMP")
                 } else if player.isFlying {
@@ -198,23 +228,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func spawnEnemies() {
-        
-        let enemy = Enemy()//.copy() as! SKSpriteNode
-        let bat = Bat()
-        let monster = EnemyMonster()
-        let curly = EnemyCurly()
-        
-        enemy.position = CGPoint(x: player.position.x + 1500, y: 120) //self.frame.width + 450
-        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
-        monster.position = CGPoint(x: 1050, y: 150)
-        curly.position = CGPoint(x: 800, y: 100)
-        
-        self.addChild(enemy)
-        self.addChild(bat)
-        self.addChild(monster)
-        self.addChild(curly)
-    }
+//    func addEnemiesChild() {
+//        self.addChild(razzo)
+//        self.addChild(bat)
+//        self.addChild(monster)
+//        self.addChild(curly)
+//    }
+//
+//    func spawnScene1() {
+//
+//        razzo.position = CGPoint(x: player.position.x + 1000, y: 230)
+//        //bat.position = CGPoint(x: player.position.x + 1000, y: 250)
+//        //monster.position = CGPoint(x: player.position.x + 1050, y: 150)
+//        //curly.position = CGPoint(x: player.position.x + 800, y: 100)
+//
+//
+//    }
+//
+//    func spawnScene2() {
+//
+////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
+//        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
+////        monster.position = CGPoint(x: player.position.x + 1050, y: 150)
+////        curly.position = CGPoint(x: player.position.x + 800, y: 100)
+//
+//
+//    }
+//
+//    func spawnScene3() {
+//
+////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
+////        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
+//        monster.position = CGPoint(x: player.position.x + 1000, y: 150)
+////        curly.position = CGPoint(x: player.position.x + 800, y: 100)
+//
+//
+//    }
+//
+//    func spawnScene4() {
+//
+////        razzo.position = CGPoint(x: player.position.x + 1500, y: 120)
+////        bat.position = CGPoint(x: player.position.x + 1000, y: 250)
+////        monster.position = CGPoint(x: player.position.x + 1050, y: 150)
+//        curly.position = CGPoint(x: player.position.x + 1000, y: 200)
+//    }
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -226,9 +283,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if player.position.y > screenCenterY {
             cameraYPos = player.position.y
         }
-        
-       self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
+        print("PLAYER3: \(player.position.x)")
+        self.camera!.position = CGPoint(x: player.position.x + 500, y: cameraYPos)
         playerProgress = player.position.x + 500 - initialPlayerPosition.x
+        
         
         ground.checkForReposition(playerProgress: playerProgress)
         
@@ -367,6 +425,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      
     }
     
+    
     func getHeart() {
         for index in 0..<3 {
             let heartNode = SKSpriteNode(imageNamed: "heart")
@@ -470,6 +529,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             daCencellare += 1
             print("Contact with ground and player \(daCencellare)")
             player.jump = true
+            player.jumpCount = 0
         }
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {

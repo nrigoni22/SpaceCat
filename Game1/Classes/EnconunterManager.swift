@@ -12,7 +12,9 @@ class EncounterManager {
         "EncounterA",
         "EncounterB",
         "EncounterC",
-        "EncounterD"
+        "EncounterD",
+        "EncounterE",
+        "EncounterF",
     ]
     // Each encounter is an SKNode, store an array:
     var encounters: [SKNode] = []
@@ -99,7 +101,7 @@ class EncounterManager {
         print("index encounter \(currentEncounterIndex)")
         
         let encounter = encounters[currentEncounterIndex]
-        encounter.position = CGPoint(x: currentXPos + 1000, y: 300)
+        encounter.position = CGPoint(x: currentXPos + 2000, y: 300)
         resetSpritePositions(node: encounter)
     }
     

@@ -38,6 +38,8 @@ class Player: SKSpriteNode, GameSprite {
     var damage = false
     var damageAnimation = SKAction()
     //var dieAnimation = SKAction()
+    var jumpTimer = Timer()
+    var jumpCount = 0
     
     init() {
         
@@ -68,21 +70,21 @@ class Player: SKSpriteNode, GameSprite {
                 //print("1")
             }
             if distance > 100 {
-                self.position.x += 13
+                self.position.x += 11
                // print("2")
             }
             if distance > 150 {
-                self.position.x += 17
+                self.position.x += 11
                 //print("3")
             }
             
             if distance > 200 {
-                self.position.x += 20
+                self.position.x += 12
                 //print("4")
             }
             
             if distance < 50 {
-                self.position.x += 6
+                self.position.x += 7
                 //print("5")
             }
             
@@ -100,6 +102,20 @@ class Player: SKSpriteNode, GameSprite {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
         self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6400.0))
         textureJumping()
+        
+        if jumpCount < 1 {
+            jumpTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { _ in
+                self.jump = true
+
+                self.jumpTimer.invalidate()
+
+                print("jump count \(self.jumpCount)")
+                self.jumpCount += 1
+            })
+            
+        } else {
+            self.jump = false
+        }
     }
     
     func flyAction() {
@@ -238,9 +254,9 @@ class Player: SKSpriteNode, GameSprite {
         rotateDownAction.timingMode = .easeIn
         
         let frame: [SKTexture] = [textureAtlas.textureNamed("Spacecat2")]
-        let actionFrame = SKAction.animate(with: frame, timePerFrame: 0.9)
+        let actionFrame = SKAction.animate(with: frame, timePerFrame: 0.6)
         let frame2: [SKTexture] = [textureAtlas.textureNamed("Spacecat4")]
-        let actionFrame2 = SKAction.animate(with: frame2, timePerFrame: 0.5)
+        let actionFrame2 = SKAction.animate(with: frame2, timePerFrame: 0.35)
         //let frame3: [SKTexture] = [textureAtlas.textureNamed("Spacecat7")]
         //let actionFrame3 = SKAction.animate(with: frame3, timePerFrame: 0.25)
         let sequence = SKAction.sequence([actionFrame, actionFrame2])
