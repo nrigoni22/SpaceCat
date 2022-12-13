@@ -37,7 +37,7 @@ class Player: SKSpriteNode, GameSprite {
     let maxFlappingForce:CGFloat = 137000
     
     var health: Int = 3
-    var invulnerable = false
+    var invulnerable = true
     var damage = false
     var damageAnimation = SKAction()
     //var dieAnimation = SKAction()
@@ -150,7 +150,7 @@ class Player: SKSpriteNode, GameSprite {
         removeAction(forKey: "catAnimation")
         //            removeAction(forKey: "catRocketAnimation")
         self.run(catFlyAnimation, withKey: "catFlyAnimation")
-        self.size = CGSize(width: 98, height: 150)
+        self.size = CGSize(width: 82, height: 130)
         
         print("fly texture")
         var forceToApply = maxFlappingForce

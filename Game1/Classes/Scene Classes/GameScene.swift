@@ -72,6 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
     
+    var nodeToReactivate: [SKSpriteNode] = []
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -110,9 +111,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "sfondo2bis", zPosition: -4, movementMultiplier: 0.1)
-        background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.5)
-        background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.2)
+        background[0].spawn(parentNode: self, imageName: "sfondo2bis", zPosition: -4, movementMultiplier: 0.005)
+        background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.01)
+        background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.05)
         //background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
         //background[0].spawn(parentNode: self, imageName: "t", zPosition: -3, movementMultiplier: 0.1)
         
@@ -144,6 +145,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.getTree2()
             //print("TIMER2")
         })
+        
+//        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+////            for index in 0..<(self.nodeToReactivate.count) {
+////                print("node array count \(self.nodeToReactivate.count)")
+////
+////                print("check position \(index)")
+////                self.nodeToReactivate[index].physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+////                print("physic body is active")
+////
+////                self.nodeToReactivate.remove(at: index)
+////            }
+//            if !self.nodeToReactivate.isEmpty {
+//                self.nodeToReactivate[0].physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+//                self.nodeToReactivate[0].physicsBody?.affectedByGravity = false
+//                self.nodeToReactivate[0].physicsBody?.isDynamic = false
+//                self.nodeToReactivate[0].physicsBody?.categoryBitMask = ColliderType.enemy
+//                                print("physic body is active")
+//
+//                                self.nodeToReactivate.remove(at: 0)
+//            }
+//        })
         
         encounterManager.addEncountersToScene(gameScene: self)
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
@@ -301,6 +323,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         default:
             break
         }
+        
+        
+//        for index in 0..<nodeToReactivate.count {
+//            print("node array count \(nodeToReactivate.count)")
+//            print("position \(nodeToReactivate[index].position.x) player \(player.position.x)")
+//            if nodeToReactivate[index].position.x < player.position.x  {
+//                print("check position \(index)")
+//                nodeToReactivate[index].physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+//                print("physic body is active")
+//
+//                nodeToReactivate.remove(at: index)
+//            }
+//        }
+        
     }
     func removeHeart(lifeRemaining: Int) {
         
@@ -518,7 +554,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
-            
+            //self.nodeToReactivate.append(secondBody.node! as! SKSpriteNode)
             if player.health != 0 {
                 print("take damage")
                 if !player.invulnerable {
@@ -547,6 +583,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //self.run(SKAction.wait(forDuration: 3))
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
                 secondBody.node?.physicsBody = nil
+                
             })
             
         }

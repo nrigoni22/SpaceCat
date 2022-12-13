@@ -142,6 +142,14 @@ class EncounterManager {
                 spriteNode.physicsBody?.angularVelocity = 0
                 // Reset the rotation of the sprite:
                 spriteNode.zRotation = 0
+                
+               
+                spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2)
+                spriteNode.physicsBody?.affectedByGravity = false
+                spriteNode.physicsBody?.isDynamic = false
+                spriteNode.physicsBody?.categoryBitMask = ColliderType.enemy
+
+                     
                 if let initialPositionVal =
                     spriteNode.userData?.value(forKey:
                                                 "initialPosition") as? NSValue {
@@ -164,6 +172,7 @@ class EncounterManager {
         for encounterNode in encounters {
             // Spawn the encounters behind the action, with
             // increasing height so they do not collide:
+           
             encounterNode.position = CGPoint(x: -2000,
                                              y: encounterPosY)
             gameScene.addChild(encounterNode)
