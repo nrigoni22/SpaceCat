@@ -35,8 +35,8 @@ class Ground: SKSpriteNode, GameSprite {
             tileCount += 1
         }
 
-        let pointTopLeft = CGPoint(x: 0, y: 0)
-        let pointTopRight = CGPoint(x: size.width, y: 0)
+        let pointTopLeft = CGPoint(x: 0, y: -5)
+        let pointTopRight = CGPoint(x: size.width, y: -5)
         self.name = "Ground"
         self.physicsBody = SKPhysicsBody(edgeFrom: pointTopLeft, to: pointTopRight)
         self.physicsBody?.affectedByGravity = false

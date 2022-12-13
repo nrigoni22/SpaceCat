@@ -22,16 +22,17 @@ struct ColliderType {
 
 class Player: SKSpriteNode, GameSprite {
     
-    var initialSize: CGSize = CGSize(width: 150, height: 100)
+    var initialSize: CGSize = CGSize(width: 135, height: 82)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Player")
     var catAnimation: SKAction = SKAction()
     var catFlyAnimation: SKAction = SKAction()
     var soarAnimation: SKAction = SKAction()
-    
+    var catRocketAnimation: SKAction = SKAction()
+    var catDeadAnimation: SKAction = SKAction()
     
     var isDead: Bool = false
     var jump: Bool = false
-    let maxHeight:CGFloat = 1180
+    let maxHeight:CGFloat = 1100
     var isFlying: Bool = false
     let maxFlappingForce:CGFloat = 137000
     
@@ -42,6 +43,9 @@ class Player: SKSpriteNode, GameSprite {
     //var dieAnimation = SKAction()
     var jumpTimer = Timer()
     var jumpCount = 0
+    //var groundFly = false
+    
+    
     
     init() {
         
@@ -50,8 +54,8 @@ class Player: SKSpriteNode, GameSprite {
         
         
         self.name = "Player"
-        let bodyTexture = textureAtlas.textureNamed("Catspace4")
-        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)  //(texture: bodyTexture, size: self.size)
+        let bodyTexture = textureAtlas.textureNamed("Catspace1")
+        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: CGSize(width: self.size.width - 5, height: self.size.height - 10))  //(texture: bodyTexture, size: self.size)
         self.physicsBody?.linearDamping = 0.9
         self.physicsBody?.mass = 10
         self.physicsBody?.affectedByGravity = true
@@ -68,33 +72,33 @@ class Player: SKSpriteNode, GameSprite {
         if !isDead {
             
             if distance >= 50 && distance < 100 {
-                self.position.x += 8.5
+                self.position.x += 9
                 //print("1")
             }
             if distance >= 100 && distance < 150 {
-                self.position.x += 9
+                self.position.x += 10
                // print("2")
             }
             if distance >= 150 && distance < 200 {
-                self.position.x += 10
+                self.position.x += 11
                 //print("3")
             }
             
             if distance >= 200 && distance < 250 {
-                self.position.x += 11
-                //print("4")
-            }
-            if distance >= 250 && distance < 300 {
                 self.position.x += 12
                 //print("4")
             }
-            if distance > 300 {
+            if distance >= 250 && distance < 300 {
                 self.position.x += 13
+                //print("4")
+            }
+            if distance > 300 {
+                self.position.x += 14
                 //print("4")
             }
 
             if distance < 50 {
-                self.position.x += 7
+                self.position.x += 8
                 //print("5")
             }
             
@@ -103,9 +107,18 @@ class Player: SKSpriteNode, GameSprite {
     }
     
     func catRunAnimation() {
+        print("catAnimation")
         removeAction(forKey: "catFlyAnimation")
         self.run(catAnimation, withKey: "catAnimation")
-        self.size = CGSize(width: 150, height: 100)
+        self.size = CGSize(width: 135, height: 82)
+    }
+    
+    func catRunRocketAnimation() {
+        removeAction(forKey: "catFlyAnimation")
+        removeAction(forKey: "catAnimation")
+        print("catRocketAnimation")
+        self.run(catRocketAnimation, withKey: "catRocketAnimation")
+        self.size = CGSize(width: 135, height: 82)
     }
     
     func jumpAction() {
@@ -135,8 +148,10 @@ class Player: SKSpriteNode, GameSprite {
     func flyAction() {
         print("IN FLY ACTION")
         removeAction(forKey: "catAnimation")
+        //            removeAction(forKey: "catRocketAnimation")
         self.run(catFlyAnimation, withKey: "catFlyAnimation")
         self.size = CGSize(width: 98, height: 150)
+        
         print("fly texture")
         var forceToApply = maxFlappingForce
         
@@ -151,8 +166,7 @@ class Player: SKSpriteNode, GameSprite {
             forceToApply -= flappingForceSubtraction
         }
         // Apply the final force:
-        self.physicsBody?.applyForce(CGVector(dx: 0, dy:
-                                                forceToApply))
+        self.physicsBody?.applyForce(CGVector(dx: 0, dy: forceToApply))
         //}
         
         if self.physicsBody!.velocity.dy > 300 {
@@ -223,32 +237,29 @@ class Player: SKSpriteNode, GameSprite {
             rotateUpAction
         ])
         
+        let catRocketFrames: [SKTexture] = [
+            textureAtlas.textureNamed("Spacecatjet1"),
+            textureAtlas.textureNamed("Spacecatjet2"),
+            textureAtlas.textureNamed("Spacecatjet3"),
+            textureAtlas.textureNamed("Spacecatjet4")
+        ]
+        
+       // let catRocketFrames: [SKTexture] = [textureAtlas.textureNamed("Spacecatjet4")]
+        let catRocketAction = SKAction.animate(with: catRocketFrames, timePerFrame: 0.2)
+        
+        catRocketAnimation = SKAction.repeatForever(catRocketAction)
+        
+        
+        let catDeadFrames: [SKTexture] = [
+            textureAtlas.textureNamed(""),
+            textureAtlas.textureNamed("")
+        ]
+        
+        catDeadAnimation = SKAction.animate(with: catDeadFrames, timePerFrame: 1)
+        
+        
     }
     
-    
-//    func animationFly() {
-//        self.size = CGSize(width: 140, height: 180)
-//        let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)
-//        rotateUpAction.timingMode = .easeOut
-//        let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
-//        rotateDownAction.timingMode = .easeIn
-//
-//        let catFrames: [SKTexture] = [textureAtlas.textureNamed("PlayerFly"),
-//                                      textureAtlas.textureNamed("PlayerFly2"),
-//                                      textureAtlas.textureNamed("PlayerFly3")]
-//
-//        let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
-//        catFlyAnimation = SKAction.repeatForever(catAction)
-//
-//        let soarFrames:[SKTexture] =
-//        [textureAtlas.textureNamed("PlayerFly4")]
-//        let soarAction = SKAction.animate(with: soarFrames, timePerFrame: 1)
-//        // Group the soaring animation with the rotation down:
-//        soarAnimation = SKAction.group([
-//            SKAction.repeatForever(soarAction),
-//            rotateDownAction
-//        ])
-//    }
     
     func startFlying() {
         
@@ -261,6 +272,8 @@ class Player: SKSpriteNode, GameSprite {
         self.removeAction(forKey: "upAnimation")
         self.run(soarAnimation, withKey: "soarAnimation")
     }
+    
+    
     
     func textureJumping() {
         let rotateUpAction = SKAction.rotate(toAngle: 0, duration: 0.475)
