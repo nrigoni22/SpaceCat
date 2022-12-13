@@ -31,7 +31,6 @@
 		2428137D2947BBDF00A0E22F /* Encounter19.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428137C2947BBDF00A0E22F /* Encounter19.sks */; };
 		2428137F2947BBF500A0E22F /* Encounter20.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2428137E2947BBF500A0E22F /* Encounter20.sks */; };
 		242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */; };
-		242813832947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */; };
 		242813892947DD6A00A0E22F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242813882947DD6A00A0E22F /* AudioManager.swift */; };
 		2428138B2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */; };
 		2428138D2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */; };
@@ -66,6 +65,7 @@
 		4022241B294498910004776B /* Encounter3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 40222418294498910004776B /* Encounter3.sks */; };
 		4022241D294509630004776B /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241C294509630004776B /* PowerUp.swift */; };
 		4022241F29450A8C0004776B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241E29450A8C0004776B /* Heart.swift */; };
+		4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,6 @@
 		2428137C2947BBDF00A0E22F /* Encounter19.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter19.sks; sourceTree = "<group>"; };
 		2428137E2947BBF500A0E22F /* Encounter20.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter20.sks; sourceTree = "<group>"; };
 		242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3; sourceTree = "<group>"; };
-		242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
 		242813882947DD6A00A0E22F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-little-cat-attention-meow-86.wav"; sourceTree = "<group>"; };
 		2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-game-flute-bonus-2313.wav"; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		40222418294498910004776B /* Encounter3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Encounter3.sks; sourceTree = "<group>"; };
 		4022241C294509630004776B /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4022241E29450A8C0004776B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
+		4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 				242813912947E41000A0E22F /* Info.plist */,
 				402223E8294115B30004776B /* AppDelegate.swift */,
 				4022240129411C930004776B /* GameSprite.swift */,
-				242813822947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 */,
 				242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */,
+				4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */,
 				2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */,
 				2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */,
 				2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */,
@@ -319,6 +319,7 @@
 				40222419294498910004776B /* Encounter2.sks in Resources */,
 				2428138F2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav in Resources */,
 				242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */,
+				4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */,
 				24F07C6C2946484F002C4EF1 /* Encounter4.sks in Resources */,
 				242813712947BA3500A0E22F /* Encounter13.sks in Resources */,
 				2428137B2947BBC100A0E22F /* Encounter18.sks in Resources */,
@@ -331,7 +332,6 @@
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
 				242813732947BA6600A0E22F /* Encounter14.sks in Resources */,
 				4022241A294498910004776B /* Encounter1.sks in Resources */,
-				242813832947CD5A00A0E22F /* music_zapsplat_space_trivia.mp3 in Resources */,
 				2428137D2947BBDF00A0E22F /* Encounter19.sks in Resources */,
 				2428136D2947B9ED00A0E22F /* Encounter11.sks in Resources */,
 				2428137F2947BBF500A0E22F /* Encounter20.sks in Resources */,
