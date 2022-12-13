@@ -521,8 +521,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if player.health != 0 {
                 print("take damage")
+                if !player.invulnerable {
+                    self.run(audioManager.playEnemySound())
+                }
+                
                 player.takeDamage()
-                self.run(audioManager.playEnemySound())
+                
+                
                 
                 removeHeart(lifeRemaining: player.health)
             }
@@ -538,6 +543,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 playerDead = true
             }
+            
+            //self.run(SKAction.wait(forDuration: 3))
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+                secondBody.node?.physicsBody = nil
+            })
+            
         }
         if firstBody.node?.name == "Player" && secondBody.node?.name == "Heart" {
             print("contact between player and heart")
