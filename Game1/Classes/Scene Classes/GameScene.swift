@@ -70,6 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var sceneIndex: Int = 0
     
+    let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
+    
+    
     var gameStatus: GameStatus = .ongoing {
         willSet {
             switch gameStatus {
@@ -82,14 +85,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     override func didMove(to view: SKView) {
         inizialize()
     }
     
     func inizialize() {
-//        let music = SKAction.playSoundFileNamed("music_zapsplat_space_trivia",
-//                                    waitForCompletion: false)
-//        self.run(music)
         startMusic()
         self.anchorPoint = .zero
         physicsWorld.contactDelegate = self
@@ -135,13 +136,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         spawnTree = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
-            print("TIMER1")
+            //print("TIMER1")
             self.getTree()
         })
         
         Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
             self.getTree2()
-            print("TIMER2")
+            //print("TIMER2")
         })
         
         encounterManager.addEncountersToScene(gameScene: self)
@@ -151,7 +152,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func startMusic() {
-        let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
         let url = URL(filePath: path!)
         backgroundMusic = try! AVAudioPlayer(contentsOf: url)
         backgroundMusic.numberOfLoops = -1
@@ -282,7 +282,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             pauseBtn.alpha = 0
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
-                    self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
+                    self.player.run(self.player.catDeadAnimation) {
+                        self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
+                    }
                 }
             }
         }
@@ -316,6 +318,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func getLabel() {
         scoreLabel = self.childNode(withName: "ScoreLabel") as! SKLabelNode
         self.scoreLabel.position = CGPoint(x: 100, y: 550)
+        scoreLabel.fontName = "8-bit Arcade In"
         scoreLabel.text = "0M"
         scoreLabel.fontSize = 80
         scoreLabel.zPosition = 10
@@ -495,14 +498,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        print("Contact body: \(secondBody.node?.name)")
+        //print("Contact body: \(secondBody.node?.name)")
         
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Ground" || secondBody.node?.name == "PlatformType")  {
             daCencellare += 1
             print("Contact with ground and player \(daCencellare)")
             player.jump = true
             player.jumpCount = 0
+            //player.groundFly = true
+            if player.isFlying {
+                player.catRunRocketAnimation()
+            }
         }
+        
         if firstBody.node?.name == "Player" && secondBody.node?.name == "FakeBody" {
             print("Contact fake body")
         }
@@ -541,14 +549,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.node?.name == "Player" && secondBody.node?.name == "PowerUp" {
             print("contact between player and powerUp")
             startPowerUpDistance = score
+            if !player.isFlying {
+                player.catRunRocketAnimation()
+            }
             player.isFlying = true
+            //player.groundFly = true
             secondBody.node?.removeFromParent()
             self.run(audioManager.playPowerUpSound())
         }
         
     }
     
-    func didEnd(_ contact: SKPhysicsContact) {
-        
-    }
+//    func didEnd(_ contact: SKPhysicsContact) {
+//        var firstBody = SKPhysicsBody()
+//        var secondBody = SKPhysicsBody()
+//
+//        if contact.bodyA.node?.name == "Player" {
+//            firstBody = contact.bodyA
+//            secondBody = contact.bodyB
+//        } else {
+//            firstBody = contact.bodyB
+//            secondBody = contact.bodyA
+//        }
+//
+//        if firstBody.node?.name == "Player" && (secondBody.node?.name == "Ground" || secondBody.node?.name == "PlatformType")  {
+//            player.groundFly = false
+//        }
+//    }
 }
