@@ -241,7 +241,7 @@ class Player: SKSpriteNode, GameSprite {
             textureAtlas.textureNamed("Spacecatjet1"),
             textureAtlas.textureNamed("Spacecatjet2"),
             textureAtlas.textureNamed("Spacecatjet3"),
-            textureAtlas.textureNamed("Spacecatjet4")
+            //textureAtlas.textureNamed("Spacecatjet4")
         ]
         
        // let catRocketFrames: [SKTexture] = [textureAtlas.textureNamed("Spacecatjet4")]
