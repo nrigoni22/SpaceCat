@@ -31,7 +31,7 @@ class FakeBody: SKSpriteNode, GameSprite {
     func createAnimation() {
         let enemiesFrames: [SKTexture] = [
             textureAtlas.textureNamed("nothing"),
-            textureAtlas.textureNamed("pezzo2")
+           // textureAtlas.textureNamed("pezzo2")
         ]
         
         let flyAction = SKAction.animate(with: enemiesFrames, timePerFrame: 0.14)

@@ -21,7 +21,7 @@ class EnemyCurly: SKSpriteNode, GameSprite {
         self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2 - 25)
         self.physicsBody?.affectedByGravity = true
-        self.physicsBody?.isDynamic = true
+        self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.enemy
         
         self.run(flyAnimation)
