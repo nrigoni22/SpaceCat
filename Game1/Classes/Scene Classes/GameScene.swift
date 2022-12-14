@@ -282,11 +282,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if player.isFlying && isTouched {
             if score - startPowerUpDistance < 20 {
-                print("FLYING")
+                print("PLAYER TOUCH FLYING IN UPDATE")
                 player.flyAction()
                 self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
             } else {
-                print("END FLYING")
+                print("PLAYER TOUCH END FLYING IN UPDATE")
                 self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
                 player.isFlying = false
                 isTouched = false
