@@ -1,13 +1,13 @@
 //
-//  Tree.swift
+//  Tree2.swift
 //  Game1
 //
-//  Created by Marta Michelle Caliendo on 11/12/22.
+//  Created by Marta Michelle Caliendo on 14/12/22.
 //
 
 import SpriteKit
 
-class Tree: SKSpriteNode, GameSprite {
+class Tree2: SKSpriteNode, GameSprite {
     var initialSize = CGSize(width: 10, height: 10)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var flyAnimation = SKAction()
@@ -18,15 +18,15 @@ class Tree: SKSpriteNode, GameSprite {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = 0
         self.setScale(1.5)
-        self.name = "Tree"
+        self.name = "Tree2"
         
         self.run(flyAnimation)
     }
     
     func createAnimation() {
         let enemiesFrames: [SKTexture] = [
-            textureAtlas.textureNamed("albero10"),
-            textureAtlas.textureNamed("albero11"),
+            textureAtlas.textureNamed("albero20"),
+            textureAtlas.textureNamed("albero21"),
         ]
         
         let flyAction = SKAction.animate(with: enemiesFrames, timePerFrame: 0.5)

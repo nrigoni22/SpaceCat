@@ -38,6 +38,7 @@
 		242813922947E5A400A0E22F /* 8-bit Arcade In.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */; };
 		24685CC8294A0BF90054075C /* Segnal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24685CC7294A0BF90054075C /* Segnal.swift */; };
 		24685CCA294A12420054075C /* LargePlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24685CC9294A12420054075C /* LargePlat.swift */; };
+		24685CCC294A22000054075C /* Tree2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24685CCB294A22000054075C /* Tree2.swift */; };
 		24CF40A829440138003D9E23 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A729440138003D9E23 /* Bat.swift */; };
 		24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A92944060A003D9E23 /* PlayerFly.swift */; };
 		24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40AB29440B1E003D9E23 /* HUD.swift */; };
@@ -104,6 +105,7 @@
 		242813912947E41000A0E22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		24685CC7294A0BF90054075C /* Segnal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnal.swift; sourceTree = "<group>"; };
 		24685CC9294A12420054075C /* LargePlat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePlat.swift; sourceTree = "<group>"; };
+		24685CCB294A22000054075C /* Tree2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree2.swift; sourceTree = "<group>"; };
 		24CF40A729440138003D9E23 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
 		24CF40A92944060A003D9E23 /* PlayerFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFly.swift; sourceTree = "<group>"; };
 		24CF40AB29440B1E003D9E23 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				40222407294138950004776B /* Background.swift */,
 				24F07C6F29466E20002C4EF1 /* BackgroundY.swift */,
 				24F07C6D29466638002C4EF1 /* Tree.swift */,
+				24685CCB294A22000054075C /* Tree2.swift */,
 				24CF40A729440138003D9E23 /* Bat.swift */,
 				40222414294481ED0004776B /* EnconunterManager.swift */,
 				4022241C294509630004776B /* PowerUp.swift */,
@@ -378,6 +381,7 @@
 				242813532947393D00A0E22F /* Plat2.swift in Sources */,
 				4022240F29421C170004776B /* LaunchScene.swift in Sources */,
 				242813552947397D00A0E22F /* Plat3.swift in Sources */,
+				24685CCC294A22000054075C /* Tree2.swift in Sources */,
 				2428135129472D4200A0E22F /* Razzo.swift in Sources */,
 				24F07C7029466E20002C4EF1 /* BackgroundY.swift in Sources */,
 				4022241D294509630004776B /* PowerUp.swift in Sources */,

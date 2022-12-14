@@ -100,7 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         getHeart()
         getPlanet()
         getTree()
-        getTree2()
+       // getTree2()
         
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
@@ -143,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
-            self.getTree2()
+//            self.getTree2()
             //print("TIMER2")
         })
         
@@ -376,56 +376,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func getTree() {
-        tree = self.childNode(withName: "Tree") as! SKSpriteNode
-        tree.position.y = 200
+        tree = self.childNode(withName: "Tree1") as! SKSpriteNode
+        tree.position.y = 320
         tree.position.x = player.position.x + 1500
         tree.zPosition = 0
-        
+//
         tree2 = self.childNode(withName: "Tree2") as! SKSpriteNode
-        tree2.position.y = 240
-        tree2.position.x = player.position.x + 2000
+        tree2.position.y = 320
+        tree2.position.x = player.position.x + 3000
         tree2.zPosition = 0
-        tree3 = self.childNode(withName: "Tree3") as! SKSpriteNode
-        tree3.position.y = 180
-        tree3.position.x = player.position.x + 2500
-        tree3.zPosition = 0
-        
-        
-        tree4 = self.childNode(withName: "Tree4") as! SKSpriteNode
-        tree4.position.y = 180
-        tree4.position.x = player.position.x + 1750
-        tree4.zPosition = 0
-        tree5 = self.childNode(withName: "Tree5") as! SKSpriteNode
-        tree5.position.y = 240
-        tree5.position.x = player.position.x + 2900
-        tree5.zPosition = 0
-    }
+//        tree3 = self.childNode(withName: "Tree3") as! SKSpriteNode
+//        tree3.position.y = 180
+//        tree3.position.x = player.position.x + 2500
+//        tree3.zPosition = 0
+
+//
+//        tree4 = self.childNode(withName: "Tree4") as! SKSpriteNode
+//        tree4.position.y = 180
+//        tree4.position.x = player.position.x + 1750
+//        tree4.zPosition = 0
+//        tree5 = self.childNode(withName: "Tree5") as! SKSpriteNode
+//        tree5.position.y = 240
+//        tree5.position.x = player.position.x + 2900
+//        tree5.zPosition = 0
+//    }
     
-    func getTree2() {
-        tree6 = self.childNode(withName: "Tree6") as! SKSpriteNode
-        tree6.position.y = 200
-        tree6.position.x = player.position.x + 3500
-        tree6.zPosition = 0
-        
-        tree7 = self.childNode(withName: "Tree7") as! SKSpriteNode
-        tree7.position.y = 240
-        tree7.position.x = player.position.x + 4000
-        tree7.zPosition = 0
-        
-        tree8 = self.childNode(withName: "Tree8") as! SKSpriteNode
-        tree8.position.y = 180
-        tree8.position.x = player.position.x + 4500
-        tree8.zPosition = 0
-        
-        tree9 = self.childNode(withName: "Tree9") as! SKSpriteNode
-        tree9.position.y = 180
-        tree9.position.x = player.position.x + 5000
-        tree9.zPosition = 0
-        
-        tree10 = self.childNode(withName: "Tree10") as! SKSpriteNode
-        tree10.position.y = 240
-        tree10.position.x = player.position.x + 5500
-        tree10.zPosition = 0
+//    func getTree2() {
+//        tree6 = self.childNode(withName: "Tree6") as! SKSpriteNode
+//        tree6.position.y = 200
+//        tree6.position.x = player.position.x + 3500
+//        tree6.zPosition = 0
+//
+//        tree7 = self.childNode(withName: "Tree7") as! SKSpriteNode
+//        tree7.position.y = 240
+//        tree7.position.x = player.position.x + 4000
+//        tree7.zPosition = 0
+//
+//        tree8 = self.childNode(withName: "Tree8") as! SKSpriteNode
+//        tree8.position.y = 180
+//        tree8.position.x = player.position.x + 4500
+//        tree8.zPosition = 0
+//
+//        tree9 = self.childNode(withName: "Tree9") as! SKSpriteNode
+//        tree9.position.y = 180
+//        tree9.position.x = player.position.x + 5000
+//        tree9.zPosition = 0
+//
+//        tree10 = self.childNode(withName: "Tree10") as! SKSpriteNode
+//        tree10.position.y = 240
+//        tree10.position.x = player.position.x + 5500
+//        tree10.zPosition = 0
     }
     
     func getPlanet() {
