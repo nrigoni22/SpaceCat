@@ -10,6 +10,7 @@
 
 import SpriteKit
 import AVFoundation
+import Foundation
 
 enum GameStatus {
     case ready, pause, finisched, ongoing
@@ -24,7 +25,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let encounterManager = EncounterManager()
     
     
-    var backgroundMusic: AVAudioPlayer!
+    var backgroundMusic: AVAudioPlayer = {
+        let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
+        let url = URL(filePath: path!)
+        let backgroundMusic = try! AVAudioPlayer(contentsOf: url)
+        backgroundMusic.numberOfLoops = -1
+        return backgroundMusic
+    }()
+    
+    var buttonAudio: AVAudioPlayer = {
+        let path = Bundle.main.path(forResource: "button", ofType: "mp3")
+        let url = URL(filePath: path!)
+        let buttonAudio = try! AVAudioPlayer(contentsOf: url)
+//        backgroundMusic.numberOfLoops = -1
+        return buttonAudio
+    }()
     
     var background: [Background] = []
     var background2: [BackgroundY] = []
@@ -70,7 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var sceneIndex: Int = 0
     
-    let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
+    var highscoreRaised: Bool = false
     
 //    var nodeToReactivate: [SKSpriteNode] = []
     
@@ -175,24 +190,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func startMusic() {
-        let url = URL(filePath: path!)
-        backgroundMusic = try! AVAudioPlayer(contentsOf: url)
-        backgroundMusic.numberOfLoops = -1
         backgroundMusic.play()
+    }
+    
+    func buttonMenuSound() {
+        let soundAction = SKAction.playSoundFileNamed("button", waitForCompletion: true)
+        self.run(soundAction)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
             
+            
+            HapticManager.instance.impact(style: .light)
+            
             if nodes(at: location).first == pauseBtn {
                 print("PAUSE")
+                
+                buttonAudio.play()
                 pauseBtn.alpha = 0
                 gamePaused = true
+              
                 scoreCounter.invalidate()
+             
                 
             } else if nodes(at: location).first!.name == "Quit" {
                 print("Quit")
+                
+                buttonAudio.play()
                 backgroundMusic.stop()
                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
                 launchScene!.scaleMode = .aspectFill
@@ -200,6 +226,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Play" {
                 print("Play")
+               
+                buttonAudio.play()
                 gamePaused = false
                 pauseBtn.alpha = 1
                 scene?.isPaused = false
@@ -212,6 +240,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Restart" {
                 print("Restart")
+                buttonAudio.play()
+                highscoreRaised = false
                 backgroundMusic.stop()
                 gamePaused = false
                 scene?.isPaused = false
@@ -313,6 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             pauseBtn.alpha = 0
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
+                    self.player.size = CGSize(width: 120, height: 85)
                     self.player.run(self.player.catDeadAnimation) {
                         self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                     }
@@ -326,26 +357,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             nextEncounterSpawnPosition += 2000
         }
         
+        if score >= getHighscore() {
+            if !highscoreRaised {
+                highscoreRaised = true
+                let zoomOut = SKAction.scale(to: 1.5, duration: 1)
+                let zoomIn = SKAction.scale(to: 1, duration: 1)
+                let playSound = SKAction.playSoundFileNamed("goodresult-82807", waitForCompletion: false)
+                let sequence = SKAction.sequence([zoomOut, zoomIn])
+                let group = SKAction.group([sequence, playSound])
+                scoreLabel.run(group)
+            }
+        }
+        
         switch gameStatus {
         case .ongoing:
             player.update(distance: score)
         default:
             break
         }
-        
-        
-//        for index in 0..<nodeToReactivate.count {
-//            print("node array count \(nodeToReactivate.count)")
-//            print("position \(nodeToReactivate[index].position.x) player \(player.position.x)")
-//            if nodeToReactivate[index].position.x < player.position.x  {
-//                print("check position \(index)")
-//                nodeToReactivate[index].physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
-//                print("physic body is active")
-//
-//                nodeToReactivate.remove(at: index)
-//            }
-//        }
-        
     }
     func removeHeart(lifeRemaining: Int) {
         
@@ -564,6 +593,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
             //self.nodeToReactivate.append(secondBody.node! as! SKSpriteNode)
+            HapticManager.instance.impact(style: .heavy)
             if player.health != 0 {
                 print("take damage")
                 if !player.invulnerable {
@@ -591,6 +621,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             //self.run(SKAction.wait(forDuration: 3))
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+//                let action = SKAction.fadeOut(withDuration: 0.5)
+//                secondBody.node?.run(action)
+                secondBody.node?.alpha = 0
                 secondBody.node?.physicsBody = nil
                 
             })

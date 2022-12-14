@@ -44,8 +44,7 @@ class EncounterManager {
             // Create a new node for the encounter:
             let encounterNode = SKNode()
             // Load this scene file into a SKScene instance:
-            if let encounterScene = SKScene(fileNamed:
-                                                encounterFileName) {
+            if let encounterScene = SKScene(fileNamed: encounterFileName) {
                 // Loop through each child node in the SKScene
                 for child in encounterScene.children {
                     // Create a copy of the scene's child node
@@ -134,10 +133,8 @@ class EncounterManager {
     func saveSpritePositions(node: SKNode) {
         for sprite in node.children {
             if let spriteNode = sprite as? SKSpriteNode {
-                let initialPositionValue = NSValue.init(cgPoint:
-                                                            sprite.position)
-                spriteNode.userData = ["initialPosition":
-                                        initialPositionValue]
+                let initialPositionValue = NSValue.init(cgPoint: sprite.position)
+                spriteNode.userData = ["initialPosition": initialPositionValue]
                 // Save the positions for children of this node:
                 saveSpritePositions(node: spriteNode)
             }
@@ -154,10 +151,9 @@ class EncounterManager {
                 // Reset the rotation of the sprite:
                 spriteNode.zRotation = 0
                 
- 
-                
                 if spriteNode.name == "Enemy" {
 //                    let newchild = child as! SKSpriteNode
+                    spriteNode.alpha = 1
                     spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2)
                     spriteNode.physicsBody?.affectedByGravity = false
                     spriteNode.physicsBody?.isDynamic = false
@@ -170,11 +166,9 @@ class EncounterManager {
                 }
                      
                 if let initialPositionVal =
-                    spriteNode.userData?.value(forKey:
-                                                "initialPosition") as? NSValue {
+                    spriteNode.userData?.value(forKey: "initialPosition") as? NSValue {
                     // Reset the position of the sprite:
-                    spriteNode.position =
-                    initialPositionVal.cgPointValue
+                    spriteNode.position = initialPositionVal.cgPointValue
                 }
                 // Reset positions on this node's children
                 resetSpritePositions(node: spriteNode)
@@ -192,8 +186,7 @@ class EncounterManager {
             // Spawn the encounters behind the action, with
             // increasing height so they do not collide:
            
-            encounterNode.position = CGPoint(x: -2000,
-                                             y: encounterPosY)
+            encounterNode.position = CGPoint(x: -2000, y: encounterPosY)
             gameScene.addChild(encounterNode)
             // Double the Y pos for the next encounter:
             encounterPosY *= 2

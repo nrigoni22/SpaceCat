@@ -38,7 +38,7 @@ class Player: SKSpriteNode, GameSprite {
     let maxFlappingForce:CGFloat = 137000
     
     var health: Int = 3
-    var invulnerable = true
+    var invulnerable = false
     var damage = false
     var damageAnimation = SKAction()
     //var dieAnimation = SKAction()
@@ -256,8 +256,8 @@ class Player: SKSpriteNode, GameSprite {
         
         
         let catDeadFrames: [SKTexture] = [
-            textureAtlas.textureNamed(""),
-            textureAtlas.textureNamed("")
+            textureAtlas.textureNamed("deadcat"),
+//            textureAtlas.textureNamed("")
         ]
         
         catDeadAnimation = SKAction.animate(with: catDeadFrames, timePerFrame: 1)
@@ -302,7 +302,7 @@ class Player: SKSpriteNode, GameSprite {
     func die() {
         self.alpha = 1
         self.removeAllActions()
-        //self.run(self.dieAnimation)
+//        self.run(self.dieAnimation)
         self.jump = false
         self.isFlying = false
         self.isDead = true

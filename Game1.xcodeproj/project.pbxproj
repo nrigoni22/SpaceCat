@@ -70,6 +70,8 @@
 		4022241F29450A8C0004776B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241E29450A8C0004776B /* Heart.swift */; };
 		4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */; };
 		40222427294A1CB20004776B /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40222426294A1CB20004776B /* button.mp3 */; };
+		40222429294A707D0004776B /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222428294A707D0004776B /* HapticManager.swift */; };
+		4022242B294A7F570004776B /* goodresult-82807.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242A294A7F570004776B /* goodresult-82807.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +140,8 @@
 		4022241E29450A8C0004776B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
 		40222426294A1CB20004776B /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
+		40222428294A707D0004776B /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		4022242A294A7F570004776B /* goodresult-82807.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "goodresult-82807.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +185,10 @@
 				2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */,
 				402223F0294115B30004776B /* GameViewController.swift */,
 				242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */,
+				4022242A294A7F570004776B /* goodresult-82807.mp3 */,
 				402223F2294115B30004776B /* Main.storyboard */,
 				402223F5294115B40004776B /* Assets.xcassets */,
+				40222428294A707D0004776B /* HapticManager.swift */,
 				402223F7294115B40004776B /* LaunchScreen.storyboard */,
 				4022240B29421B1C0004776B /* Scenes */,
 				4022240929421ADA0004776B /* Classes */,
@@ -342,6 +348,7 @@
 				4022241B294498910004776B /* Encounter3.sks in Resources */,
 				242813772947BAB000A0E22F /* Encounter16.sks in Resources */,
 				242813652947B4EB00A0E22F /* Encounter8.sks in Resources */,
+				4022242B294A7F570004776B /* goodresult-82807.mp3 in Resources */,
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
 				242813732947BA6600A0E22F /* Encounter14.sks in Resources */,
 				4022241A294498910004776B /* Encounter1.sks in Resources */,
@@ -364,6 +371,7 @@
 			files = (
 				24281359294739C000A0E22F /* Plat5.swift in Sources */,
 				24F07C722946A0E4002C4EF1 /* EnemyCurly.swift in Sources */,
+				40222429294A707D0004776B /* HapticManager.swift in Sources */,
 				24685CC8294A0BF90054075C /* Segnal.swift in Sources */,
 				40222400294119850004776B /* Enemy.swift in Sources */,
 				402223EF294115B30004776B /* GameScene.swift in Sources */,
@@ -539,7 +547,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
+				DEVELOPMENT_TEAM = 2WZJ93Q5VZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -554,7 +562,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "mmcaliendo22-fed.idserve.net.Game1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolarigoni.game1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -572,7 +580,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
+				DEVELOPMENT_TEAM = 2WZJ93Q5VZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -587,7 +595,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "mmcaliendo22-fed.idserve.net.Game1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolarigoni.game1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

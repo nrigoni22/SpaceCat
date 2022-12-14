@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class LaunchScene: SKScene {
     
@@ -18,6 +19,22 @@ class LaunchScene: SKScene {
     var otherScoreLabel: [SKLabelNode] = []
     var backBtn = SKSpriteNode()
     
+    var backgroundMusic: AVAudioPlayer = {
+        let path = Bundle.main.path(forResource: "music_zapsplat_game_music_zen_calm_soft_arpeggios_013", ofType: "mp3")
+        let url = URL(filePath: path!)
+        let backgroundMusic = try! AVAudioPlayer(contentsOf: url)
+        backgroundMusic.numberOfLoops = -1
+        return backgroundMusic
+    }()
+    
+    var buttonAudio: AVAudioPlayer = {
+        let path = Bundle.main.path(forResource: "button", ofType: "mp3")
+        let url = URL(filePath: path!)
+        let buttonAudio = try! AVAudioPlayer(contentsOf: url)
+//        backgroundMusic.numberOfLoops = -1
+        return buttonAudio
+    }()
+    
     override func didMove(to view: SKView) {
         inizialize()
     }
@@ -26,6 +43,7 @@ class LaunchScene: SKScene {
         creatBG()
         getButtons()
         getTitle()
+        backgroundMusic.play()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -33,16 +51,23 @@ class LaunchScene: SKScene {
             let location = touch.location(in: self)
             
             if nodes(at: location).first == playBtn {
+                buttonAudio.play()
+                HapticManager.instance.impact(style: .light)
+                backgroundMusic.stop()
                 let gameScene = GameScene(fileNamed: "GameScene")
                 gameScene!.scaleMode = .aspectFill
                 self.view?.presentScene(gameScene!, transition: SKTransition.doorway(withDuration: 1.5))
             }
             
             if nodes(at: location).first == scoreBtn {
+                buttonAudio.play()
+                HapticManager.instance.impact(style: .light)
                 scoreView()
             }
             
             if nodes(at: location).first == backBtn {
+                buttonAudio.play()
+                HapticManager.instance.impact(style: .light)
                 backBtn.removeFromParent()
                 scoreTitleLabel.removeFromParent()
                 highscoreLabel.removeFromParent()
@@ -86,6 +111,7 @@ class LaunchScene: SKScene {
         
         titleLabel.run(SKAction.repeatForever(sequence))
     }
+    
     
     func scoreView() {
         playBtn.removeFromParent()
