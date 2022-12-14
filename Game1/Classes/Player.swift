@@ -10,6 +10,7 @@ import SpriteKit
 
 
 struct ColliderType {
+    static let nulla: UInt32 = 0
     static let player: UInt32 = 1
     static let ground: UInt32 = 2
     static let enemy: UInt32 = 4

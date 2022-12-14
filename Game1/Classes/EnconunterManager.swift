@@ -116,6 +116,16 @@ class EncounterManager {
         
         let encounter = encounters[currentEncounterIndex]
         encounter.position = CGPoint(x: currentXPos + 2000, y: 300)
+        for child in encounter.children {
+            if child.name == "Enemy" {
+                let newchild = child as! SKSpriteNode
+                newchild.physicsBody = SKPhysicsBody(circleOfRadius: newchild.size.width/2)
+                newchild.physicsBody?.affectedByGravity = false
+                newchild.physicsBody?.isDynamic = false
+                newchild.physicsBody?.categoryBitMask = ColliderType.enemy
+            }
+            
+        }
         resetSpritePositions(node: encounter)
     }
     
@@ -144,10 +154,7 @@ class EncounterManager {
                 spriteNode.zRotation = 0
                 
                
-                spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2)
-                spriteNode.physicsBody?.affectedByGravity = false
-                spriteNode.physicsBody?.isDynamic = false
-                spriteNode.physicsBody?.categoryBitMask = ColliderType.enemy
+                
 
                      
                 if let initialPositionVal =
