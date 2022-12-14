@@ -73,7 +73,7 @@ class Player: SKSpriteNode, GameSprite {
         if !isDead {
             
             if distance >= 50 && distance < 100 {
-                self.position.x += 9
+                self.position.x += 10
                 //print("1")
             }
             if distance >= 100 && distance < 150 {
@@ -99,7 +99,7 @@ class Player: SKSpriteNode, GameSprite {
             }
 
             if distance < 50 {
-                self.position.x += 8
+                self.position.x += 9
                 //print("5")
             }
             
@@ -124,13 +124,13 @@ class Player: SKSpriteNode, GameSprite {
     
     func jumpAction() {
         self.physicsBody?.velocity = CGVector(dx: 0.0, dy: 0.0)
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6800.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 6700.0))
         textureJumping()
         
         if jumpCount < 1 {
             print("jump count prima")
             self.jumpTimer.invalidate()
-            jumpTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { _ in
+            jumpTimer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: { _ in
                 self.jump = true
 
                 self.jumpTimer.invalidate()
