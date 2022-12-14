@@ -164,6 +164,10 @@ class EncounterManager {
                     spriteNode.physicsBody?.categoryBitMask = ColliderType.enemy
                     spriteNode.position.y = 150
                 }
+                
+                if spriteNode.name == "PowerUp" {
+                    spriteNode.alpha = 1
+                }
                      
                 if let initialPositionVal =
                     spriteNode.userData?.value(forKey:

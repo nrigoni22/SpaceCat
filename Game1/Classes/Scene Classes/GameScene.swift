@@ -603,7 +603,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             player.isFlying = true
             //player.groundFly = true
-            secondBody.node?.removeFromParent()
+            secondBody.node?.alpha = 0
             self.run(audioManager.playPowerUpSound())
         }
         
