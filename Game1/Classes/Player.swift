@@ -181,9 +181,11 @@ class Player: SKSpriteNode, GameSprite {
         let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
         rotateDownAction.timingMode = .easeIn
         
-        let catFrames: [SKTexture] = [textureAtlas.textureNamed("Spacecat1"),
-                                      textureAtlas.textureNamed("Spacecat2"),
-                                      textureAtlas.textureNamed("Spacecat3")]
+        let catFrames: [SKTexture] = [
+            textureAtlas.textureNamed("Spacecat1"),
+            textureAtlas.textureNamed("Spacecat2"),
+            textureAtlas.textureNamed("Spacecat3")
+        ]
         
         let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
         catAnimation = SKAction.group([SKAction.repeatForever(catAction), rotateUpAction])
@@ -222,9 +224,11 @@ class Player: SKSpriteNode, GameSprite {
 //        let rotateDownAction = SKAction.rotate(toAngle: -1, duration: 0.2)
 //        rotateDownAction.timingMode = .easeIn
         
-        let catFlyFrames: [SKTexture] = [textureAtlas.textureNamed("PlayerFly"),
-                                      textureAtlas.textureNamed("PlayerFly2"),
-                                      textureAtlas.textureNamed("PlayerFly3")]
+        let catFlyFrames: [SKTexture] = [
+            textureAtlas.textureNamed("PlayerFly"),
+            textureAtlas.textureNamed("PlayerFly2"),
+            textureAtlas.textureNamed("PlayerFly3")
+        ]
         
         let catFlyAction = SKAction.animate(with: catFlyFrames, timePerFrame: 0.2)
         catFlyAnimation = SKAction.repeatForever(catFlyAction)
@@ -266,12 +270,14 @@ class Player: SKSpriteNode, GameSprite {
         
         self.removeAction(forKey: "soarAnimation")
         self.run(catFlyAnimation, withKey: "upAnimation")
+        self.size = CGSize(width: 82, height: 130)
     }
     
     func stopFlying() {
         
         self.removeAction(forKey: "upAnimation")
         self.run(soarAnimation, withKey: "soarAnimation")
+        self.size = CGSize(width: 82, height: 130)
     }
     
     

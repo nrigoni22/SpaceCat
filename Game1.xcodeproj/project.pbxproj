@@ -68,6 +68,7 @@
 		4022241D294509630004776B /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241C294509630004776B /* PowerUp.swift */; };
 		4022241F29450A8C0004776B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022241E29450A8C0004776B /* Heart.swift */; };
 		4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */; };
+		40222427294A1CB20004776B /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40222426294A1CB20004776B /* button.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,7 @@
 		4022241C294509630004776B /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		4022241E29450A8C0004776B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
+		40222426294A1CB20004776B /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				402223E8294115B30004776B /* AppDelegate.swift */,
 				4022240129411C930004776B /* GameSprite.swift */,
 				242813902947E3E000A0E22F /* 8-bit Arcade In.ttf */,
+				40222426294A1CB20004776B /* button.mp3 */,
 				4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */,
 				2428138A2947E0D900A0E22F /* mixkit-little-cat-attention-meow-86.wav */,
 				2428138C2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav */,
@@ -318,6 +321,7 @@
 				402223F4294115B30004776B /* Main.storyboard in Resources */,
 				242813752947BA8200A0E22F /* Encounter15.sks in Resources */,
 				2428138D2947E15000A0E22F /* mixkit-game-flute-bonus-2313.wav in Resources */,
+				40222427294A1CB20004776B /* button.mp3 in Resources */,
 				2428136B2947B9B700A0E22F /* Encounter10.sks in Resources */,
 				2428135D29474ED700A0E22F /* Encounter5.sks in Resources */,
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
