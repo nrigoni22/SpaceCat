@@ -72,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let path = Bundle.main.path(forResource: "music_zapsplat_space_trivia", ofType: "mp3")
     
-    var nodeToReactivate: [SKSpriteNode] = []
+//    var nodeToReactivate: [SKSpriteNode] = []
     
     var gameStatus: GameStatus = .ongoing {
         willSet {
@@ -122,11 +122,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ground.position = CGPoint(x: -self.size.width * 2, y: 105)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
+        ground.zPosition = 1
         ground.createChildren()
         self.addChild(ground)
         
         player.position = initialPlayerPosition
-        player.zPosition = 3
+        player.zPosition = 10
         
         self.addChild(player)
         

@@ -18,7 +18,7 @@ class Bat: SKSpriteNode, GameSprite {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = 3
         self.setScale(1.5)
-        self.name = "Enemy2"
+        self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (self.size.width / 2) - 10) //(rectangleOf: self.size)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = true
