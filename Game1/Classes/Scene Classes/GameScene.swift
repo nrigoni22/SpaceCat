@@ -296,6 +296,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+        if score - startPowerUpDistance > 20 && player.isFlying {
+            self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
+            player.isFlying = false
+            isTouched = false
+            player.removeAllActions()
+            player.catRunAnimation()
+        }
+        
         if gamePaused {
             addPauseView(text: "", isEnded: false, positionX: player.position.x, positionY: cameraYPos)
         }
