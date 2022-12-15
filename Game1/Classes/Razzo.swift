@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Razzo: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 100, height: 160)
+    var initialSize: CGSize = CGSize(width: 220, height: 200)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var flyAnimation = SKAction()
     
@@ -17,7 +17,7 @@ class Razzo: SKSpriteNode, GameSprite {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.zPosition = 0
+        self.zPosition = -4
         self.setScale(1.5)
         self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2 - 6)

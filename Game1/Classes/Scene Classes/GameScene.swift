@@ -41,6 +41,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return buttonAudio
     }()
     
+    var deadAudio: AVAudioPlayer = {
+        let path = Bundle.main.path(forResource: "mixkit-arcade-retro-game-over-213", ofType: "wav")
+        let url = URL(filePath: path!)
+        let deadAudio = try! AVAudioPlayer(contentsOf: url)
+//        backgroundMusic.numberOfLoops = -1
+        return deadAudio
+    }()
+    
+    
     var background: [Background] = []
     var background2: [BackgroundY] = []
     
@@ -50,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreCounter = Timer()
     
     var spawnTree = Timer()
+    var spawnTree2 = Timer()
     
     var score: Int = -1
     
@@ -118,7 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         getHeart()
         getPlanet()
         getTree()
-       // getTree2()
+        getTree2()
         
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         screenCenterY = self.size.height / 2
@@ -129,9 +139,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.append(Background())
         }
         
-        background[0].spawn(parentNode: self, imageName: "sfondo2bis", zPosition: -4, movementMultiplier: 0.005)
-        background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -2, movementMultiplier: 0.01)
-        background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -1, movementMultiplier: 0.05)
+        background[0].spawn(parentNode: self, imageName: "sfondo2bis", zPosition: -10, movementMultiplier: 0.005)
+        background[1].spawn(parentNode: self, imageName: "mont2-50", zPosition: -9, movementMultiplier: 0.01)
+        background[2].spawn(parentNode: self, imageName: "mont01-50", zPosition: -8, movementMultiplier: 0.05)
         //background[3].spawn(parentNode: self, imageName: "star", zPosition: -3, movementMultiplier: 0.1)
         //background[0].spawn(parentNode: self, imageName: "t", zPosition: -3, movementMultiplier: 0.1)
         
@@ -140,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ground.position = CGPoint(x: -self.size.width * 2, y: 105)
         ground.size = CGSize(width: self.size.width * 6, height: 0)
-        ground.zPosition = 1
+        ground.zPosition = -2
         ground.createChildren()
         self.addChild(ground)
         
@@ -155,15 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.incrementScore()
         })
         
-        spawnTree = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
-            //print("TIMER1")
-            self.getTree()
-        })
-        
-        Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
-//            self.getTree2()
-            //print("TIMER2")
-        })
+        spawnTreeTimer()
         
 //        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
 ////            for index in 0..<(self.nodeToReactivate.count) {
@@ -190,7 +192,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         encounterManager.encounters[0].position = CGPoint(x: 400, y: 330)
     }
     
-    
+    func spawnTreeTimer() {
+        spawnTree = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+            //print("TIMER1")
+            self.getTree()
+        })
+        
+        spawnTree2 = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+            self.getTree2()
+            //print("TIMER2")
+        })
+    }
     
     func startMusic() {
         backgroundMusic.play()
@@ -210,7 +222,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if nodes(at: location).first == pauseBtn {
                 print("PAUSE")
-                
+                spawnTree.invalidate()
+                spawnTree2.invalidate()
                 buttonAudio.play()
                 pauseBtn.alpha = 0
                 gamePaused = true
@@ -220,7 +233,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Quit" {
                 print("Quit")
-                
+                spawnTree.invalidate()
+                spawnTree2.invalidate()
                 buttonAudio.play()
                 backgroundMusic.stop()
                 let launchScene = LaunchScene(fileNamed: "LaunchScene")
@@ -229,7 +243,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Play" {
                 print("Play")
-               
+                spawnTreeTimer()
                 buttonAudio.play()
                 gamePaused = false
                 pauseBtn.alpha = 1
@@ -243,6 +257,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             } else if nodes(at: location).first!.name == "Restart" {
                 print("Restart")
+                spawnTree.invalidate()
+                spawnTree2.invalidate()
                 buttonAudio.play()
                 highscoreRaised = false
                 backgroundMusic.stop()
@@ -345,10 +361,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if playerDead {
             let fadeAction = SKAction.fadeAlpha(to: 0.2, duration: 0.3)
             pauseBtn.alpha = 0
+//            let gameOverSound = SKAction.playSoundFileNamed("mixkit-arcade-retro-game-over-213", waitForCompletion: false)
+//            self.run(gameOverSound)
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
                     self.player.size = CGSize(width: 110, height: 82)
                     self.player.run(self.player.catDeadAnimation) {
+                        
                         self.showDeadView = true
                         //self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                     }
@@ -370,9 +389,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if score >= getHighscore() {
             if !highscoreRaised {
                 highscoreRaised = true
-                let zoomOut = SKAction.scale(to: 3, duration: 2)
+                let zoomOut = SKAction.scale(to: 2.5, duration: 2)
                 let zoomIn = SKAction.scale(to: 1, duration: 1)
-                let playSound = SKAction.playSoundFileNamed("goodresult-82807", waitForCompletion: false)
+                let playSound = SKAction.playSoundFileNamed("mixkit-melodic-bonus-collect-1938", waitForCompletion: false)
                 let sequence = SKAction.sequence([zoomOut, zoomIn])
                 let group = SKAction.group([sequence, playSound])
                 scoreLabel.run(group)
@@ -418,12 +437,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree = self.childNode(withName: "Tree1") as! SKSpriteNode
         tree.position.y = 320
         tree.position.x = player.position.x + 1500
-        tree.zPosition = 0
+        tree.zPosition = -5
 //
         tree2 = self.childNode(withName: "Tree2") as! SKSpriteNode
-        tree2.position.y = 320
+        tree2.position.y = 360
         tree2.position.x = player.position.x + 3000
-        tree2.zPosition = 0
+        tree2.zPosition = -5
 //        tree3 = self.childNode(withName: "Tree3") as! SKSpriteNode
 //        tree3.position.y = 180
 //        tree3.position.x = player.position.x + 2500
@@ -438,18 +457,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        tree5.position.y = 240
 //        tree5.position.x = player.position.x + 2900
 //        tree5.zPosition = 0
-//    }
+    }
     
-//    func getTree2() {
-//        tree6 = self.childNode(withName: "Tree6") as! SKSpriteNode
-//        tree6.position.y = 200
-//        tree6.position.x = player.position.x + 3500
-//        tree6.zPosition = 0
-//
-//        tree7 = self.childNode(withName: "Tree7") as! SKSpriteNode
-//        tree7.position.y = 240
-//        tree7.position.x = player.position.x + 4000
-//        tree7.zPosition = 0
+    func getTree2() {
+        tree6 = self.childNode(withName: "Tree6") as! SKSpriteNode
+        tree6.position.y = 290
+        tree6.position.x = player.position.x + 5000
+        tree6.zPosition = -5
+
+        tree7 = self.childNode(withName: "Tree7") as! SKSpriteNode
+        tree7.position.y = 375
+        tree7.position.x = player.position.x + 6500
+        tree7.zPosition = -5
 //
 //        tree8 = self.childNode(withName: "Tree8") as! SKSpriteNode
 //        tree8.position.y = 180
@@ -495,9 +514,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addPauseView(text: String, isEnded: Bool, positionX: CGFloat, positionY: CGFloat) {
-        
+        spawnTree.invalidate()
+        spawnTree2.invalidate()
         scoreCounter.invalidate()
-        
+        deadAudio.play()
         let label = SKLabelNode(text: text)
         label.fontName = "8-bit Arcade In"
         label.fontSize = 120
@@ -608,10 +628,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Contact with enemy and player")
             //self.nodeToReactivate.append(secondBody.node! as! SKSpriteNode)
             //HapticManager.instance.impact(style: .heavy)
-            if player.health != 0 {
+            
+            
+            
+            
+            if player.health >= 1 {
                 print("take damage")
                 if !player.invulnerable {
                     self.run(audioManager.playEnemySound())
+                    print("PLAY ENEMY SOUND")
                 }
                 
                 player.takeDamage()
@@ -622,6 +647,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 
             }
+            
             if player.health == 0 {
                 print("back home")
                 saveLastFive(score: score)
@@ -634,6 +660,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 playerDead = true
             }
+            
             
             //self.run(SKAction.wait(forDuration: 3))
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in

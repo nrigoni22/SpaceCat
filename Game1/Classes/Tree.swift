@@ -16,7 +16,7 @@ class Tree: SKSpriteNode, GameSprite {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.zPosition = 0
+        self.zPosition = -5
         self.setScale(1.5)
         self.name = "Tree"
         

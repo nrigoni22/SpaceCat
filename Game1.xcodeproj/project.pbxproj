@@ -71,7 +71,8 @@
 		4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */; };
 		40222427294A1CB20004776B /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 40222426294A1CB20004776B /* button.mp3 */; };
 		40222429294A707D0004776B /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40222428294A707D0004776B /* HapticManager.swift */; };
-		4022242B294A7F570004776B /* goodresult-82807.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4022242A294A7F570004776B /* goodresult-82807.mp3 */; };
+		4022242D294B30350004776B /* mixkit-melodic-bonus-collect-1938.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4022242C294B30350004776B /* mixkit-melodic-bonus-collect-1938.wav */; };
+		4022242F294B31090004776B /* mixkit-arcade-retro-game-over-213.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4022242E294B31090004776B /* mixkit-arcade-retro-game-over-213.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,7 +142,8 @@
 		4022242229492ACB0004776B /* music_zapsplat_space_trivia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_space_trivia.mp3; sourceTree = "<group>"; };
 		40222426294A1CB20004776B /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
 		40222428294A707D0004776B /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		4022242A294A7F570004776B /* goodresult-82807.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "goodresult-82807.mp3"; sourceTree = "<group>"; };
+		4022242C294B30350004776B /* mixkit-melodic-bonus-collect-1938.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-melodic-bonus-collect-1938.wav"; sourceTree = "<group>"; };
+		4022242E294B31090004776B /* mixkit-arcade-retro-game-over-213.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-arcade-retro-game-over-213.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +187,8 @@
 				2428138E2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav */,
 				402223F0294115B30004776B /* GameViewController.swift */,
 				242813802947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */,
-				4022242A294A7F570004776B /* goodresult-82807.mp3 */,
+				4022242C294B30350004776B /* mixkit-melodic-bonus-collect-1938.wav */,
+				4022242E294B31090004776B /* mixkit-arcade-retro-game-over-213.wav */,
 				402223F2294115B30004776B /* Main.storyboard */,
 				402223F5294115B40004776B /* Assets.xcassets */,
 				40222428294A707D0004776B /* HapticManager.swift */,
@@ -336,6 +339,7 @@
 				4022240D29421B8C0004776B /* LaunchScene.sks in Resources */,
 				242813632947AD3E00A0E22F /* Encounter7.sks in Resources */,
 				40222419294498910004776B /* Encounter2.sks in Resources */,
+				4022242F294B31090004776B /* mixkit-arcade-retro-game-over-213.wav in Resources */,
 				2428138F2947E18A00A0E22F /* mixkit-casino-bling-achievement-2067.wav in Resources */,
 				242813812947CD4E00A0E22F /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */,
 				4022242329492ACB0004776B /* music_zapsplat_space_trivia.mp3 in Resources */,
@@ -348,7 +352,6 @@
 				4022241B294498910004776B /* Encounter3.sks in Resources */,
 				242813772947BAB000A0E22F /* Encounter16.sks in Resources */,
 				242813652947B4EB00A0E22F /* Encounter8.sks in Resources */,
-				4022242B294A7F570004776B /* goodresult-82807.mp3 in Resources */,
 				402223EB294115B30004776B /* GameScene.sks in Resources */,
 				242813732947BA6600A0E22F /* Encounter14.sks in Resources */,
 				4022241A294498910004776B /* Encounter1.sks in Resources */,
@@ -358,6 +361,7 @@
 				242813792947BAD100A0E22F /* Encounter17.sks in Resources */,
 				402223F6294115B40004776B /* Assets.xcassets in Resources */,
 				402223F9294115B40004776B /* LaunchScreen.storyboard in Resources */,
+				4022242D294B30350004776B /* mixkit-melodic-bonus-collect-1938.wav in Resources */,
 				242813922947E5A400A0E22F /* 8-bit Arcade In.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +554,7 @@
 				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpaceCat;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -583,6 +588,7 @@
 				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpaceCat;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
