@@ -365,7 +365,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            self.run(gameOverSound)
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
-                    self.player.size = CGSize(width: 110, height: 82)
+                    self.player.size = CGSize(width: 100, height: 40)
+                    self.player.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.player.size.width, height: self.player.size.height - 70))
                     self.player.run(self.player.catDeadAnimation) {
                         
                         self.showDeadView = true
