@@ -366,9 +366,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
                     self.player.size = CGSize(width: 100, height: 40)
-                    self.player.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.player.size.width, height: self.player.size.height - 70))
                     self.player.run(self.player.catDeadAnimation) {
-                        
+
                         self.showDeadView = true
                         //self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                     }
@@ -518,7 +517,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnTree.invalidate()
         spawnTree2.invalidate()
         scoreCounter.invalidate()
-        deadAudio.play()
+        
         let label = SKLabelNode(text: text)
         label.fontName = "8-bit Arcade In"
         label.fontSize = 120
@@ -616,8 +615,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if playerDead {
+                print("player dead in ground contact")
                 playerGround = true
             }
+            
         }
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "FakeBody" {
@@ -657,9 +658,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     setHighscore(score)
                 }
                 player.isFlying = false
-                secondBody.node?.removeFromParent()
+                //secondBody.node?.removeFromParent()
                 
                 playerDead = true
+                deadAudio.play()
             }
             
             

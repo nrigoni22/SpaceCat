@@ -41,7 +41,6 @@
 		24685CCC294A22000054075C /* Tree2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24685CCB294A22000054075C /* Tree2.swift */; };
 		24685CCE294B1BC80054075C /* SegnalUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24685CCD294B1BC80054075C /* SegnalUp.swift */; };
 		24CF40A829440138003D9E23 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A729440138003D9E23 /* Bat.swift */; };
-		24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40A92944060A003D9E23 /* PlayerFly.swift */; };
 		24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CF40AB29440B1E003D9E23 /* HUD.swift */; };
 		24F07C682945FCAE002C4EF1 /* EnemyMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */; };
 		24F07C6A2945FFB9002C4EF1 /* PlatformType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F07C692945FFB9002C4EF1 /* PlatformType.swift */; };
@@ -112,7 +111,6 @@
 		24685CCB294A22000054075C /* Tree2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree2.swift; sourceTree = "<group>"; };
 		24685CCD294B1BC80054075C /* SegnalUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnalUp.swift; sourceTree = "<group>"; };
 		24CF40A729440138003D9E23 /* Bat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
-		24CF40A92944060A003D9E23 /* PlayerFly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFly.swift; sourceTree = "<group>"; };
 		24CF40AB29440B1E003D9E23 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		24F07C672945FCAE002C4EF1 /* EnemyMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyMonster.swift; sourceTree = "<group>"; };
 		24F07C692945FFB9002C4EF1 /* PlatformType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformType.swift; sourceTree = "<group>"; };
@@ -206,6 +204,9 @@
 			children = (
 				4022240A29421B090004776B /* Scene Classes */,
 				4022240529412EB10004776B /* Ground.swift */,
+				24685CC7294A0BF90054075C /* Segnal.swift */,
+				24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */,
+				24685CCD294B1BC80054075C /* SegnalUp.swift */,
 				4022240329411F3C0004776B /* Player.swift */,
 				24685CC9294A12420054075C /* LargePlat.swift */,
 				402223FF294119850004776B /* Enemy.swift */,
@@ -234,13 +235,9 @@
 		4022240A29421B090004776B /* Scene Classes */ = {
 			isa = PBXGroup;
 			children = (
-				24685CCD294B1BC80054075C /* SegnalUp.swift */,
 				402223EE294115B30004776B /* GameScene.swift */,
-				24F07C712946A0E4002C4EF1 /* EnemyCurly.swift */,
-				24685CC7294A0BF90054075C /* Segnal.swift */,
-				24CF40AB29440B1E003D9E23 /* HUD.swift */,
-				24CF40A92944060A003D9E23 /* PlayerFly.swift */,
 				4022240E29421C170004776B /* LaunchScene.swift */,
+				24CF40AB29440B1E003D9E23 /* HUD.swift */,
 			);
 			path = "Scene Classes";
 			sourceTree = "<group>";
@@ -403,7 +400,6 @@
 				4022241D294509630004776B /* PowerUp.swift in Sources */,
 				4022240229411C930004776B /* GameSprite.swift in Sources */,
 				242813892947DD6A00A0E22F /* AudioManager.swift in Sources */,
-				24CF40AA2944060A003D9E23 /* PlayerFly.swift in Sources */,
 				24CF40AC29440B1E003D9E23 /* HUD.swift in Sources */,
 				4022241F29450A8C0004776B /* Heart.swift in Sources */,
 				4022240429411F3C0004776B /* Player.swift in Sources */,
@@ -555,7 +551,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
+				DEVELOPMENT_TEAM = 2WZJ93Q5VZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SpaceCat;
@@ -571,7 +567,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.martamichellecaliendo.game1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolariogni.game1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -589,7 +585,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4X3GF5PXZ4;
+				DEVELOPMENT_TEAM = 2WZJ93Q5VZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Game1/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SpaceCat;
@@ -605,7 +601,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.martamichellecaliendo.game1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolariogni.game1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

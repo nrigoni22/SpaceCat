@@ -20,7 +20,7 @@ class Razzo: SKSpriteNode, GameSprite {
         self.zPosition = -4
         self.setScale(1.5)
         self.name = "Enemy"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2 - 6)
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.enemy
