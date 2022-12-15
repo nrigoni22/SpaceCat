@@ -182,9 +182,9 @@ class Player: SKSpriteNode, GameSprite {
         rotateDownAction.timingMode = .easeIn
         
         let catFrames: [SKTexture] = [
-            textureAtlas.textureNamed("Spacecat1"),
-            textureAtlas.textureNamed("Spacecat2"),
-            textureAtlas.textureNamed("Spacecat3")
+            textureAtlas.textureNamed("ombra1"),
+            textureAtlas.textureNamed("ombra2"),
+            textureAtlas.textureNamed("ombra3")
         ]
         
         let catAction = SKAction.animate(with: catFrames, timePerFrame: 0.2)
@@ -244,9 +244,9 @@ class Player: SKSpriteNode, GameSprite {
         ])
         
         let catRocketFrames: [SKTexture] = [
-            textureAtlas.textureNamed("Spacecatjet1"),
-            textureAtlas.textureNamed("Spacecatjet2"),
-            textureAtlas.textureNamed("Spacecatjet3"),
+            textureAtlas.textureNamed("Spacecatjetombra1"),
+            textureAtlas.textureNamed("Spacecatjetombra2"),
+            textureAtlas.textureNamed("Spacecatjetombra3"),
             //textureAtlas.textureNamed("Spacecatjet4")
         ]
         
@@ -257,7 +257,7 @@ class Player: SKSpriteNode, GameSprite {
         
         
         let catDeadFrames: [SKTexture] = [
-            textureAtlas.textureNamed("deadcat"),
+            textureAtlas.textureNamed("deadcat2"),
 //            textureAtlas.textureNamed("")
         ]
         
