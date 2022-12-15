@@ -16,7 +16,7 @@ class EnemyCurly: SKSpriteNode, GameSprite {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.zPosition = 3
+        self.zPosition = 5
         self.setScale(1.5)
         self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2 - 25)

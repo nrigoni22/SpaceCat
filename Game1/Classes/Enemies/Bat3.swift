@@ -1,22 +1,24 @@
 //
-//  Bat.swift
+//  Bat3.swift
 //  Game1
 //
-//  Created by Marta Michelle Caliendo on 10/12/22.
+//  Created by Marta Michelle Caliendo on 16/12/22.
 //
+
 
 import SpriteKit
 
-class Bat: SKSpriteNode, GameSprite {
+class Bat3: SKSpriteNode, GameSprite {
     var initialSize = CGSize(width: 60, height: 40)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
     var flyAnimation = SKAction()
+    var moveBat = SKAction()
     
     init() {
         super.init(texture: nil, color: .clear, size: initialSize)
         createAnimation()
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.zPosition = 3
+        self.zPosition = 5
         self.setScale(1.5)
         self.name = "Enemy"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (self.size.width / 2) - 10) //(rectangleOf: self.size)
@@ -40,6 +42,12 @@ class Bat: SKSpriteNode, GameSprite {
         let flyAction = SKAction.animate(with: enemiesFrames, timePerFrame: 0.2)
         
         flyAnimation = SKAction.repeatForever(flyAction)
+        
+        let pathDown = SKAction.moveBy(x: 0, y: -250, duration: 2)
+        let pathUp = SKAction.moveBy(x: 0, y: 250, duration: 2)
+        let flightOfTheMonster = SKAction.sequence([pathDown, pathUp])
+        
+        moveBat = SKAction.repeatForever(flightOfTheMonster)
         
     }
     

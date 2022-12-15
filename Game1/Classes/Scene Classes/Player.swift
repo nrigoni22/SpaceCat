@@ -73,15 +73,15 @@ class Player: SKSpriteNode, GameSprite {
         if !isDead {
             
             if distance >= 50 && distance < 100 {
-                self.position.x += 10
+                self.position.x += 8
                 //print("1")
             }
             if distance >= 100 && distance < 150 {
-                self.position.x += 10
+                self.position.x += 8.5
                // print("2")
             }
             if distance >= 150 && distance < 200 {
-                self.position.x += 11
+                self.position.x += 9.5
                 //print("3")
             }
             
@@ -99,8 +99,7 @@ class Player: SKSpriteNode, GameSprite {
             }
 
             if distance < 50 {
-                self.position.x += 9
-                //print("5")
+                self.position.x += 8               //print("5")
             }
             
         }
