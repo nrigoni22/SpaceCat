@@ -215,7 +215,7 @@ class Player: SKSpriteNode, GameSprite {
         self.damageAnimation = SKAction.sequence([
             damageStart,
             fadeOutAndIn,
-            damageEnd
+            //damageEnd
         ])
         
         //self.size = CGSize(width: 140, height: 180)
@@ -315,7 +315,12 @@ class Player: SKSpriteNode, GameSprite {
         if health == 0 {
             die()
         } else {
-            self.run(damageAnimation)
+//
+            self.run(damageAnimation) {
+                self.physicsBody?.categoryBitMask = ColliderType.player
+                            self.damage = false
+                            self.invulnerable = false
+            }
             print("Run damange animation")
         }
     }

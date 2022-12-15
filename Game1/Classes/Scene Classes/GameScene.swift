@@ -343,7 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             pauseBtn.alpha = 0
             heartNode[0].run(fadeAction) {
                 self.run(SKAction.wait(forDuration: 0.5)) {
-                    self.player.size = CGSize(width: 120, height: 85)
+                    self.player.size = CGSize(width: 110, height: 82)
                     self.player.run(self.player.catDeadAnimation) {
                         self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                     }
