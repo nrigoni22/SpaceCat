@@ -206,6 +206,7 @@ class Player: SKSpriteNode, GameSprite {
             SKAction.repeat(lastFade, count: 5),
             SKAction.fadeAlpha(to: 1, duration: 0.15)
         ])
+        
         let damageEnd = SKAction.run {
             self.physicsBody?.categoryBitMask = ColliderType.player
             self.damage = false
@@ -301,7 +302,7 @@ class Player: SKSpriteNode, GameSprite {
     
     func die() {
         self.alpha = 1
-        self.removeAllActions()
+        //self.removeAllActions()
 //        self.run(self.dieAnimation)
         self.jump = false
         self.isFlying = false
@@ -317,9 +318,10 @@ class Player: SKSpriteNode, GameSprite {
         } else {
 //
             self.run(damageAnimation) {
-                self.physicsBody?.categoryBitMask = ColliderType.player
-                            self.damage = false
-                            self.invulnerable = false
+                //self.physicsBody?.categoryBitMask = ColliderType.player
+                self.damage = false
+                self.invulnerable = false
+                //print("")
             }
             print("Run damange animation")
         }

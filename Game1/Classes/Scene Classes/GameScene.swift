@@ -89,6 +89,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //    var nodeToReactivate: [SKSpriteNode] = []
     
+    var showDeadView: Bool = false
+    var playerGround: Bool = true
+    
     var gameStatus: GameStatus = .ongoing {
         willSet {
             switch gameStatus {
@@ -250,6 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameScene!.scaleMode = .aspectFill
                 self.view?.presentScene(gameScene!, transition: SKTransition.fade(withDuration: 1.5))
                 
+                
             } else {
                 if player.jump && !player.isFlying {
                     player.jump = false
@@ -320,7 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
                 player.isFlying = false
                 isTouched = false
-                player.removeAllActions()
+                //player.removeAllActions()
                 player.catRunAnimation()
             }
             
@@ -330,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.physicsWorld.gravity = CGVector(dx: 0, dy: -8.5)
             player.isFlying = false
             isTouched = false
-            player.removeAllActions()
+            //player.removeAllActions()
             player.catRunAnimation()
         }
         
@@ -345,10 +349,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.run(SKAction.wait(forDuration: 0.5)) {
                     self.player.size = CGSize(width: 110, height: 82)
                     self.player.run(self.player.catDeadAnimation) {
-                        self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
+                        self.showDeadView = true
+                        //self.addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
                     }
                 }
             }
+        }
+        
+        if showDeadView && playerGround {
+            print("show \(showDeadView.description) ground \(playerGround.description)")
+            addPauseView(text: "Game Over", isEnded: true, positionX: self.player.position.x, positionY: cameraYPos)
         }
         
         if player.position.x > nextEncounterSpawnPosition {
@@ -360,7 +370,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if score >= getHighscore() {
             if !highscoreRaised {
                 highscoreRaised = true
-                let zoomOut = SKAction.scale(to: 1.5, duration: 1)
+                let zoomOut = SKAction.scale(to: 3, duration: 2)
                 let zoomIn = SKAction.scale(to: 1, duration: 1)
                 let playSound = SKAction.playSoundFileNamed("goodresult-82807", waitForCompletion: false)
                 let sequence = SKAction.sequence([zoomOut, zoomIn])
@@ -583,6 +593,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if player.isFlying {
                 player.catRunRocketAnimation()
             }
+            
+            if playerDead {
+                playerGround = true
+            }
         }
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "FakeBody" {
@@ -593,7 +607,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
             print("Contact with enemy and player")
             //self.nodeToReactivate.append(secondBody.node! as! SKSpriteNode)
-            HapticManager.instance.impact(style: .heavy)
+            //HapticManager.instance.impact(style: .heavy)
             if player.health != 0 {
                 print("take damage")
                 if !player.invulnerable {
@@ -605,6 +619,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 
                 removeHeart(lifeRemaining: player.health)
+                
+                
             }
             if player.health == 0 {
                 print("back home")
