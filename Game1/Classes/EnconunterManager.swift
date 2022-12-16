@@ -25,10 +25,10 @@ class EncounterManager {
         "Encounter14",
         "Encounter15",
         "Encounter16",
-        "Encounter17",
-        "Encounter18",
-        "Encounter19",
-        "Encounter20",
+       // "Encounter17",
+       // "Encounter18",
+      //  "Encounter19",
+        //"Encounter20",
     ]
     // Each encounter is an SKNode, store an array:
     var encounters: [SKNode] = []
