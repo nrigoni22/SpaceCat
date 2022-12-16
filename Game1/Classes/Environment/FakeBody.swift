@@ -8,7 +8,7 @@
 import SpriteKit
 
 class FakeBody: SKSpriteNode, GameSprite {
-    var initialSize: CGSize = CGSize(width: 100, height: 10)
+    var initialSize: CGSize = CGSize(width: 300, height: 10)
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var flyAnimation = SKAction()
     
