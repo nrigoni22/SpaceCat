@@ -19,9 +19,9 @@ class Razzo: SKSpriteNode, GameSprite {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.zPosition = -4
         self.setScale(1.5)
-        self.name = "Enemy"
+        self.name = "Razzo"
         let bodyTexture = textureAtlas.textureNamed("razzo2")
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width - 50, height: self.size.height - 50))
+        self.physicsBody = SKPhysicsBody(texture: bodyTexture, size: self.size)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = ColliderType.enemy

@@ -36,6 +36,8 @@ class EncounterManager {
     var currentEncounterIndex: Int = 0
     var previousEncounterIndex: Int?
     
+    var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Enemies")
+    
     init() {
         // Loop through each encounter scene:
         
@@ -152,13 +154,21 @@ class EncounterManager {
                 spriteNode.zRotation = 0
                 
                 if spriteNode.name == "Enemy" {
-//                    let newchild = child as! SKSpriteNode
+                    //                    let newchild = child as! SKSpriteNode
                     spriteNode.alpha = 1
                     spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2)
                     spriteNode.physicsBody?.affectedByGravity = false
                     spriteNode.physicsBody?.isDynamic = false
                     spriteNode.physicsBody?.categoryBitMask = ColliderType.enemy
                     spriteNode.position.y = 150
+                } else  if spriteNode.name == "Razzo" {
+                    //                    let newchild = child as! SKSpriteNode
+                    spriteNode.alpha = 1
+                    let bodyTexture = textureAtlas.textureNamed("razzo2")
+                    spriteNode.physicsBody = SKPhysicsBody(texture: bodyTexture, size: spriteNode.size)
+                    spriteNode.physicsBody?.affectedByGravity = true
+                    spriteNode.physicsBody?.isDynamic = false
+                    spriteNode.physicsBody?.categoryBitMask = ColliderType.enemy
                 }
                 
                 if spriteNode.name == "PowerUp" {

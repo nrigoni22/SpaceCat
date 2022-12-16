@@ -193,12 +193,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnTreeTimer() {
-        spawnTree = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+        spawnTree = Timer.scheduledTimer(withTimeInterval: 19, repeats: true, block: { _ in
             //print("TIMER1")
             self.getTree()
         })
         
-        spawnTree2 = Timer.scheduledTimer(withTimeInterval: 14, repeats: true, block: { _ in
+        spawnTree2 = Timer.scheduledTimer(withTimeInterval: 19, repeats: true, block: { _ in
             self.getTree2()
             //print("TIMER2")
         })
@@ -625,7 +625,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
-        if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2") {
+        if firstBody.node?.name == "Player" && (secondBody.node?.name == "Enemy" || secondBody.node?.name == "Enemy2" || secondBody.node?.name == "Razzo") {
             print("Contact with enemy and player")
             //self.nodeToReactivate.append(secondBody.node! as! SKSpriteNode)
             //HapticManager.instance.impact(style: .heavy)
