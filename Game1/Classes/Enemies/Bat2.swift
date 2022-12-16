@@ -26,6 +26,7 @@ class Bat2: SKSpriteNode, GameSprite {
         self.physicsBody?.categoryBitMask = ColliderType.enemy
         
         self.run(flyAnimation)
+        self.run(moveBat)
     }
     
     func createAnimation() {
@@ -42,8 +43,8 @@ class Bat2: SKSpriteNode, GameSprite {
         
         flyAnimation = SKAction.repeatForever(flyAction)
         
-        let pathDown = SKAction.moveBy(x: 0, y: 250, duration: 2)
-        let pathUp = SKAction.moveBy(x: 0, y: -250, duration: 2)
+        let pathDown = SKAction.moveBy(x: 0, y: 350, duration: 2.5)
+        let pathUp = SKAction.moveBy(x: 0, y: -350, duration: 2.5)
         let flightOfTheMonster = SKAction.sequence([pathDown, pathUp])
         
         moveBat = SKAction.repeatForever(flightOfTheMonster)
